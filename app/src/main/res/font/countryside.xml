@@ -3,5 +3,5 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="100"
-        android:font="countrysideFont" />
+        android:font="@font/countrysidefont" />
 </font-family>

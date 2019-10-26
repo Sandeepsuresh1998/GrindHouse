@@ -8,7 +8,7 @@
         <item name="android:id">@color/white</item>
         <item name="colorAccent">@color/lightGreen</item>
         <item name="android:textColor">@color/white</item>
-        <item name="android:Button">@color/lightBrown</item>
+        <item name="android:button">@color/lightBrown</item>
     </style>
 
     <style name="Widget.BottomNavigationView"
