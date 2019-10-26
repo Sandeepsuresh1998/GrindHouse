@@ -15,6 +15,9 @@
     <string name="title_History">History</string>
     <string name="title_Profile">Profile</string>
     <string name="title_Recommendations">Recs</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Dashboard</string>
     <color name="dark_brown">#513B38</color>
     <color name="light_brown">#806662</color>
 </resources>
