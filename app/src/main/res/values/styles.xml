@@ -11,6 +11,11 @@
         <item name="android:Button">@color/lightBrown</item>
     </style>
 
+    <style name="Widget.BottomNavigationView"
+        parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/countryside</item>
+    </style>
+
 
 
 

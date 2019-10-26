@@ -10,4 +10,11 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_bottom_navigation">BottomNavigation</string>
+    <string name="title_Map">Map</string>
+    <string name="title_History">History</string>
+    <string name="title_Profile">Profile</string>
+    <string name="title_Recommendations">Recs</string>
+    <color name="dark_brown">#513B38</color>
+    <color name="light_brown">#806662</color>
 </resources>
