@@ -81,7 +81,7 @@
         android:layout_height="73dp"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="64dp"
         android:enabled="false"
@@ -117,7 +117,7 @@
         android:id="@+id/link_signup"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="530dp"
         android:gravity="center"
         android:text="No account yet? Create one"
         android:textSize="16dip"
@@ -128,5 +128,37 @@
         android:background="@color/white"
         android:textColor="@color/primary_lighter"
         android:fontFamily="@font/countryside"/>
+
+    <RadioGroup
+        android:id="@+id/userType"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:fontFamily="@font/countryside"
+        android:background="@color/white"
+        android:textColor="@color/primary_lighter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.100"
+        >
+
+        <RadioButton
+            android:id="@+id/customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="customer"/>
+
+        <RadioButton
+            android:id="@+id/merchant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="merchant" />
+
+    </RadioGroup>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
