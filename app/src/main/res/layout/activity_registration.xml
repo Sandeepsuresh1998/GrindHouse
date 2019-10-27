@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Registration"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:fontFamily="@font/europe"/>
+    <TextView
+        android:id="@+id/rtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Full Name"
+        android:fontFamily="@font/europe"/>
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"
+        android:fontFamily="@font/europe"/>
+    <TextView
+        android:id="@+id/ntext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:layout_marginLeft="100dp"
+        android:fontFamily="@font/europe"/>
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:ems="10"
+        android:fontFamily="@font/europe"/>
+    <TextView
+        android:id="@+id/etext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:layout_marginLeft="100dp"
+        android:fontFamily="@font/europe"/>
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:fontFamily="@font/europe"/>
+
+    <RadioGroup
+        android:id="@+id/userType"
+        android:layout_width="120dp"
+        android:layout_height="70dp"
+        android:fontFamily="@font/europe"
+        android:background="@color/white"
+        android:textColor="@color/primary_lighter"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
+
+        <RadioButton
+            android:id="@+id/customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="customer"
+            android:fontFamily="@font/europe"
+            android:textColor="@color/primary_lighter"/>
+
+        <RadioButton
+            android:id="@+id/merchant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="merchant"
+            android:fontFamily="@font/europe"
+            android:textColor="@color/primary_lighter"/>
+
+    </RadioGroup>
+    <Button
+        android:id="@+id/ptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create My Account"
+        android:fontFamily="@font/europe"
+        android:gravity="center"
+        android:textColor="@color/primary_lighter"
+        android:background="@color/white"
+        android:layout_gravity="center_horizontal" />
+
+S
+    <TextView android:id="@+id/lnkLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Registered? Login here."
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:onClick="test"
+        android:fontFamily="@font/europe"/>
+</LinearLayout>
