@@ -23,7 +23,7 @@
         android:layout_marginTop="125dp"
         android:fontFamily="@font/amatic"
         android:text="First Name"
-        android:textSize="22sp"
+        android:textSize="22dp"
         android:textStyle="bold"/>
 
     <EditText
@@ -44,7 +44,7 @@
         android:layout_marginTop="200dp"
         android:fontFamily="@font/amatic"
         android:text="Last Name"
-        android:textSize="22sp"
+        android:textSize="22dp"
         android:textStyle="bold"/>
 
     <EditText
@@ -66,7 +66,7 @@
         android:layout_marginTop="275dp"
         android:fontFamily="@font/amatic"
         android:text="Email"
-        android:textSize="22sp"
+        android:textSize="22dp"
         android:textStyle="bold"/>
 
     <EditText
@@ -88,7 +88,7 @@
         android:layout_marginTop="350dp"
         android:fontFamily="@font/amatic"
         android:text="Gender"
-        android:textSize="22sp"
+        android:textSize="22dp"
         android:textStyle="bold"/>
 
     <RadioGroup

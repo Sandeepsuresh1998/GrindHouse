@@ -9,10 +9,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="35dp"
-        android:fontFamily="@font/europe"
+        android:fontFamily="@font/amatic_bold"
         android:text="History"
         android:textColor="@color/white"
-        android:textSize="33dp" />
+        android:textSize="40dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/stores"
@@ -20,10 +21,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="125dp"
-        android:fontFamily="@font/europe"
+        android:fontFamily="@font/amatic"
         android:text="Bar Graph of Stores Visited and # of Drinks Purchased"
-        android:textSize="15sp"
-        android:gravity="center"/>
+        android:textSize="22sp"
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/drinks"
@@ -31,20 +33,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="200dp"
-        android:fontFamily="@font/europe"
+        android:fontFamily="@font/amatic"
         android:text="Pie Chart of Types of Drinks Purchased"
-        android:textSize="15sp"
-        android:gravity="center"/>
-
-<!--    <TextView-->
-<!--        android:id="@+id/history_table"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="40dp"-->
-<!--        android:layout_marginTop="275dp"-->
-<!--        android:fontFamily="@font/europe"-->
-<!--        android:text="Table of all drinks purchased"-->
-<!--        android:textSize="22sp" />-->
+        android:textSize="22sp"
+        android:gravity="center"
+        android:textStyle="bold"/>
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -55,45 +48,47 @@
         <TableRow
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:gravity="center"
-            >
+            android:gravity="center">
 
             <TextView
-
                 android:layout_column="0"
                 android:text="Date"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
                 android:textStyle="bold"
                 android:gravity="center"
-                />
+                android:fontFamily="@font/amatic"
+                android:textSize="22dp" />
 
             <TextView
                 android:layout_column="1"
                 android:text="Store"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                android:textStyle="bold"
+                android:fontFamily="@font/amatic"
+                android:textSize="22dp"
                 android:gravity="center"
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_column="2"
                 android:text="Item"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                android:textStyle="bold"
+                android:fontFamily="@font/amatic"
+                android:textSize="22dp"
                 android:gravity="center"
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_column="3"
                 android:text="Size"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                android:textStyle="bold"
+                android:fontFamily="@font/amatic"
+                android:textSize="22dp"
                 android:gravity="center"
-                />
+                android:textStyle="bold" />
 
 <!--            <TextView-->
 <!--                android:layout_column="4"-->
@@ -108,18 +103,20 @@
                 android:text="Flavor"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                android:textStyle="bold"
+                android:fontFamily="@font/amatic"
+                android:textSize="22dp"
                 android:gravity="center"
-                />
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_column="6"
                 android:text="Caffeine"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                android:textStyle="bold"
+                android:fontFamily="@font/amatic"
+                android:textSize="22dp"
                 android:gravity="center"
-                />
+                android:textStyle="bold"/>
         </TableRow>
 
         <TableRow
@@ -133,28 +130,33 @@
                 android:layout_column="0"
                 android:text="10/27/19"
                 android:padding="10dip"
-                android:background="@drawable/black_border"/>
+                android:background="@drawable/black_border"
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="1"
                 android:text="STBUX"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="2"
                 android:text="Latte"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="3"
                 android:text="M"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
 <!--            <TextView-->
 <!--                android:layout_column="4"-->
@@ -168,14 +170,16 @@
                 android:text="Vanilla"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="6"
                 android:text="150 mg"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
         </TableRow>
 
         <TableRow
@@ -189,28 +193,33 @@
                 android:layout_column="0"
                 android:text="10/20/19"
                 android:padding="10dip"
-                android:background="@drawable/black_border"/>
+                android:background="@drawable/black_border"
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="1"
                 android:text="STBUX"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="2"
                 android:text="Frap"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="3"
                 android:text="S"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <!--            <TextView-->
             <!--                android:layout_column="4"-->
@@ -224,14 +233,16 @@
                 android:text="Mocha"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="6"
                 android:text="75 mg"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
         </TableRow>
 
         <TableRow
@@ -245,28 +256,33 @@
                 android:layout_column="0"
                 android:text="10/10/19"
                 android:padding="10dip"
-                android:background="@drawable/black_border"/>
+                android:background="@drawable/black_border"
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="1"
                 android:text="CBTL"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="2"
                 android:text="Latte"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="3"
                 android:text="M"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <!--            <TextView-->
             <!--                android:layout_column="4"-->
@@ -280,14 +296,16 @@
                 android:text="Matcha"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
 
             <TextView
                 android:layout_column="6"
                 android:text="150 mg"
                 android:padding="10dip"
                 android:background="@drawable/black_border"
-                />
+                android:fontFamily="@font/amatic_bold"
+                android:textSize="22dp"/>
         </TableRow>
 
     </TableLayout>
