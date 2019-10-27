@@ -18,6 +18,5 @@
     <string name="title_home">Home</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_dashboard">Dashboard</string>
-    <color name="dark_brown">#513B38</color>
-    <color name="light_brown">#806662</color>
+    <string name="BeanandLeaf">Bean &amp; Leaf</string>
 </resources>

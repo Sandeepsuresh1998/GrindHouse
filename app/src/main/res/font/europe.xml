@@ -3,9 +3,9 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="100"
-        android:font="EuropeUnderground_black" />
+        android:font="@font/europe_underground_black" />
     <font
         android:fontStyle="italic"
         android:fontWeight="400"
-        android:font="EuropeUnderground_light" />
+        android:font="@font/europe_underground_light" />
 </font-family>

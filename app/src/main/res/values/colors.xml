@@ -4,6 +4,8 @@
     <color name="primary_light">#954d3e</color>
     <color name="primary_lighter">#a67a70</color>
     <color name="lightBrown">#a67a70</color>
+    <color name="dark_brown">#513B38</color>
+    <color name="light_brown">#806662</color>
 
     <color name="pinkBrown">#e9dcd9</color>
     <color name="black">#222222</color>
@@ -12,4 +14,5 @@
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+
 </resources>
