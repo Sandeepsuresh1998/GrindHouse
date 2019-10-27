@@ -9,10 +9,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="35dp"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:text="Profile"
         android:textColor="@color/white"
-        android:textSize="40dp" />
+        android:textSize="33dp" />
 
     <TextView
         android:id="@+id/firstname"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="125dp"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:text="First Name"
         android:textSize="22sp" />
 
@@ -31,7 +31,7 @@
         android:layout_marginLeft="175dp"
         android:layout_marginTop="125dp"
         android:ems="10"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:scrollbarSize="4dp" />
     <TextView
         android:id="@+id/lastname"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="200dp"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:text="Last Name"
         android:textSize="22sp" />
 
@@ -50,7 +50,7 @@
         android:layout_marginLeft="175dp"
         android:layout_marginTop="200dp"
         android:ems="10"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:scrollbarSize="4dp" />
 
     <TextView
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="275dp"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:text="Email"
         android:textSize="22sp" />
 
@@ -70,7 +70,7 @@
         android:layout_marginLeft="175dp"
         android:layout_marginTop="275dp"
         android:ems="10"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:scrollbarSize="4dp" />
 
     <TextView
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="350dp"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:text="Gender"
         android:textSize="22sp" />
 
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="Male"
-            android:fontFamily="@font/countryside"
+            android:fontFamily="@font/europe"
             android:textSize="22sp"/>
 
         <RadioButton
@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Female"
-            android:fontFamily="@font/countryside"
+            android:fontFamily="@font/europe"
             android:textSize="22sp"/>
 
         <RadioButton
@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Other"
-            android:fontFamily="@font/countryside"
+            android:fontFamily="@font/europe"
             android:textSize="22sp"/>
 
     </RadioGroup>

@@ -4,11 +4,14 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="35dp"
+        android:fontFamily="@font/europe"
         android:text="Recommendations"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+        android:textColor="@color/white"
+        android:textSize="33dp" />
 
 </RelativeLayout>
