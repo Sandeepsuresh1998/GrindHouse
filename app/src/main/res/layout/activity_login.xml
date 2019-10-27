@@ -17,7 +17,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:gravity="center"
         android:text="@string/BeanandLeaf"
         android:textColor="@color/white"
@@ -51,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/white"
-        android:fontFamily="@font/countryside"/>
+        android:fontFamily="@font/europe"/>
 
     <EditText
         android:id="@+id/password"
@@ -70,7 +70,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username"
         android:textColor="@color/white"
-        android:fontFamily="@font/countryside"/>
+        android:fontFamily="@font/europe"/>
 
     <Button
         android:id="@+id/login"
@@ -91,7 +91,7 @@
         app:layout_constraintVertical_bias="0.266"
         android:background="@color/white"
         android:textColor="@color/primary_lighter"
-        android:fontFamily="@font/countryside"/>
+        android:fontFamily="@font/europe"/>
 
 
     <ProgressBar
@@ -112,7 +112,7 @@
 
     <Button
         android:id="@+id/link_signup"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginTop="556dp"
@@ -130,7 +130,7 @@
         android:id="@+id/userType"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:fontFamily="@font/countryside"
+        android:fontFamily="@font/europe"
         android:background="@color/white"
         android:textColor="@color/primary_lighter"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -147,7 +147,7 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="customer"
-            android:fontFamily="@font/countryside"
+            android:fontFamily="@font/europe"
             android:textColor="@color/primary_lighter"/>
 
         <RadioButton
@@ -155,7 +155,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="merchant"
-            android:fontFamily="@font/countryside"
+            android:fontFamily="@font/europe"
             android:textColor="@color/primary_lighter"/>
 
     </RadioGroup>
