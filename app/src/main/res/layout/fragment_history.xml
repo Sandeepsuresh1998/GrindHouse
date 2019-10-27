@@ -22,7 +22,8 @@
         android:layout_marginTop="125dp"
         android:fontFamily="@font/europe"
         android:text="Bar Graph of Stores Visited and # of Drinks Purchased"
-        android:textSize="22sp" />
+        android:textSize="15sp"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/drinks"
@@ -32,7 +33,8 @@
         android:layout_marginTop="200dp"
         android:fontFamily="@font/europe"
         android:text="Pie Chart of Types of Drinks Purchased"
-        android:textSize="22sp" />
+        android:textSize="15sp"
+        android:gravity="center"/>
 
 <!--    <TextView-->
 <!--        android:id="@+id/history_table"-->
