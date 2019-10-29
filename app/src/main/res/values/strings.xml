@@ -19,5 +19,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="BeanandLeaf">Bean &amp; Leaf</string>
-    <string name="title_activity_merchant_bottom_nav">MerchantBottomNav</string>
+    <string name="title_Store">Store</string>
+    <string name="title_Menu">Menu</string>
 </resources>
