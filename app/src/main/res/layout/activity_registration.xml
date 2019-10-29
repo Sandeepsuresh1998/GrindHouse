@@ -12,14 +12,15 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:fontFamily="@font/europe"/>
+
     <TextView
         android:id="@+id/rtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="20dp"
-        android:text="Full Name"
-        android:fontFamily="@font/europe"/>
+        android:fontFamily="@font/europe"
+        android:text="Full Name" />
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -87,7 +88,7 @@
 
     </RadioGroup>
     <Button
-        android:id="@+id/ptext"
+        android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create My Account"

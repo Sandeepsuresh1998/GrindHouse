@@ -1,3 +1,5 @@
+import android.database.sqlite.SQLiteOpenHelper;
+
 import java.util.ArrayList;
 
 public class Customer extends User {
@@ -15,4 +17,5 @@ public class Customer extends User {
     public void setCustomerID(String customerID) { this.customerID = customerID; }
     public void setTripsTaken(ArrayList<Trip> tripsTaken) { this.tripsTaken = tripsTaken; }
     public void setCaffeineIntake(int caffeineIntake) { this.caffeineIntake = caffeineIntake; }
+    
 }
