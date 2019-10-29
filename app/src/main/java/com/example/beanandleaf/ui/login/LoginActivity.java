@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
@@ -26,9 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.beanandleaf.BottomNavigation;
-import com.example.beanandleaf.MapsActivity;
 import com.example.beanandleaf.R;
-import com.example.beanandleaf.Registration;
+import com.example.beanandleaf.Register;
 
 import database.DatabaseHelper;
 
@@ -136,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerActivity = new Intent(LoginActivity.this, Registration.class);
+                Intent registerActivity = new Intent(LoginActivity.this, Register.class);
                 startActivity(registerActivity);
             }
         });

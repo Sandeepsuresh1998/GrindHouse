@@ -18,7 +18,7 @@
         <activity android:name=".LandingPage">
 
         </activity>
-        <activity android:name=".Registration" />
+        <activity android:name=".Register" />
         <activity
             android:name=".BottomNavigation"
             android:label="@string/title_activity_bottom_navigation" >
