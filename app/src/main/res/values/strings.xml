@@ -21,4 +21,8 @@
     <string name="BeanandLeaf">Bean &amp; Leaf</string>
     <string name="title_Store">Store</string>
     <string name="title_Menu">Menu</string>
+    <string name="delete_store">Delete Store</string>
+    <string name="add_store">Add Store</string>
+    <string name="add_new_store">Add New Store</string>
+
 </resources>
