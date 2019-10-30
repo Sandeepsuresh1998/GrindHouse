@@ -17,13 +17,15 @@
             android:name=".MerchantBottomNav"
             android:label="MerchantBottomNav">
 
+        </activity>
+        <activity android:name=".LandingPage">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LandingPage"></activity>
         <activity android:name=".Register" />
         <activity
             android:name=".BottomNavigation"
