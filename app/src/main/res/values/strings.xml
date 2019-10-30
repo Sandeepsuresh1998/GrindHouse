@@ -24,5 +24,8 @@
     <string name="delete_store">Delete Store</string>
     <string name="add_store">Add Store</string>
     <string name="add_new_store">Add New Store</string>
+    <string name="update_item">Updated Menu Item</string>
+    <string name="delete_item">Delete Menu Item</string>
+    <string name="add_menu_item">Add Menu Item</string>
 
 </resources>
