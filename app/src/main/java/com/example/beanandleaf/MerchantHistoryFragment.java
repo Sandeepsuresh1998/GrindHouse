@@ -1,22 +1,64 @@
 package com.example.beanandleaf;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 
-public class MerchantHistoryFragment extends Fragment {
 
-    @Nullable
+public class MerchantHistoryFragment extends SimpleFragment {
+
+    @NonNull
+    public static Fragment newInstance() {
+        return new MerchantHistoryFragment();
+    }
+
+    @SuppressWarnings("FieldCanBeLocal")
+    private PieChart chart;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //just change the fragment_dashboard
-        //with the fragment you want to inflate
-        //like if the class is HomeFragment it should have R.layout.home_fragment
-        //if it is DashboardFragment it should have R.layout.fragment_dashboard
-        return inflater.inflate(R.layout.fragment_merchant_history, null);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_merchant_history, container, false);
+
+        chart = v.findViewById(R.id.pieChart1);
+        chart.getDescription().setEnabled(false);
+
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
+
+        chart.setCenterTextTypeface(tf);
+        chart.setCenterText(generateCenterText());
+        chart.setCenterTextSize(10f);
+        chart.setCenterTextTypeface(tf);
+
+        // radius of the center hole in percent of maximum radius
+        chart.setHoleRadius(45f);
+        chart.setTransparentCircleRadius(50f);
+
+        Legend l = chart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setDrawInside(false);
+
+        chart.setData(generatePieData());
+
+        return v;
+    }
+
+    private SpannableString generateCenterText() {
+        SpannableString s = new SpannableString("Revenues\nQuarters 2015");
+        s.setSpan(new RelativeSizeSpan(2f), 0, 8, 0);
+        s.setSpan(new ForegroundColorSpan(Color.GRAY), 8, s.length(), 0);
+        return s;
     }
 }
