@@ -105,4 +105,117 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "NULL"; // no user found
         }
     }
+    public boolean updatePic(String name, String email, String password, String userType,
+                              String gender, String picURL) {
+        ContentValues cv = new ContentValues();
+        cv.put("Username", name);
+        cv.put("Password", password);
+        cv.put("Email", email);
+        cv.put("UserType", userType);
+        cv.put("Gender", gender);
+        cv.put("PicURL", picURL);
+        String whereClause = "PicURL=?";
+        String whereArgs[] = {picURL};
+        long result = db.update("Users", cv, whereClause, whereArgs);
+        if (result > 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean insertStore(Integer userId, String storeLoc, String storeName) {
+        ContentValues cv = new ContentValues();
+        cv.put("UserID", userId);
+        cv.put("StoreLoc", storeLoc);
+        cv.put("StoreName", storeName);
+        long result = db.insert("Stores", null, cv);
+        if (result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public boolean removeStore(Integer userId, String storeLoc, String storeName) {
+        String whereClause = "UserID=? AND StoreLoc=? AND StoreName=?";
+        String whereArgs[] = {userId.toString(), storeLoc, storeName};
+        long result = db.delete("Stores", whereClause, whereArgs);
+        if (result > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    public boolean insertMenuItem(Integer storeId, String price, String name) {
+        ContentValues cv = new ContentValues();
+        cv.put("StoreID", storeId);
+        cv.put("Price", price);
+        cv.put("ItemName", name);
+        long result = db.insert("MenuItems", null, cv);
+        if (result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    public boolean removeMenuItem(Integer storeId, String price, String name) {
+        String whereClause = "storeId=? AND Price=? AND ItemName=?";
+        String whereArgs[] = {storeId.toString(), price, name};
+        long result = db.delete("MenuItems", whereClause, whereArgs);
+        if (result > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean insertOrder(Integer userId, Integer menuItemId, Integer storeId, Integer quantity, String time) {
+        ContentValues cv = new ContentValues();
+        cv.put("UserID", userId);
+        cv.put("MenuItemID", menuItemId);
+        cv.put("StoreID", storeId);
+        cv.put("Quantity", quantity);
+        cv.put("OrderTime", time);
+        long result = db.insert("Orders", null, cv);
+        if (result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean insertTrip(Integer userId, String startLoc, String endLoc, Integer tripDuration) {
+        ContentValues cv = new ContentValues();
+        cv.put("UserID", userId);
+        cv.put("StartLoc", startLoc);
+        cv.put("EndLoc", endLoc);
+        cv.put("TripDuration", tripDuration);
+        long result = db.insert("Trips", null, cv);
+        if (result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean insertTripOrder(Integer tripId, Integer orderId) {
+        ContentValues cv = new ContentValues();
+        cv.put("TripID", tripId);
+        cv.put("OrderID", orderId);
+        long result = db.insert("TripOrders", null, cv);
+        if (result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
