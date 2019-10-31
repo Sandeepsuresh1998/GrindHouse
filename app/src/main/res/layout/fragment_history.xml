@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"> <!--IMPORTANT otherwise backgrnd img. will not fill the whole screen -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        >
 
     <TextView
-        android:id="@+id/profile"
+        android:id="@+id/historyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
@@ -16,298 +27,64 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/stores"
+        android:id="@+id/caffeineIntake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="125dp"
         android:fontFamily="@font/amatic"
-        android:text="Bar Graph of Stores Visited and # of Drinks Purchased"
+        android:text="Total Caffeine Intake Today"
         android:textSize="22sp"
         android:gravity="center"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/drinks"
+        android:id="@+id/milage4coffee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="200dp"
+        android:fontFamily="@font/amatic"
+        android:text="Total Mileage Walked for Coffee"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/storePurchasesBarGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="275dp"
+        android:fontFamily="@font/amatic"
+        android:text="Bar Graph of Stores Visited and # of Drinks/Items Purchased"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/typesOfDrinksPieChart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="350dp"
         android:fontFamily="@font/amatic"
         android:text="Pie Chart of Types of Drinks Purchased"
         android:textSize="22sp"
         android:gravity="center"
         android:textStyle="bold"/>
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="275dp">
-
-        <TableRow
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_column="0"
-                android:text="Date"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:fontFamily="@font/amatic"
-                android:textSize="22dp" />
-
-            <TextView
-                android:layout_column="1"
-                android:text="Store"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic"
-                android:textSize="22dp"
-                android:gravity="center"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_column="2"
-                android:text="Item"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic"
-                android:textSize="22dp"
-                android:gravity="center"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_column="3"
-                android:text="Size"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic"
-                android:textSize="22dp"
-                android:gravity="center"
-                android:textStyle="bold" />
-
-<!--            <TextView-->
-<!--                android:layout_column="4"-->
-<!--                android:text="Price"-->
-<!--                android:padding="10dip"-->
-<!--                android:background="@drawable/black_border"-->
-<!--                android:textStyle="bold"-->
-<!--                />-->
-
-            <TextView
-                android:layout_column="5"
-                android:text="Flavor"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic"
-                android:textSize="22dp"
-                android:gravity="center"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_column="6"
-                android:text="Caffeine"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic"
-                android:textSize="22dp"
-                android:gravity="center"
-                android:textStyle="bold"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_height="wrap_content"
-            android:textSize="8sp"
-            android:gravity="center"
-            >
-
-            <TextView
-
-                android:layout_column="0"
-                android:text="10/27/19"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="1"
-                android:text="STBUX"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="2"
-                android:text="Latte"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="3"
-                android:text="M"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-<!--            <TextView-->
-<!--                android:layout_column="4"-->
-<!--                android:text="$5"-->
-<!--                android:padding="10dip"-->
-<!--                android:background="@drawable/black_border"-->
-<!--                />-->
-
-            <TextView
-                android:layout_column="5"
-                android:text="Vanilla"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="6"
-                android:text="150 mg"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_height="wrap_content"
-            android:textSize="8sp"
-            android:gravity="center"
-            >
-
-            <TextView
-
-                android:layout_column="0"
-                android:text="10/20/19"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="1"
-                android:text="STBUX"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="2"
-                android:text="Frap"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="3"
-                android:text="S"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <!--            <TextView-->
-            <!--                android:layout_column="4"-->
-            <!--                android:text="$5"-->
-            <!--                android:padding="10dip"-->
-            <!--                android:background="@drawable/black_border"-->
-            <!--                />-->
-
-            <TextView
-                android:layout_column="5"
-                android:text="Mocha"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="6"
-                android:text="75 mg"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_height="wrap_content"
-            android:textSize="8sp"
-            android:gravity="center"
-            >
-
-            <TextView
-
-                android:layout_column="0"
-                android:text="10/10/19"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="1"
-                android:text="CBTL"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="2"
-                android:text="Latte"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="3"
-                android:text="M"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <!--            <TextView-->
-            <!--                android:layout_column="4"-->
-            <!--                android:text="$5"-->
-            <!--                android:padding="10dip"-->
-            <!--                android:background="@drawable/black_border"-->
-            <!--                />-->
-
-            <TextView
-                android:layout_column="5"
-                android:text="Matcha"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-
-            <TextView
-                android:layout_column="6"
-                android:text="150 mg"
-                android:padding="10dip"
-                android:background="@drawable/black_border"
-                android:fontFamily="@font/amatic_bold"
-                android:textSize="22dp"/>
-        </TableRow>
-
-    </TableLayout>
+    <TextView
+        android:id="@+id/moneySpentBarGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="425dp"
+        android:fontFamily="@font/amatic"
+        android:text="Bar Graph of Money Spent on coffee in the last 10 days"
+        android:textSize="22sp"
+        android:gravity="center"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
+</ScrollView>

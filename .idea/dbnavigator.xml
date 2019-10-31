@@ -85,7 +85,7 @@
           <port value="1234" />
           <database value="database" />
           <files>
-            <file path="$USER_HOME$/Desktop/BeanAndLeaf.db" schema="main" />
+            <file path="$PROJECT_DIR$/../BeanAndLeaf.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />

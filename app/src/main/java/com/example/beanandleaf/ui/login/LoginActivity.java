@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -23,6 +24,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.Gravity;
+import android.view.View;
+
 
 import com.example.beanandleaf.BottomNavigation;
 import com.example.beanandleaf.R;
@@ -47,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button registerButton = findViewById(R.id.link_signup);
         final RadioGroup userTypeRadioButton = findViewById(R.id.userType);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -79,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     setResult(Activity.RESULT_OK);
                     finish();
                 }
+
             }
         });
 
