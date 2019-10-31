@@ -175,18 +175,6 @@
 
     </RadioGroup>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/testToast"
-        android:text="Close app"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="@font/amatic_regular"
-        android:background="@color/white"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

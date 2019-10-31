@@ -1,5 +1,6 @@
 package com.example.beanandleaf;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -7,7 +8,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+import android.widget.TextView;
+import android.graphics.Typeface;
 
 //implement the interface OnNavigationItemSelectedListener in your activity class
 public class BottomNavigation extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -24,6 +32,24 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.nav_view);
         navigation.setOnNavigationItemSelectedListener(this);
+
+        //TO DO: THIS NEEDS TO PULL FROM THE DATABASE AND FIND THE CURRENT AMOUNT OF CAFFEINE AND DISPLAY ACCORDINGLY
+        Button btn = (Button)findViewById(R.id.testToast);
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+
+                // Displaying posotioned Toast message
+                Toast t = Toast.makeText(getApplicationContext(),
+                        "You are nearing your caffeine intake amount.",
+                        Toast.LENGTH_LONG);
+                t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                TextView view = (TextView) t.getView().findViewById(android.R.id.message);
+                view.setShadowLayer(0, 0, 0, Color.LTGRAY);
+                view.setTextColor(Color.BLACK);
+                t.show();
+            }
+        });
     }
 
 

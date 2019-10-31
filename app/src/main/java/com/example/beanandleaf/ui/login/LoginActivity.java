@@ -52,20 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         final RadioGroup userTypeRadioButton = findViewById(R.id.userType);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 
-        Button btn = (Button)findViewById(R.id.testToast);
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-
-                // Displaying posotioned Toast message
-                Toast t = Toast.makeText(getApplicationContext(),
-                        "You are nearing your caffeine intake amount.",
-                        Toast.LENGTH_LONG);
-                t.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 0, 0);
-                t.show();
-            }
-        });
-
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
