@@ -24,8 +24,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.view.Gravity;
+import android.view.View;
+
 
 import com.example.beanandleaf.BottomNavigation;
 import com.example.beanandleaf.R;
@@ -50,6 +51,21 @@ public class LoginActivity extends AppCompatActivity {
         final Button registerButton = findViewById(R.id.link_signup);
         final RadioGroup userTypeRadioButton = findViewById(R.id.userType);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+
+        Button btn = (Button)findViewById(R.id.testToast);
+        btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+
+                // Displaying posotioned Toast message
+                Toast t = Toast.makeText(getApplicationContext(),
+                        "You are nearing your caffeine intake amount.",
+                        Toast.LENGTH_LONG);
+                t.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 0, 0);
+                t.show();
+            }
+        });
+
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -83,31 +99,6 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 }
 
-            }
-        });
-        Button btn = (Button)findViewById(R.id.getBtn);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setTitle("Login Alert")
-                        .setMessage("Are you sure, you want to continue ?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(LoginActivity.this,"Selected Option: YES",Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(LoginActivity.this,"Selected Option: No",Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                //Creating dialog box
-                AlertDialog dialog  = builder.create();
-                dialog.show();
             }
         });
 
