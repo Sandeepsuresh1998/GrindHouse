@@ -122,6 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                             passwordEditText.getText().toString(),
                             radioButton.getText().toString(),
                             db);
+
                 }
                 return false;
             }
@@ -168,5 +169,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(String errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    private void setSharedPreferences(String email, String password, String userType) {
+
     }
 }

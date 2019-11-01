@@ -3,6 +3,7 @@ package com.example.beanandleaf;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -39,9 +40,15 @@ public class Register extends AppCompatActivity {
                 RadioButton userRadio = findViewById(selectedUserTypeId);
                 RadioButton genderRadio = findViewById(selectedGenderId);
 
-                boolean isUsernameValid = isUsernameValid(usernameEditText.getText().toString());
-                boolean isPasswordValid = isPasswordValid(passwordEditText.getText().toString());
-                boolean isEmailValid = isEmailValid(emailEditText.getText().toString());
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+                String email = emailEditText.getText().toString();
+                String userType = userRadio.getText().toString();
+                String gender = genderRadio.getText().toString();
+
+                boolean isUsernameValid = isUsernameValid(username);
+                boolean isPasswordValid = isPasswordValid(password);
+                boolean isEmailValid = isEmailValid(email);
                 if (!isUsernameValid) {
                     Toast.makeText(getApplicationContext(), "Please enter your first and last name separated by a space", Toast.LENGTH_SHORT).show();
                 }
@@ -52,20 +59,23 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter a password >5 characters", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    String verifyResult = db.verifyUser(emailEditText.getText().toString(),
-                            passwordEditText.getText().toString(),
-                            userRadio.getText().toString());
+                    String verifyResult = db.verifyUser(email, password, userType);
                     if (!verifyResult.contentEquals("NULL")) {
                         Toast.makeText(getApplicationContext(),
-                                "A " + userRadio.getText().toString() + " account already exists with that email",
+                                "A " + userType + " account already exists with that email",
                                 Toast.LENGTH_LONG).show();
                     }
                     else {
-                        db.insertUser(usernameEditText.getText().toString(),
-                                emailEditText.getText().toString(),
-                                passwordEditText.getText().toString(),
-                                userRadio.getText().toString(),
-                                genderRadio.getText().toString());
+                        db.insertUser(username, email, password, userType, gender);
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putBoolean("loggedIn", true);
+                        editor.putString("username", username);
+                        editor.putString("password", password);
+                        editor.putString("email", email);
+                        editor.putString("userType", userType);
+                        editor.putString("gender", gender);
+                        editor.commit();
                         Intent mapActivity = new Intent(Register.this, BottomNavigation.class);
                         startActivity(mapActivity);
                     }

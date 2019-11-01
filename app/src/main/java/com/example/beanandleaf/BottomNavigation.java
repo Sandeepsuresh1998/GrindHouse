@@ -1,6 +1,7 @@
 package com.example.beanandleaf;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -51,6 +52,7 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
                 t.show();
             }
         });
+        getActionBar().hide();
     }
 
 
@@ -92,6 +94,11 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
     }
 
     public void logout(View v) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.putBoolean("loggedIn", false);
+        editor.commit();
         Intent logout = new Intent(BottomNavigation.this, LoginActivity.class);
         startActivity(logout);
     }

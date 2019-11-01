@@ -1,6 +1,7 @@
 package com.example.beanandleaf;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -75,6 +76,11 @@ public class MerchantBottomNav extends AppCompatActivity implements BottomNaviga
     }
 
     public void logout(View v) {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.putBoolean("loggedIn", false);
+        editor.commit();
         Intent logout = new Intent(MerchantBottomNav.this, LoginActivity.class);
         startActivity(logout);
     }

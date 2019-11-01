@@ -49,7 +49,7 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/firstname_edit"
+        android:id="@+id/name_edit"
         android:layout_width="208dp"
         android:layout_height="38dp"
         android:layout_marginLeft="175dp"
