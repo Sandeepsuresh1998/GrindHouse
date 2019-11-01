@@ -14,12 +14,20 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         >
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart1"
+            android:layout_width="324dp"
+            android:layout_height="160dp" />
 
-    <!--    <TextView-->
+        <FrameLayout
+            android:id="@+id/parentLayout"
+            android:layout_width="355dp"
+            android:layout_height="184dp"
+            android:layout_marginTop="200dp"
+            android:orientation="vertical"></FrameLayout>
+
+
+        <!--    <TextView-->
 <!--        android:id="@+id/historyTitle"-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
