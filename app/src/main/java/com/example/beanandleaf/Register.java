@@ -76,7 +76,14 @@ public class Register extends AppCompatActivity {
                         editor.putString("userType", userType);
                         editor.putString("gender", gender);
                         editor.commit();
-                        Intent mapActivity = new Intent(Register.this, BottomNavigation.class);
+                        Intent mapActivity = null;
+                        if (userType.contentEquals("customer")) {
+                            mapActivity = new Intent(Register.this, BottomNavigation.class);
+                        }
+                        else {
+                            mapActivity = new Intent(Register.this, MerchantBottomNav.class);
+                        }
+
                         startActivity(mapActivity);
                     }
 
