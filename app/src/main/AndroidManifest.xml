@@ -8,7 +8,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION " />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -24,15 +24,11 @@
         <activity
             android:name=".detection"
             android:label="@string/title_activity_caffeine"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MerchantBottomNav"
-            android:label="MerchantBottomNav" >
-
-        </activity>
-        <activity android:name=".LandingPage">
-
-        </activity>
+            android:label="MerchantBottomNav"></activity>
+        <activity android:name=".LandingPage"></activity>
         <activity android:name=".Register" />
         <activity
             android:name=".BottomNavigation"
@@ -45,7 +41,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
