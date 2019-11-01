@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -84,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                     int selectedUserTypeId = userTypeRadioButton.getCheckedRadioButtonId();
                     final RadioButton radioButton = findViewById(selectedUserTypeId);
                     updateUiWithUser(loginResult.getSuccess(), radioButton.getText().toString());
+                    setSharedPreferences(usernameEditText.getText().toString(), radioButton.getText().toString());
                     setResult(Activity.RESULT_OK);
                     finish();
                 }
@@ -171,7 +173,16 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
 
-    private void setSharedPreferences(String email, String password, String userType) {
-
+    private void setSharedPreferences(String email, String userType) {
+        DatabaseHelper db = new DatabaseHelper(this);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("loggedIn", true);
+        editor.putString("username", db.getUserName(email, userType));
+        editor.putString("password", db.getUserPassword(email, userType));
+        editor.putString("email", email);
+        editor.putString("userType", userType);
+        editor.putString("gender", db.getUserGender(email, userType));
+        editor.commit();
     }
 }

@@ -93,7 +93,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public String verifyUser(String email, String password, String userType) {
-        Cursor res = db.rawQuery("SELECT Username, Password FROM Users WHERE Email='" + email + "' AND UserType='" + userType + "'", null);
+        String whereClause = "SELECT Username, Password FROM Users WHERE Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
         if (res.moveToNext()) {
             if (res.getString(1).contentEquals(password)) {
                 return res.getString(0); // valid login, return username
@@ -106,6 +109,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return "NULL"; // no user found
         }
     }
+
+    public String getUserGender(String email, String userType) {
+        String whereClause = "SELECT Gender FROM Users WHERE Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getString(0);
+        }
+        return null;
+    }
+
+    public String getUserName(String email, String userType) {
+        String whereClause = "SELECT Username FROM Users WHERE Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getString(0);
+        }
+        return null;
+    }
+
+    public String getUserPassword(String email, String userType) {
+        String whereClause = "SELECT Password FROM Users WHERE Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getString(0);
+        }
+        return null;
+    }
+
     public boolean updatePic(String name, String email, String password, String userType,
                               String gender, String picURL) {
         ContentValues cv = new ContentValues();

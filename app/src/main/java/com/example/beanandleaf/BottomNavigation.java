@@ -52,7 +52,6 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
                 t.show();
             }
         });
-        getActionBar().hide();
     }
 
 
