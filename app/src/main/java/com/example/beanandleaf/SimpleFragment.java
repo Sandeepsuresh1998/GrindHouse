@@ -52,22 +52,48 @@ public abstract class SimpleFragment extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    protected BarData generateBarData(int dataSets, float range, int count) {
+    protected BarData generateBarDataStoresDrinks(int dataSets, float range, int count) {
 
         ArrayList<IBarDataSet> sets = new ArrayList<>();
 
-        for(int i = 0; i < dataSets; i++) {
+//        for(int i = 0; i < dataSets; i++) {
+//
+//            ArrayList<BarEntry> entries = new ArrayList<>();
+//
+//            for(int j = 0; j < count; j++) {
+//                entries.add(new BarEntry(j, (float) (Math.random() * range) + range / 4));
+//            }
+//
+//            BarDataSet ds = new BarDataSet(entries, getLabel(i));
+//            ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//            sets.add(ds);
+//        }
 
-            ArrayList<BarEntry> entries = new ArrayList<>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0, 5));
+//        BarDataSet ds0 = new BarDataSet(entries, getLabel(0));
+//        ds0.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds0);
+        entries.add(new BarEntry(1, 2));
+//        BarDataSet ds1 = new BarDataSet(entries, getLabel(1));
+//        ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds1);
+        entries.add(new BarEntry(2, 8));
+//        BarDataSet ds2 = new BarDataSet(entries, getLabel(2));
+//        ds2.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds2);
+        entries.add(new BarEntry(3, 3));
+//        BarDataSet ds3 = new BarDataSet(entries, getLabel(3));
+//        ds3.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds3);
+        entries.add(new BarEntry(4, 4));
+//        BarDataSet ds4 = new BarDataSet(entries, getLabel(4));
+//        ds4.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds4);
 
-            for(int j = 0; j < count; j++) {
-                entries.add(new BarEntry(j, (float) (Math.random() * range) + range / 4));
-            }
-
-            BarDataSet ds = new BarDataSet(entries, getLabel(i));
-            ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
-            sets.add(ds);
-        }
+        BarDataSet ds = new BarDataSet(entries, getLabel(0));
+        ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        sets.add(ds);
 
         BarData d = new BarData(sets);
         d.setValueTypeface(tf);
@@ -105,7 +131,7 @@ public abstract class SimpleFragment extends Fragment {
      * generates less data (1 DataSet, 4 values)
      * @return PieData
      */
-    protected PieData generatePieData() {
+    protected PieData generatePieDataDrinksPurchased() {
 
         ArrayList<PieEntry> entries1 = new ArrayList<>();
 
@@ -193,7 +219,7 @@ public abstract class SimpleFragment extends Fragment {
 //        return d;
 //    }
 
-    private final String[] mLabels = new String[] { "Company A", "Company B", "Company C", "Company D", "Company E", "Company F" };
+    private final String[] mLabels = new String[] { "Starbucks", "CB&TL", "Nature's Brew", "DRNK", "Cafe Dulce" };
 
     private String getLabel(int i) {
         return mLabels[i];

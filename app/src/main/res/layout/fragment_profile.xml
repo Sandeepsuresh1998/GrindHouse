@@ -132,5 +132,19 @@
 
     </RadioGroup>
 
+        <Button
+            android:id="@+id/update_store_button"
+            android:layout_width="76dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="480dp"
+            android:background="@drawable/blue_round_button"
+            android:enabled="false"
+            android:fontFamily="@font/amatic_regular"
+            android:text="Update Profile"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
 </RelativeLayout>
 </ScrollView>

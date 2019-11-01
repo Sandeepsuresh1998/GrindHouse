@@ -34,9 +34,9 @@ public class MerchantHistoryFragment extends SimpleFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_merchant_history, container, false);
 
-//      *********** PIE CHART ***********
+//      *********** PIE CHART OF DRINKS PURCHASED ***********
 
-        pc = v.findViewById(R.id.pieChart1);
+        pc = v.findViewById(R.id.pieChartDrinksPurchased);
         pc = new PieChart(getActivity());
         pc.getDescription().setEnabled(false);
         pc.getLegend().setEnabled(false);
@@ -61,13 +61,13 @@ public class MerchantHistoryFragment extends SimpleFragment {
 //        l.setOrientation(Legend.LegendOrientation.VERTICAL);
 //        l.setDrawInside(false);
 
-        pc.setData(generatePieData());
+        pc.setData(generatePieDataDrinksPurchased());
 
 
-//        *********** BAR CHART ***********
+//        *********** BAR CHART STORES & NUMBER OF DRINKS***********
         // create a new chart object
         bc = new BarChart(getActivity());
-        bc = v.findViewById(R.id.barChart1);
+        bc = v.findViewById(R.id.barChartStoresDrinks);
         bc.getDescription().setEnabled(false);
         //bc.setOnChartGestureListener(this);
 
@@ -78,7 +78,7 @@ public class MerchantHistoryFragment extends SimpleFragment {
         bc.setDrawGridBackground(false);
         bc.setDrawBarShadow(false);
 
-        bc.setData(generateBarData(1, 20000, 12));
+        bc.setData(generateBarDataStoresDrinks(1, 20000, 12));
 
 //        Legend l = chart.getLegend();
 //        l.setTypeface(tf);
