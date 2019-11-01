@@ -14,90 +14,166 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         >
 
+        <TextView
+            android:id="@+id/historyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="35dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="History"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/moneySpentTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="$250"
+            android:textColor="@color/white"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/moneySpentTotalDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="165dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="spent on coffee"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/separationBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="98dp"
+            android:layout_marginTop="75dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="|"
+            android:textColor="@color/white"
+            android:textSize="100dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/caffeineIntakeTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="133dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="350mg"
+            android:textColor="@color/white"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/caffeineIntakeTotalDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="128dp"
+            android:layout_marginTop="165dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="caffeine intake today"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/separationBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="242dp"
+            android:layout_marginTop="75dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="|"
+            android:textColor="@color/white"
+            android:textSize="100dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/milesWalkedTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="305dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="7"
+            android:textColor="@color/white"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/milesWalkedTotalDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="165dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="miles walked to coffee"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart1"
-            android:layout_width="375dp"
-            android:layout_height="363dp" />
+            android:layout_width="376dp"
+            android:layout_height="375dp"
+            android:layout_marginTop="210dp"/>
 
-<!--        <FrameLayout-->
-<!--            android:id="@+id/parentLayout"-->
-<!--            android:layout_width="355dp"-->
-<!--            android:layout_height="184dp"-->
-<!--            android:layout_marginTop="200dp"-->
-<!--            android:orientation="vertical"></FrameLayout>-->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart1"
+            android:layout_width="376dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="500dp" />
+
+
+
 
 
         <!--    <TextView-->
-<!--        android:id="@+id/historyTitle"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="40dp"-->
-<!--        android:layout_marginTop="35dp"-->
-<!--        android:fontFamily="@font/amatic_bold"-->
-<!--        android:text="History"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="40dp"-->
-<!--        android:textStyle="bold" />-->
+        <!--        android:id="@+id/returners"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginLeft="40dp"-->
+        <!--        android:layout_marginTop="200dp"-->
+        <!--        android:fontFamily="@font/amatic"-->
+        <!--        android:text="BarGraph of number of times people returned to the store"-->
+        <!--        android:textSize="22sp"-->
+        <!--        android:gravity="center"-->
+        <!--        android:textStyle="bold"/>-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/totalProfits"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="40dp"-->
-<!--        android:layout_marginTop="125dp"-->
-<!--        android:fontFamily="@font/amatic"-->
-<!--        android:text="Total Profits in Last 10 days"-->
-<!--        android:textSize="22sp"-->
-<!--        android:gravity="center"-->
-<!--        android:textStyle="bold"/>-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/returners"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="40dp"-->
-<!--        android:layout_marginTop="200dp"-->
-<!--        android:fontFamily="@font/amatic"-->
-<!--        android:text="BarGraph of number of times people returned to the store"-->
-<!--        android:textSize="22sp"-->
-<!--        android:gravity="center"-->
-<!--        android:textStyle="bold"/>-->
+        <!--    <TextView-->
+        <!--        android:id="@+id/typesOfDrinksPieChart"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginLeft="40dp"-->
+        <!--        android:layout_marginTop="350dp"-->
+        <!--        android:fontFamily="@font/amatic"-->
+        <!--        android:text="Pie Chart of Types of Drinks Purchased"-->
+        <!--        android:textSize="22sp"-->
+        <!--        android:gravity="center"-->
+        <!--        android:textStyle="bold"/>-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/profitsPerDriinkBarGraph"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="40dp"-->
-<!--        android:layout_marginTop="275dp"-->
-<!--        android:fontFamily="@font/amatic"-->
-<!--        android:text="Bar Graph of Profits per type of Drinks/Items Purchased"-->
-<!--        android:textSize="22sp"-->
-<!--        android:gravity="center"-->
-<!--        android:textStyle="bold"/>-->
+        <!--    <TextView-->
+        <!--        android:id="@+id/days2moneyBarGraph"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_marginLeft="40dp"-->
+        <!--        android:layout_marginTop="425dp"-->
+        <!--        android:fontFamily="@font/amatic"-->
+        <!--        android:text="Bar Graph of Money Spent at store during specific days"-->
+        <!--        android:textSize="22sp"-->
+        <!--        android:gravity="center"-->
+        <!--        android:textStyle="bold"/>-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/typesOfDrinksPieChart"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="40dp"-->
-<!--        android:layout_marginTop="350dp"-->
-<!--        android:fontFamily="@font/amatic"-->
-<!--        android:text="Pie Chart of Types of Drinks Purchased"-->
-<!--        android:textSize="22sp"-->
-<!--        android:gravity="center"-->
-<!--        android:textStyle="bold"/>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/days2moneyBarGraph"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="40dp"-->
-<!--        android:layout_marginTop="425dp"-->
-<!--        android:fontFamily="@font/amatic"-->
-<!--        android:text="Bar Graph of Money Spent at store during specific days"-->
-<!--        android:textSize="22sp"-->
-<!--        android:gravity="center"-->
-<!--        android:textStyle="bold"/>-->
-
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

@@ -52,27 +52,27 @@ public abstract class SimpleFragment extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-//    protected BarData generateBarData(int dataSets, float range, int count) {
-//
-//        ArrayList<IBarDataSet> sets = new ArrayList<>();
-//
-//        for(int i = 0; i < dataSets; i++) {
-//
-//            ArrayList<BarEntry> entries = new ArrayList<>();
-//
-//            for(int j = 0; j < count; j++) {
-//                entries.add(new BarEntry(j, (float) (Math.random() * range) + range / 4));
-//            }
-//
-//            BarDataSet ds = new BarDataSet(entries, getLabel(i));
-//            ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
-//            sets.add(ds);
-//        }
-//
-//        BarData d = new BarData(sets);
-//        d.setValueTypeface(tf);
-//        return d;
-//    }
+    protected BarData generateBarData(int dataSets, float range, int count) {
+
+        ArrayList<IBarDataSet> sets = new ArrayList<>();
+
+        for(int i = 0; i < dataSets; i++) {
+
+            ArrayList<BarEntry> entries = new ArrayList<>();
+
+            for(int j = 0; j < count; j++) {
+                entries.add(new BarEntry(j, (float) (Math.random() * range) + range / 4));
+            }
+
+            BarDataSet ds = new BarDataSet(entries, getLabel(i));
+            ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+            sets.add(ds);
+        }
+
+        BarData d = new BarData(sets);
+        d.setValueTypeface(tf);
+        return d;
+    }
 //
 //    protected ScatterData generateScatterData(int dataSets, float range, int count) {
 //

@@ -11,9 +11,12 @@ import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 
 
 public class MerchantHistoryFragment extends SimpleFragment {
@@ -24,29 +27,33 @@ public class MerchantHistoryFragment extends SimpleFragment {
     }
 
     @SuppressWarnings("FieldCanBeLocal")
-    private PieChart chart;
+    private PieChart pc;
+    private BarChart bc;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_merchant_history, container, false);
 
-        chart = v.findViewById(R.id.pieChart1);
-        chart.getDescription().setEnabled(false);
-        chart.getLegend().setEnabled(false);
+//      *********** PIE CHART ***********
+
+        pc = v.findViewById(R.id.pieChart1);
+        pc = new PieChart(getActivity());
+        pc.getDescription().setEnabled(false);
+        pc.getLegend().setEnabled(false);
 
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf");
 
-        chart.setCenterTextTypeface(tf);
-        chart.setCenterText(generateCenterText());
-        chart.setCenterTextSize(10f);
-        chart.setCenterTextTypeface(tf);
-        chart.setEntryLabelColor(Color.BLACK);
-        chart.setEntryLabelTypeface(tf);
-        chart.setEntryLabelTextSize(20f);
+        pc.setCenterTextTypeface(tf);
+        pc.setCenterText(generateCenterText());
+        pc.setCenterTextSize(10f);
+        pc.setCenterTextTypeface(tf);
+        pc.setEntryLabelColor(Color.BLACK);
+        pc.setEntryLabelTypeface(tf);
+        pc.setEntryLabelTextSize(20f);
 
         // radius of the center hole in percent of maximum radius
-        chart.setHoleRadius(35f);
-        chart.setTransparentCircleRadius(40f);
+        pc.setHoleRadius(35f);
+        pc.setTransparentCircleRadius(40f);
 
 //        Legend l = chart.getLegend();
 //        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -54,7 +61,40 @@ public class MerchantHistoryFragment extends SimpleFragment {
 //        l.setOrientation(Legend.LegendOrientation.VERTICAL);
 //        l.setDrawInside(false);
 
-        chart.setData(generatePieData());
+        pc.setData(generatePieData());
+
+
+//        *********** BAR CHART ***********
+        // create a new chart object
+        bc = new BarChart(getActivity());
+        bc = v.findViewById(R.id.barChart1);
+        bc.getDescription().setEnabled(false);
+        //bc.setOnChartGestureListener(this);
+
+//        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
+//        mv.setChartView(chart); // For bounds control
+//        chart.setMarker(mv);
+
+        bc.setDrawGridBackground(false);
+        bc.setDrawBarShadow(false);
+
+        bc.setData(generateBarData(1, 20000, 12));
+
+//        Legend l = chart.getLegend();
+//        l.setTypeface(tf);
+
+//        YAxis leftAxis = chart.getAxisLeft();
+//        leftAxis.setTypeface(tf);
+//        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        bc.getAxisRight().setEnabled(false);
+
+        XAxis xAxis = bc.getXAxis();
+        xAxis.setEnabled(false);
+
+//        // programmatically add the chart
+//        FrameLayout parent = v.findViewById(R.id.parentLayout);
+//        parent.addView(bc);
 
         return v;
     }
@@ -65,8 +105,6 @@ public class MerchantHistoryFragment extends SimpleFragment {
         s.setSpan(new ForegroundColorSpan(Color.GRAY), 16, s.length(), 0);
         return s;
     }
-
-
 }
 
 //import android.graphics.Typeface;
@@ -179,4 +217,5 @@ public class MerchantHistoryFragment extends SimpleFragment {
 //    }
 //
 //}
+
 
