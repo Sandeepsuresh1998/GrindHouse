@@ -33,7 +33,7 @@ import java.util.ArrayList;
 @SuppressWarnings({"SameParameterValue", "WeakerAccess"})
 public abstract class SimpleFragment extends Fragment {
 
-    private Typeface tf;
+    Typeface tf;
     protected Context context;
 
     @Override
@@ -48,7 +48,7 @@ public abstract class SimpleFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        tf = Typeface.createFromAsset(context.getAssets(), "OpenSans-Regular.ttf");
+        tf = Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf");
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -107,24 +107,19 @@ public abstract class SimpleFragment extends Fragment {
      */
     protected PieData generatePieData() {
 
-        int count = 4;
-
         ArrayList<PieEntry> entries1 = new ArrayList<>();
 
-//        for(int i = 0; i < count; i++) {
-//            entries1.add(new PieEntry((float) ((Math.random() * 60) + 40), "Quarter " + (i+1)));
-//        }
+        entries1.add(new PieEntry(8, "Vanilla Latte"));
+        entries1.add(new PieEntry(10, "Matcha Latte"));
+        entries1.add(new PieEntry(3, "Iced Coffee"));
+        entries1.add(new PieEntry(4, "Green Tea"));
 
-        entries1.add(new PieEntry(10, "Quarter 1" ));
-        entries1.add(new PieEntry(20, "Quarter 2" ));
-        entries1.add(new PieEntry(5, "Quarter 3" ));
-        entries1.add(new PieEntry(15, "Quarter 4" ));
-
-        PieDataSet ds1 = new PieDataSet(entries1, "Quarterly Revenues 2015");
+        PieDataSet ds1 = new PieDataSet(entries1, "Drinks Purchased");
         ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
         ds1.setSliceSpace(2f);
-        ds1.setValueTextColor(Color.WHITE);
-        ds1.setValueTextSize(12f);
+        ds1.setValueTextColor(Color.BLACK);
+        ds1.setValueTextSize(10f);
+        //ds1.setValueLineColor(Color.BLACK);
 
         PieData d = new PieData(ds1);
         d.setValueTypeface(tf);
@@ -155,7 +150,7 @@ public abstract class SimpleFragment extends Fragment {
 //        d.setValueTypeface(tf);
 //        return d;
 //    }
-
+//
 //    protected LineData getComplexity() {
 //
 //        ArrayList<ILineDataSet> sets = new ArrayList<>();
