@@ -48,27 +48,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/login_landing"
-        android:layout_width="97dp"
-        android:layout_height="47dp"
-        android:layout_gravity="start"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="28dp"
-        android:background="@color/white"
-        android:enabled="false"
-        android:fontFamily="@font/amatic_regular"
-        android:text="LOG IN"
-        android:textColor="@color/primary_lighter"
-        app:layout_constraintBottom_toTopOf="@+id/link_signup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.266" />
-
-    <Button
         android:id="@+id/link_signup"
         android:layout_width="98dp"
         android:layout_height="50dp"
@@ -80,6 +59,25 @@
         android:fontFamily="@font/amatic_regular"
         android:gravity="center"
         android:text="No account yet? Create one"
+        android:textColor="@color/primary_lighter"
+        android:textSize="16dip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/link_login"
+        android:layout_width="98dp"
+        android:layout_height="50dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="460dp"
+        android:layout_marginEnd="48dp"
+        android:background="@color/white"
+        android:fontFamily="@font/amatic_regular"
+        android:gravity="center"
+        android:text="Log In"
         android:textColor="@color/primary_lighter"
         android:textSize="16dip"
         app:layout_constraintEnd_toEndOf="parent"
