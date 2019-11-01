@@ -30,7 +30,9 @@
             android:label="MerchantBottomNav" >
 
         </activity>
-        <activity android:name=".LandingPage" />
+        <activity android:name=".LandingPage">
+
+        </activity>
         <activity android:name=".Register" />
         <activity
             android:name=".BottomNavigation"
@@ -43,6 +45,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -11,18 +11,24 @@ import com.example.beanandleaf.ui.login.LoginActivity;
 
 public class LandingPage extends AppCompatActivity {
 
-    private Button b1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
-        b1 = findViewById(R.id.landing_login);
-        b1.setOnClickListener(new View.OnClickListener() {
+        final Button loginButton = findViewById(R.id.login_landing);
+        final Button registerButton = findViewById(R.id.link_signup);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loginActivity = new Intent(LandingPage.this, LoginActivity.class);
                 startActivity(loginActivity);
+            }
+        });
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registerActivity = new Intent(LandingPage.this, Register.class);
+                startActivity(registerActivity);
             }
         });
     }
