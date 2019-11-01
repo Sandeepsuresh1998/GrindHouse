@@ -84,7 +84,8 @@ public class Register extends AppCompatActivity {
                             mapActivity = new Intent(Register.this, MerchantBottomNav.class);
                         }
 
-                        startActivity(mapActivity);
+                        if (mapActivity != null)
+                            startActivity(mapActivity);
                     }
 
                 }
