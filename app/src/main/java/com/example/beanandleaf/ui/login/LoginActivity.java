@@ -29,6 +29,7 @@ import android.view.View;
 
 
 import com.example.beanandleaf.BottomNavigation;
+import com.example.beanandleaf.MerchantBottomNav;
 import com.example.beanandleaf.R;
 import com.example.beanandleaf.Register;
 
@@ -80,7 +81,9 @@ public class LoginActivity extends AppCompatActivity {
                     showLoginFailed(loginResult.getError());
                 }
                 if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
+                    int selectedUserTypeId = userTypeRadioButton.getCheckedRadioButtonId();
+                    final RadioButton radioButton = findViewById(selectedUserTypeId);
+                    updateUiWithUser(loginResult.getSuccess(), radioButton.getText().toString());
                     setResult(Activity.RESULT_OK);
                     finish();
                 }
@@ -146,12 +149,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
+    private void updateUiWithUser(LoggedInUserView model, String userType) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-        Intent mapActivity = new Intent(LoginActivity.this, BottomNavigation.class);
-        startActivity(mapActivity);
+        Intent homeScreen = null;
+        if (userType.contentEquals("customer")) {
+            homeScreen = new Intent(LoginActivity.this, BottomNavigation.class);
+        }
+        else if (userType.contentEquals("merchant")) {
+            homeScreen = new Intent(LoginActivity.this, MerchantBottomNav.class);
+        }
+        if (homeScreen != null) {
+            startActivity(homeScreen);
+        }
+
     }
 
     private void showLoginFailed(String errorString) {
