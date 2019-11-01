@@ -24,6 +24,7 @@
         android:text="Registration"
         android:textSize="25dp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:fontFamily="@font/amatic_regular"/>
 
@@ -121,7 +122,7 @@
         >
 
         <RadioButton
-            android:id="@+id/customer"
+            android:id="@+id/Customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
@@ -130,7 +131,7 @@
             android:textColor="@color/primary_lighter" />
 
         <RadioButton
-            android:id="@+id/merchant"
+            android:id="@+id/Merchant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/amatic_regular"

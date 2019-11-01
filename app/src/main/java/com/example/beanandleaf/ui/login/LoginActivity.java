@@ -157,10 +157,10 @@ public class LoginActivity extends AppCompatActivity {
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
         Intent homeScreen = null;
-        if (userType.contentEquals("customer")) {
+        if (userType.contentEquals("Customer")) {
             homeScreen = new Intent(LoginActivity.this, BottomNavigation.class);
         }
-        else if (userType.contentEquals("merchant")) {
+        else if (userType.contentEquals("Merchant")) {
             homeScreen = new Intent(LoginActivity.this, MerchantBottomNav.class);
         }
         if (homeScreen != null) {

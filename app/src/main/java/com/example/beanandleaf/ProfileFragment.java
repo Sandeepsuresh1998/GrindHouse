@@ -2,11 +2,16 @@ package com.example.beanandleaf;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -34,6 +39,7 @@ public class ProfileFragment extends Fragment {
         String username = pref.getString("username", null);
         String email = pref.getString("email", null);
         String gender = pref.getString("gender", null);
+        String userType = pref.getString("userType", null);
 
         usernameText.setText(username);
         emailText.setText(email);
@@ -47,6 +53,19 @@ public class ProfileFragment extends Fragment {
         else {
             genderOptions.check(R.id.other);
         }
+
+        Button updateButton = view.findViewById(0);
+        updateButton.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+
+                }
+                return false;
+            }
+        });
     }
 
 }
