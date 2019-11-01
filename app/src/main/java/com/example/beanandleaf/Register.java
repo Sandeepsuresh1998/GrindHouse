@@ -77,7 +77,7 @@ public class Register extends AppCompatActivity {
                         editor.putString("gender", gender);
                         editor.commit();
                         Intent mapActivity = null;
-                        if (userType.contentEquals("customer")) {
+                        if (userType.contentEquals("Customer")) {
                             mapActivity = new Intent(Register.this, BottomNavigation.class);
                         }
                         else {
