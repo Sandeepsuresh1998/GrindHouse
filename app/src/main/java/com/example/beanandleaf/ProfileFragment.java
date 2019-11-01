@@ -39,6 +39,7 @@ public class ProfileFragment extends Fragment {
         String username = pref.getString("username", null);
         String email = pref.getString("email", null);
         String gender = pref.getString("gender", null);
+        String userType = pref.getString("userType", null);
 
         usernameText.setText(username);
         emailText.setText(email);
@@ -54,7 +55,17 @@ public class ProfileFragment extends Fragment {
         }
 
         Button updateButton = view.findViewById(0);
+        updateButton.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+
+                }
+                return false;
+            }
+        });
     }
 
 }

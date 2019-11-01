@@ -157,21 +157,21 @@
         >
 
         <RadioButton
-            android:id="@+id/customer"
+            android:id="@+id/Customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="customer"
             android:fontFamily="@font/amatic_regular"
-            android:textColor="@color/primary_lighter"/>
+            android:text="Customer"
+            android:textColor="@color/primary_lighter" />
 
         <RadioButton
-            android:id="@+id/merchant"
+            android:id="@+id/Merchant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="merchant"
             android:fontFamily="@font/amatic_regular"
-            android:textColor="@color/primary_lighter"/>
+            android:text="Merchant"
+            android:textColor="@color/primary_lighter" />
 
     </RadioGroup>
 
