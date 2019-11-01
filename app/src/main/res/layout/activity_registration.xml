@@ -20,7 +20,7 @@
         android:id="@+id/registration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:text="Registration"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -109,8 +109,39 @@
             />
 
     </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/userType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/amatic_regular"
+        android:background="@color/white"
+        android:textColor="@color/primary_lighter"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/customer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="customer"
+            android:fontFamily="@font/amatic_regular"
+            android:textColor="@color/primary_lighter"/>
+
+        <RadioButton
+            android:id="@+id/merchant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="merchant"
+            android:fontFamily="@font/amatic_regular"
+            android:textColor="@color/primary_lighter"/>
+
+    </RadioGroup>
     <Button
         android:id="@+id/register"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create My Account"
