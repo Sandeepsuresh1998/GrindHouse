@@ -76,12 +76,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertUser(String name, String email, String password, String userType) {
+    public boolean insertUser(String name, String email, String password, String userType, String gender) {
         ContentValues cv = new ContentValues();
         cv.put("Username", name);
         cv.put("Password", password);
         cv.put("Email", email);
         cv.put("UserType", userType);
+        cv.put("Gender", gender);
         long result = db.insert("Users", null, cv);
         if (result == -1) {
             return false;

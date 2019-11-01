@@ -1,8 +1,10 @@
 package com.example.beanandleaf;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.example.beanandleaf.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -87,5 +89,10 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
             return true;
         }
         return false;
+    }
+
+    public void logout(View v) {
+        Intent logout = new Intent(BottomNavigation.this, LoginActivity.class);
+        startActivity(logout);
     }
 }

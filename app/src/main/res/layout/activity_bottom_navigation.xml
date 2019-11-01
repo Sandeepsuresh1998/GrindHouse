@@ -90,6 +90,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="4dp"
         android:src="@drawable/ic_logout_white_24dp"
+        android:onClick="logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.981"
         app:layout_constraintStart_toStartOf="parent"

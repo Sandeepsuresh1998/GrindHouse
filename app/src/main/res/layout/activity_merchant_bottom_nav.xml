@@ -74,6 +74,7 @@
         android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="4dp"
+        android:onClick="logout"
         android:src="@drawable/ic_logout_white_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.981"

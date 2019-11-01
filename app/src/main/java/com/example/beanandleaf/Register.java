@@ -12,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.beanandleaf.ui.login.LoginActivity;
+
 import database.DatabaseHelper;
 
 public class Register extends AppCompatActivity {
@@ -26,13 +28,16 @@ public class Register extends AppCompatActivity {
         final EditText emailEditText = findViewById(R.id.email);
         final EditText passwordEditText = findViewById(R.id.password);
         final RadioGroup userTypeRadioButton = findViewById(R.id.userType);
+        final RadioGroup genderOptionsRadioButton = findViewById(R.id.genderOptions);
 
         final DatabaseHelper db = new DatabaseHelper(this);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int selectedUserTypeId = userTypeRadioButton.getCheckedRadioButtonId();
-                RadioButton radioButton = findViewById(selectedUserTypeId);
+                int selectedGenderId = genderOptionsRadioButton.getCheckedRadioButtonId();
+                RadioButton userRadio = findViewById(selectedUserTypeId);
+                RadioButton genderRadio = findViewById(selectedGenderId);
 
                 boolean isUsernameValid = isUsernameValid(usernameEditText.getText().toString());
                 boolean isPasswordValid = isPasswordValid(passwordEditText.getText().toString());
@@ -49,17 +54,18 @@ public class Register extends AppCompatActivity {
                 else {
                     String verifyResult = db.verifyUser(emailEditText.getText().toString(),
                             passwordEditText.getText().toString(),
-                            radioButton.getText().toString());
+                            userRadio.getText().toString());
                     if (!verifyResult.contentEquals("NULL")) {
                         Toast.makeText(getApplicationContext(),
-                                "A" + radioButton.getText().toString() + "account already exists with that email",
+                                "A " + userRadio.getText().toString() + " account already exists with that email",
                                 Toast.LENGTH_LONG).show();
                     }
                     else {
                         db.insertUser(usernameEditText.getText().toString(),
                                 emailEditText.getText().toString(),
                                 passwordEditText.getText().toString(),
-                                radioButton.getText().toString());
+                                userRadio.getText().toString(),
+                                genderRadio.getText().toString());
                         Intent mapActivity = new Intent(Register.this, BottomNavigation.class);
                         startActivity(mapActivity);
                     }
@@ -68,6 +74,11 @@ public class Register extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void sendToLogin(View v) {
+       Intent login = new Intent(Register.this, LoginActivity.class);
+       startActivity(login);
     }
 
     private boolean isUsernameValid(String username) {

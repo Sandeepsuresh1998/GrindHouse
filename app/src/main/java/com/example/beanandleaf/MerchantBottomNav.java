@@ -1,8 +1,11 @@
 package com.example.beanandleaf;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.example.beanandleaf.ui.login.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -71,4 +74,8 @@ public class MerchantBottomNav extends AppCompatActivity implements BottomNaviga
         return false;
     }
 
+    public void logout(View v) {
+        Intent logout = new Intent(MerchantBottomNav.this, LoginActivity.class);
+        startActivity(logout);
+    }
 }

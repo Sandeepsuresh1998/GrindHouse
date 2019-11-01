@@ -13,7 +13,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         >
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
@@ -103,10 +103,9 @@
             android:id="@+id/other"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Not  Listed"
             android:fontFamily="@font/amatic_regular"
-            android:textSize="22sp"
-            />
+            android:text="Not  Listed"
+            android:textSize="22sp" />
 
     </RadioGroup>
 
@@ -126,17 +125,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="customer"
             android:fontFamily="@font/amatic_regular"
-            android:textColor="@color/primary_lighter"/>
+            android:text="Customer"
+            android:textColor="@color/primary_lighter" />
 
         <RadioButton
             android:id="@+id/merchant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="merchant"
             android:fontFamily="@font/amatic_regular"
-            android:textColor="@color/primary_lighter"/>
+            android:text="Merchant"
+            android:textColor="@color/primary_lighter" />
 
     </RadioGroup>
     <Button
@@ -160,7 +159,8 @@ S
 
         android:fontFamily="@font/amatic_regular"
         android:gravity="center"
-        android:onClick="test"
+        android:onClick="sendToLogin"
+        android:clickable="true"
         android:text="Registered? Login here."
         android:textColor="@color/white"
         android:textSize="20dp" />
