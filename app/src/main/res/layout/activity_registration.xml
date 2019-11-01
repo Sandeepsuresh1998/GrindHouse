@@ -24,6 +24,7 @@
         android:text="Registration"
         android:textSize="25dp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:fontFamily="@font/amatic_regular"/>
 

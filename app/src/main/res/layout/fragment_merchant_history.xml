@@ -18,8 +18,8 @@
             android:id="@+id/historyTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/amatic_bold"
             android:text="History"
             android:textColor="@color/white"
@@ -124,15 +124,21 @@
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChartDrinksPurchased"
-            android:layout_width="376dp"
-            android:layout_height="375dp"
-            android:layout_marginTop="210dp"/>
+            android:layout_width="381dp"
+            android:layout_height="314dp"
+            android:layout_marginTop="210dp" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChartStoresDrinks"
             android:layout_width="376dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="500dp" />
+            android:layout_height="375dp"
+            android:layout_marginTop="525dp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartReturnRates"
+            android:layout_width="376dp"
+            android:layout_height="375dp"
+            android:layout_marginTop="900dp"/>
 
 
 
@@ -145,23 +151,12 @@
         <!--        android:layout_marginLeft="40dp"-->
         <!--        android:layout_marginTop="200dp"-->
         <!--        android:fontFamily="@font/amatic"-->
-        <!--        android:text="BarGraph of number of times people returned to the store"-->
+        <!--        android:text="PieChart of number of times people returned to the store"-->
         <!--        android:textSize="22sp"-->
         <!--        android:gravity="center"-->
         <!--        android:textStyle="bold"/>-->
 
 
-        <!--    <TextView-->
-        <!--        android:id="@+id/typesOfDrinksPieChart"-->
-        <!--        android:layout_width="wrap_content"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:layout_marginLeft="40dp"-->
-        <!--        android:layout_marginTop="350dp"-->
-        <!--        android:fontFamily="@font/amatic"-->
-        <!--        android:text="Pie Chart of Types of Drinks Purchased"-->
-        <!--        android:textSize="22sp"-->
-        <!--        android:gravity="center"-->
-        <!--        android:textStyle="bold"/>-->
 
         <!--    <TextView-->
         <!--        android:id="@+id/days2moneyBarGraph"-->

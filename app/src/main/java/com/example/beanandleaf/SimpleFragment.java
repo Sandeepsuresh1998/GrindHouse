@@ -99,6 +99,7 @@ public abstract class SimpleFragment extends Fragment {
         d.setValueTypeface(tf);
         return d;
     }
+
 //
 //    protected ScatterData generateScatterData(int dataSets, float range, int count) {
 //
@@ -131,6 +132,31 @@ public abstract class SimpleFragment extends Fragment {
      * generates less data (1 DataSet, 4 values)
      * @return PieData
      */
+    protected PieData generatePieDataReturnRates() {
+
+        ArrayList<PieEntry> entries1 = new ArrayList<>();
+
+        entries1.add(new PieEntry(10, "1"));
+        entries1.add(new PieEntry(6, "2"));
+        entries1.add(new PieEntry(3, "3"));
+        entries1.add(new PieEntry(4, "4"));
+        entries1.add(new PieEntry(7, "5+"));
+
+        PieDataSet ds1 = new PieDataSet(entries1, "Number of Times Customer Returns");
+        ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        ds1.setSliceSpace(2f);
+        ds1.setValueTextColor(Color.BLACK);
+        ds1.setValueTextSize(0f);
+        //ds1.setValueTypeface(tf);
+        ds1.setXValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
+        //ds1.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+
+        PieData d = new PieData(ds1);
+        //d.setValueTypeface(tf);
+
+        return d;
+    }
+
     protected PieData generatePieDataDrinksPurchased() {
 
         ArrayList<PieEntry> entries1 = new ArrayList<>();
