@@ -32,6 +32,7 @@ public class MerchantHistoryFragment extends SimpleFragment {
 
         chart = v.findViewById(R.id.pieChart1);
         chart.getDescription().setEnabled(false);
+        chart.getLegend().setEnabled(false);
 
         Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf");
 
@@ -39,6 +40,9 @@ public class MerchantHistoryFragment extends SimpleFragment {
         chart.setCenterText(generateCenterText());
         chart.setCenterTextSize(10f);
         chart.setCenterTextTypeface(tf);
+        chart.setEntryLabelColor(Color.BLACK);
+        chart.setEntryLabelTypeface(tf);
+        chart.setEntryLabelTextSize(20f);
 
         // radius of the center hole in percent of maximum radius
         chart.setHoleRadius(35f);
