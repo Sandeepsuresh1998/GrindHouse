@@ -63,7 +63,7 @@ public class MerchantBottomNav extends AppCompatActivity implements BottomNaviga
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
+                    .replace(R.id.fragment_container_merchant, fragment)
                     .commit();
             return true;
         }

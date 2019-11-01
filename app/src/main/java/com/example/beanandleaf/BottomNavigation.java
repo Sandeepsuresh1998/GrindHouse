@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.widget.TextView;
-import android.graphics.Typeface;
 
 //implement the interface OnNavigationItemSelectedListener in your activity class
 public class BottomNavigation extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -34,7 +33,7 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
         navigation.setOnNavigationItemSelectedListener(this);
 
         //TO DO: THIS NEEDS TO PULL FROM THE DATABASE AND FIND THE CURRENT AMOUNT OF CAFFEINE AND DISPLAY ACCORDINGLY
-        Button btn = (Button)findViewById(R.id.testToast);
+        Button btn = findViewById(R.id.testToast);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
@@ -83,7 +82,7 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
+                    .replace(R.id.fragment_container_customer, fragment)
                     .commit();
             return true;
         }
