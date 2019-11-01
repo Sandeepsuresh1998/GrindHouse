@@ -118,11 +118,13 @@ public abstract class SimpleFragment extends Fragment {
         ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
         ds1.setSliceSpace(2f);
         ds1.setValueTextColor(Color.BLACK);
-        ds1.setValueTextSize(10f);
-        //ds1.setValueLineColor(Color.BLACK);
+        ds1.setValueTextSize(0f);
+        //ds1.setValueTypeface(tf);
+        ds1.setXValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
+        //ds1.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 
         PieData d = new PieData(ds1);
-        d.setValueTypeface(tf);
+        //d.setValueTypeface(tf);
 
         return d;
     }
