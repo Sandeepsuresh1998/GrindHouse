@@ -32,6 +32,7 @@
     <string name="title_activity_caffeine">caffeine</string>
     <string name="dialog_message">Welcome to Alert Dialog</string>
     <string name="dialog_title">Javatpoint Alert Dialog</string>
+    <string name="title_activity_log_orders">LogOrders</string>
 
 
 </resources>

@@ -74,3 +74,14 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:+'
     implementation 'com.google.android.material:material:+'
 }
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:+'
+    implementation 'androidx.constraintlayout:constraintlayout:+'
+    implementation 'com.google.android.material:material:+'
+}
+
+dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:+'
+    implementation 'androidx.lifecycle:lifecycle-extensions:+'
+}
