@@ -23,15 +23,11 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="c9114ebb-2157-4454-8d5f-49a030222471">
-        <schema name="main" object-types="table, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="c9114ebb-2157-4454-8d5f-49a030222471">
-      <console name="Bean and Leaf" type="STANDARD" schema="main" session="Main">SELECT * from &quot;MenuItems&quot;</console>
+      <console name="Bean and Leaf" type="STANDARD" schema="main" session="Main"><![CDATA[SELECT * from "MenuItems"]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
