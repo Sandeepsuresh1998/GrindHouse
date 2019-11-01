@@ -58,6 +58,7 @@ public class MerchantBottomNav extends AppCompatActivity implements BottomNaviga
         return loadFragment(fragment);
     }
 
+
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {

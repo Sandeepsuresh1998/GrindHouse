@@ -40,7 +40,7 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
 
                 // Displaying posotioned Toast message
                 Toast t = Toast.makeText(getApplicationContext(),
-                        "You are nearing your caffeine intake amount.",
+                        "Your caffeine intake amount is 375 mg. Daily recommended intake does not exceed 400mg.",
                         Toast.LENGTH_LONG);
                 t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                 TextView view = (TextView) t.getView().findViewById(android.R.id.message);
