@@ -16,15 +16,15 @@
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart1"
-            android:layout_width="324dp"
-            android:layout_height="160dp" />
+            android:layout_width="375dp"
+            android:layout_height="363dp" />
 
-        <FrameLayout
-            android:id="@+id/parentLayout"
-            android:layout_width="355dp"
-            android:layout_height="184dp"
-            android:layout_marginTop="200dp"
-            android:orientation="vertical"></FrameLayout>
+<!--        <FrameLayout-->
+<!--            android:id="@+id/parentLayout"-->
+<!--            android:layout_width="355dp"-->
+<!--            android:layout_height="184dp"-->
+<!--            android:layout_marginTop="200dp"-->
+<!--            android:orientation="vertical"></FrameLayout>-->
 
 
         <!--    <TextView-->

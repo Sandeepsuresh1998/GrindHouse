@@ -31,18 +31,18 @@ public class MerchantHistoryFragment extends SimpleFragment {
         View v = inflater.inflate(R.layout.fragment_merchant_history, container, false);
 
         chart = v.findViewById(R.id.pieChart1);
-//        chart.getDescription().setEnabled(false);
+        chart.getDescription().setEnabled(false);
 
-//        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "OpenSans-Light.ttf");
-//
-//        chart.setCenterTextTypeface(tf);
-//        chart.setCenterText(generateCenterText());
-//        chart.setCenterTextSize(10f);
-//        chart.setCenterTextTypeface(tf);
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf");
+
+        chart.setCenterTextTypeface(tf);
+        chart.setCenterText(generateCenterText());
+        chart.setCenterTextSize(10f);
+        chart.setCenterTextTypeface(tf);
 
         // radius of the center hole in percent of maximum radius
-        chart.setHoleRadius(45f);
-        chart.setTransparentCircleRadius(50f);
+        chart.setHoleRadius(35f);
+        chart.setTransparentCircleRadius(40f);
 
 //        Legend l = chart.getLegend();
 //        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -56,9 +56,9 @@ public class MerchantHistoryFragment extends SimpleFragment {
     }
 
     private SpannableString generateCenterText() {
-        SpannableString s = new SpannableString("Revenues\nQuarters 2015");
-        s.setSpan(new RelativeSizeSpan(2f), 0, 8, 0);
-        s.setSpan(new ForegroundColorSpan(Color.GRAY), 8, s.length(), 0);
+        SpannableString s = new SpannableString("Drinks Purchased");
+        s.setSpan(new RelativeSizeSpan(2f), 0, 16, 0);
+        s.setSpan(new ForegroundColorSpan(Color.GRAY), 16, s.length(), 0);
         return s;
     }
 
