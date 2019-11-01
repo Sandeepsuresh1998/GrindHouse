@@ -23,8 +23,10 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".detection"
-            android:label="@string/title_activity_caffeine"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="locationDetector"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true"
+            />
         <activity
             android:name=".MerchantBottomNav"
             android:label="MerchantBottomNav"></activity>
