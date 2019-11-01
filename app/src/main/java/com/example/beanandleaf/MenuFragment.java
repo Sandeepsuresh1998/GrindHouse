@@ -17,6 +17,15 @@ public class MenuFragment extends Fragment {
         //with the fragment you want to inflate
         //like if the class is HomeFragment it should have R.layout.home_fragment
         //if it is DashboardFragment it should have R.layout.fragment_dashboard
+
+        //get StoreID Passed in somehow from User and Merchant activites
+
+        //get database menu items
+
+        //sort or display menu items grouped by name but list size,
+
+        //display as table
+
         return inflater.inflate(R.layout.fragment_menu, null);
     }
 }
