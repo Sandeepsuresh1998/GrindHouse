@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
@@ -52,6 +53,28 @@ public class StoreFragment extends Fragment {
         Spinner sItems = view.findViewById(R.id.store_spinner);
         sItems.setAdapter(adapter);
 
+        final EditText nameEditText = view.findViewById(R.id.storename_edit);
+        final EditText latEditText = view.findViewById(R.id.location_lat_edit);
+        final EditText lonEditText = view.findViewById(R.id.location_long_edit);
+
+        Store firstStore = null;
+        if (!stores.isEmpty()) {
+            firstStore = stores.get(0);
+            nameEditText.setText(firstStore.getName());
+            latEditText.setText(Float.toString(firstStore.getLatitude()));
+            lonEditText.setText(Float.toString(firstStore.getLongitude()));
+            deleteStoreButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment addStoreFragment = new AddStoreFragment();
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container_merchant, addStoreFragment)
+                            .commit();
+                }
+            });
+
+        }
 
 
         addStoreButton.setOnClickListener(new View.OnClickListener() {
