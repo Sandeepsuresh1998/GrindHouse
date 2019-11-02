@@ -36,8 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Stores(" +
                 "StoreID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "UserID INTEGER NOT NULL," +
-                "StoreLat REAL NOT NULL," +
-                "StoreLong REAL NOT NULL," +
+                "StoreLat TEXT NOT NULL," +
+                "StoreLong TEXT NOT NULL," +
                 "StoreName TEXT NOT NULL," +
                 "FOREIGN KEY (UserID) REFERENCES Users(UserID))");
         db.execSQL("CREATE TABLE MenuItems(" +
@@ -218,8 +218,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean insertStore(Integer userId, Float lat, Float lon, String storeName) {
         ContentValues cv = new ContentValues();
         cv.put("UserID", userId);
-        cv.put("StoreLat", lat);
-        cv.put("StoreLong", lon);
+        cv.put("StoreLat", Float.toString(lat));
+        cv.put("StoreLong", Float.toString(lon));
         cv.put("StoreName", storeName);
         long result = db.insert("Stores", null, cv);
         if (result == -1) {
@@ -239,17 +239,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         while (res.moveToNext()) {
             stores.add(new Store(
                     res.getInt(0),
-                    res.getFloat(2),
-                    res.getFloat(3),
+                    Float.parseFloat(res.getString(3)),
+                    Float.parseFloat(res.getString(2)),
                     res.getString(4)
             ));
         }
         return stores;
     }
 
-    public boolean removeStore(Integer userId, String storeLoc, String storeName) {
-        String whereClause = "UserID=? AND StoreLoc=? AND StoreName=?";
-        String whereArgs[] = {userId.toString(), storeLoc, storeName};
+    public boolean removeStore(Integer userId, String storeLat, String storeLong, String storeName) {
+        String whereClause = "UserID=? AND StoreLat=? AND StoreName=? AND StoreLong=?";
+        String whereArgs[] = {userId.toString(), storeLat, storeName, storeLong};
         long result = db.delete("Stores", whereClause, whereArgs);
         if (result > 0){
             return true;
