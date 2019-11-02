@@ -1,22 +1,140 @@
 package com.example.beanandleaf;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class HistoryFragment extends Fragment {
-    @Nullable
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.XAxis;
+
+public class HistoryFragment extends SimpleFragment {
+
+    @NonNull
+    public static Fragment newInstance() {
+        return new MerchantHistoryFragment();
+    }
+
+    @SuppressWarnings("FieldCanBeLocal")
+    private PieChart pcdp;
+    private BarChart bcdp;
+    private PieChart pcrr;
+    private BarChart bcms;
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //just change the fragment_dashboard
-        //with the fragment you want to inflate
-        //like if the class is HomeFragment it should have R.layout.home_fragment
-        //if it is DashboardFragment it should have R.layout.fragment_dashboard
-        return inflater.inflate(R.layout.fragment_history, null);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_history, container, false);
+
+//      *********** PIE CHART OF DRINKS PURCHASED ***********
+
+        pcdp = new PieChart(getActivity());
+        pcdp = v.findViewById(R.id.pieChartDrinksPurchased);
+        pcdp.getDescription().setEnabled(false);
+        pcdp.getLegend().setEnabled(false);
+
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf");
+
+        pcdp.setCenterTextTypeface(tf);
+        pcdp.setCenterText(generateCenterTextDrinksPurchased());
+        pcdp.setCenterTextSize(10f);
+        pcdp.setCenterTextTypeface(tf);
+        pcdp.setEntryLabelColor(Color.BLACK);
+        pcdp.setEntryLabelTypeface(tf);
+        pcdp.setEntryLabelTextSize(20f);
+
+        // radius of the center hole in percent of maximum radius
+        pcdp.setHoleRadius(35f);
+        pcdp.setTransparentCircleRadius(40f);
+
+//        Legend l = chart.getLegend();
+//        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+//        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
+//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+//        l.setDrawInside(false);
+
+        pcdp.setData(generatePieDataDrinksPurchased());
+
+
+//        *********** BAR CHART STORES & NUMBER OF DRINKS***********
+        // create a new chart object
+        bcdp = new BarChart(getActivity());
+        bcdp = v.findViewById(R.id.barChartStoresDrinks);
+        bcdp.getDescription().setEnabled(false);
+        //bc.setOnChartGestureListener(this);
+
+//        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
+//        mv.setChartView(chart); // For bounds control
+//        chart.setMarker(mv);
+
+        bcdp.setDrawGridBackground(false);
+        bcdp.setDrawBarShadow(false);
+
+        bcdp.setData(generateBarDataStoresDrinks(1, 20000, 12));
+
+//        Legend l = chart.getLegend();
+//        l.setTypeface(tf);
+
+//        YAxis leftAxis = chart.getAxisLeft();
+//        leftAxis.setTypeface(tf);
+//        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        bcdp.getAxisRight().setEnabled(false);
+
+        XAxis xAxis = bcdp.getXAxis();
+        xAxis.setEnabled(false);
+
+
+        //        *********** BAR CHART STORES & NUMBER OF DRINKS***********
+        // create a new chart object
+        bcms = new BarChart(getActivity());
+        bcms = v.findViewById(R.id.barChartMoneySpent);
+        bcms.getDescription().setEnabled(false);
+        //bc.setOnChartGestureListener(this);
+
+//        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
+//        mv.setChartView(chart); // For bounds control
+//        chart.setMarker(mv);
+
+        bcms.setDrawGridBackground(false);
+        bcms.setDrawBarShadow(false);
+
+        bcms.setData(generateBarDataMoneySpent(1, 20000, 12));
+
+//        Legend l = chart.getLegend();
+//        l.setTypeface(tf);
+
+//        YAxis leftAxis = chart.getAxisLeft();
+//        leftAxis.setTypeface(tf);
+//        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        bcms.getAxisRight().setEnabled(false);
+
+        XAxis xAxis1 = bcms.getXAxis();
+        xAxis1.setEnabled(false);
+
+//        // programmatically add the chart
+//        FrameLayout parent = v.findViewById(R.id.parentLayout);
+//        parent.addView(bc);
+
+        return v;
+    }
+
+    private SpannableString generateCenterTextDrinksPurchased() {
+        SpannableString s = new SpannableString("Drinks Purchased");
+        s.setSpan(new RelativeSizeSpan(2f), 0, 16, 0);
+        s.setSpan(new ForegroundColorSpan(Color.GRAY), 16, s.length(), 0);
+        return s;
     }
 
 }

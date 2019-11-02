@@ -28,8 +28,9 @@ public class MerchantHistoryFragment extends SimpleFragment {
 
     @SuppressWarnings("FieldCanBeLocal")
     private PieChart pcdp;
-    private BarChart bc;
+    private BarChart bcdp;
     private PieChart pcrr;
+    private BarChart bcms;
 
 
     @Override
@@ -68,19 +69,19 @@ public class MerchantHistoryFragment extends SimpleFragment {
 
 //        *********** BAR CHART STORES & NUMBER OF DRINKS***********
         // create a new chart object
-        bc = new BarChart(getActivity());
-        bc = v.findViewById(R.id.barChartStoresDrinks);
-        bc.getDescription().setEnabled(false);
+        bcdp = new BarChart(getActivity());
+        bcdp = v.findViewById(R.id.barChartStoresDrinks);
+        bcdp.getDescription().setEnabled(false);
         //bc.setOnChartGestureListener(this);
 
 //        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
 //        mv.setChartView(chart); // For bounds control
 //        chart.setMarker(mv);
 
-        bc.setDrawGridBackground(false);
-        bc.setDrawBarShadow(false);
+        bcdp.setDrawGridBackground(false);
+        bcdp.setDrawBarShadow(false);
 
-        bc.setData(generateBarDataStoresDrinks(1, 20000, 12));
+        bcdp.setData(generateBarDataStoresDrinks(1, 20000, 12));
 
 //        Legend l = chart.getLegend();
 //        l.setTypeface(tf);
@@ -89,14 +90,10 @@ public class MerchantHistoryFragment extends SimpleFragment {
 //        leftAxis.setTypeface(tf);
 //        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
-        bc.getAxisRight().setEnabled(false);
+        bcdp.getAxisRight().setEnabled(false);
 
-        XAxis xAxis = bc.getXAxis();
+        XAxis xAxis = bcdp.getXAxis();
         xAxis.setEnabled(false);
-
-//        // programmatically add the chart
-//        FrameLayout parent = v.findViewById(R.id.parentLayout);
-//        parent.addView(bc);
 
 
         //      *********** PIE CHART OF RETURN RATES ***********
@@ -105,6 +102,7 @@ public class MerchantHistoryFragment extends SimpleFragment {
         pcrr = v.findViewById(R.id.pieChartReturnRates);
         pcrr.getDescription().setEnabled(false);
         pcrr.getLegend().setEnabled(false);
+        pcrr.setUsePercentValues(true);
 
         pcrr.setCenterTextTypeface(tf);
         pcrr.setCenterText(generateCenterTextReturnRates());
@@ -112,7 +110,7 @@ public class MerchantHistoryFragment extends SimpleFragment {
         pcrr.setCenterTextTypeface(tf);
         pcrr.setEntryLabelColor(Color.BLACK);
         pcrr.setEntryLabelTypeface(tf);
-        pcrr.setEntryLabelTextSize(20f);
+        pcrr.setEntryLabelTextSize(30f);
 
         // radius of the center hole in percent of maximum radius
         pcrr.setHoleRadius(35f);
@@ -125,6 +123,38 @@ public class MerchantHistoryFragment extends SimpleFragment {
 //        l.setDrawInside(false);
 
         pcrr.setData(generatePieDataReturnRates());
+
+ //        *********** BAR CHART STORES & NUMBER OF DRINKS***********
+        // create a new chart object
+        bcms = new BarChart(getActivity());
+        bcms = v.findViewById(R.id.barChartMoneySpent);
+        bcms.getDescription().setEnabled(false);
+        //bc.setOnChartGestureListener(this);
+
+//        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
+//        mv.setChartView(chart); // For bounds control
+//        chart.setMarker(mv);
+
+        bcms.setDrawGridBackground(false);
+        bcms.setDrawBarShadow(false);
+
+        bcms.setData(generateBarDataMoneySpent(1, 20000, 12));
+
+//        Legend l = chart.getLegend();
+//        l.setTypeface(tf);
+
+//        YAxis leftAxis = chart.getAxisLeft();
+//        leftAxis.setTypeface(tf);
+//        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        bcms.getAxisRight().setEnabled(false);
+
+        XAxis xAxis1 = bcms.getXAxis();
+        xAxis1.setEnabled(false);
+
+//        // programmatically add the chart
+//        FrameLayout parent = v.findViewById(R.id.parentLayout);
+//        parent.addView(bc);
 
         return v;
     }

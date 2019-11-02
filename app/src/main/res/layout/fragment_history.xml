@@ -14,77 +14,131 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         >
 
-    <TextView
-        android:id="@+id/historyTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/amatic_bold"
-        android:text="History"
-        android:textColor="@color/white"
-        android:textSize="40dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/historyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="History"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/caffeineIntake"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="125dp"
-        android:fontFamily="@font/amatic"
-        android:text="Total Caffeine Intake Today"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/moneySpentTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="$250"
+            android:textColor="@color/white"
+            android:textSize="60dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/milage4coffee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="200dp"
-        android:fontFamily="@font/amatic"
-        android:text="Total Mileage Walked for Coffee"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/moneySpentTotalDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="165dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="spent on coffee"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/storePurchasesBarGraph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="275dp"
-        android:fontFamily="@font/amatic"
-        android:text="Bar Graph of Stores Visited and # of Drinks/Items Purchased"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/separationBar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="98dp"
+            android:layout_marginTop="75dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="|"
+            android:textColor="@color/white"
+            android:textSize="100dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/typesOfDrinksPieChart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="350dp"
-        android:fontFamily="@font/amatic"
-        android:text="Pie Chart of Types of Drinks Purchased"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/caffeineIntakeTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="133dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="350mg"
+            android:textColor="@color/white"
+            android:textSize="60dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/moneySpentBarGraph"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="425dp"
-        android:fontFamily="@font/amatic"
-        android:text="Bar Graph of Money Spent on coffee in the last 10 days"
-        android:textSize="22sp"
-        android:gravity="center"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/caffeineIntakeTotalDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="128dp"
+            android:layout_marginTop="165dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="caffeine intake today"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/separationBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="242dp"
+            android:layout_marginTop="75dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="|"
+            android:textColor="@color/white"
+            android:textSize="100dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/milesWalkedTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="305dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="3"
+            android:textColor="@color/white"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/milesWalkedTotalDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="265dp"
+            android:layout_marginTop="165dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="miles walked to shop"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChartStoresDrinks"
+            android:layout_width="376dp"
+            android:layout_height="314dp"
+            android:layout_marginTop="205dp" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChartDrinksPurchased"
+            android:layout_width="381dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="525dp" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChartMoneySpent"
+            android:layout_width="376dp"
+            android:layout_height="500dp"
+            android:layout_marginTop="1050dp" />
+
+    </RelativeLayout>
 </ScrollView>
