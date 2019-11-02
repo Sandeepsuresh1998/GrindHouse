@@ -39,7 +39,7 @@
             android:textStyle="bold"/>
 
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/store_spinner"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="140dp"
