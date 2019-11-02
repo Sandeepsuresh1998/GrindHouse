@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import model.Store;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     // SQLite database and table names are not case sensitive
     public static final String DATABASE_NAME = "BeanAndLeaf.db";
@@ -228,14 +230,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public ArrayList<String> getStores(Integer userId) {
-        ArrayList<String> stores = new ArrayList<>();
-        String whereClause = "SELECT StoreName FROM Stores WHERE UserID=?";
+    public ArrayList<Store> getStores(Integer userId) {
+        ArrayList<Store> stores = new ArrayList<>();
+        String whereClause = "SELECT * FROM Stores WHERE UserID=?";
         String whereArgs[] = {Integer.toString(userId)};
 
         Cursor res = db.rawQuery(whereClause, whereArgs);
         while (res.moveToNext()) {
-            stores.add(res.getString(0));
+            stores.add(new Store(
+                    res.getInt(0),
+                    res.getFloat(2),
+                    res.getFloat(3),
+                    res.getString(4)
+            ));
         }
         return stores;
     }

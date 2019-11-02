@@ -1,6 +1,9 @@
-import android.database.sqlite.SQLiteOpenHelper;
+package model;
 
 import java.util.ArrayList;
+
+import model.Trip;
+import model.User;
 
 public class Customer extends User {
 

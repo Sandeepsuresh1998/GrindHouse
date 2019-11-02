@@ -18,7 +18,7 @@ public class MenuFragment extends Fragment {
         //like if the class is HomeFragment it should have R.layout.home_fragment
         //if it is DashboardFragment it should have R.layout.fragment_dashboard
 
-        //get StoreID Passed in somehow from User and Merchant activites
+        //get StoreID Passed in somehow from User and database.DatabaseHelper.Merchant activites
 
         //get database menu items
 

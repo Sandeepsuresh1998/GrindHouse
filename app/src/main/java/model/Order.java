@@ -1,5 +1,9 @@
+package model;
+
 import java.util.Date;
 import java.util.Map;
+
+import model.MenuItem;
 
 public class Order {
 

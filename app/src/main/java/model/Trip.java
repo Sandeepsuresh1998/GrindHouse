@@ -1,3 +1,5 @@
+package model;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
