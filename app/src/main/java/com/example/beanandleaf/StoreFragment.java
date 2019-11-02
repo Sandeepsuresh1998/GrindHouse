@@ -166,7 +166,7 @@ public class StoreFragment extends Fragment {
                                 error = true;
                         }
                         else {
-                            Toast.makeText(getActivity().getApplicationContext(), "Store latitude cannot be empty", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Store latitude must be an integer or decimal", Toast.LENGTH_LONG).show();
                             latEditText.setText(Float.toString(selectedStore.getLatitude()));
                         }
 
@@ -180,7 +180,7 @@ public class StoreFragment extends Fragment {
                                 error = true;
                         }
                         else {
-                            Toast.makeText(getActivity().getApplicationContext(), "Store longitude cannot be empty", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Store longitude must be an integer or decimal", Toast.LENGTH_LONG).show();
                             lonEditText.setText(Float.toString(selectedStore.getLongitude()));
                         }
 
