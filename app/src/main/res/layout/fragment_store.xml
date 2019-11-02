@@ -90,12 +90,57 @@
         android:scrollbarSize="4dp"
         android:textStyle="bold"/>
 
+
+        <TextView
+            android:id="@+id/location_lat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="350dp"
+            android:fontFamily="@font/amatic"
+            android:text="Latitude"
+            android:textSize="22dp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/location_lat_edit"
+            android:layout_width="208dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="350dp"
+            android:ems="10"
+            android:fontFamily="@font/amatic_regular"
+            android:scrollbarSize="4dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/location_long"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="425dp"
+            android:fontFamily="@font/amatic"
+            android:text="Longitude"
+            android:textSize="22dp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/location_long_edit"
+            android:layout_width="208dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="425dp"
+            android:ems="10"
+            android:fontFamily="@font/amatic_regular"
+            android:scrollbarSize="4dp"
+            android:textStyle="bold"/>
+
     <Button
         android:id="@+id/update_store_button"
         android:layout_width="76dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="500dp"
         android:background="@drawable/blue_round_button"
         android:enabled="false"
         android:fontFamily="@font/amatic_regular"
@@ -109,7 +154,7 @@
         android:layout_width="76dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="150dp"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="500dp"
         android:background="@drawable/red_round_button"
         android:enabled="false"
         android:fontFamily="@font/amatic_regular"
@@ -123,7 +168,7 @@
         android:layout_width="76dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="250dp"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="500dp"
         android:background="@drawable/green_round_button"
         android:enabled="true"
         android:fontFamily="@font/amatic_regular"
