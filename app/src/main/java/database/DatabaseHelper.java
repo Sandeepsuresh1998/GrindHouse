@@ -143,6 +143,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public boolean updateUserName(String email, String userType, String newName) {
+        ContentValues cv = new ContentValues();
+        cv.put("Username", newName);
+        String whereClause = "Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+        long result = db.update("Users", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean updateUserEmail(String email, String userType, String newEmail) {
+        ContentValues cv = new ContentValues();
+        cv.put("Email", newEmail);
+        String whereClause = "Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+        long result = db.update("Users", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean updateUserGender(String email, String userType, String newGender) {
+        ContentValues cv = new ContentValues();
+        cv.put("Gender", newGender);
+        String whereClause = "Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+        long result = db.update("Users", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
     public boolean updatePic(String name, String email, String password, String userType,
                               String gender, String picURL) {
         ContentValues cv = new ContentValues();
