@@ -119,7 +119,23 @@ public class StoreFragment extends Fragment {
                     }
                 }
                 public void onNothingSelected(AdapterView<?> parent) {
+                    // IGNORE
+                }
+            });
 
+            updateStoreButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String selectedStoreName = sItems.getSelectedItem().toString();
+                    Store selectedStore = null;
+                    for (Store s : stores) {
+                        if (s.getName().contentEquals(selectedStoreName)) {
+                            selectedStore = s;
+                        }
+                    }
+                    String newName = nameEditText.getText().toString();
+                    String newLat = latEditText.getText().toString();
+                    String newLong = lonEditText.getText().toString();
                 }
             });
         }
