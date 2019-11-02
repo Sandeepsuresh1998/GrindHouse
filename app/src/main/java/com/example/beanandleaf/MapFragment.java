@@ -73,12 +73,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
 
-        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(40.689274, -74.044502)).title("Statue of Liberty"));
-        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689274, -74.044502)).zoom(16).bearing(0).tilt(45).build();
+        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.026, -118.277)).title("Starbucks"));
+        CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.026, -118.277)).zoom(16).bearing(0).tilt(45).build();
 
-        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
+        //String contentString =
+        //var infoWindow = new google.maps.InfoWindow({});
+
+        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Starbucks));
 
         System.out.println("Done");
     }
 }
-
