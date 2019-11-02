@@ -195,6 +195,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public boolean updateStoreName(Integer userID, String lat, String lon, String newName) {
+        ContentValues cv = new ContentValues();
+        cv.put("StoreName", newName);
+        String whereClause = "UserID=? AND StoreLat=? AND StoreLong=?";
+        String whereArgs[] = {userID.toString(), lat, lon};
+        long result = db.update("Stores", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean updateStoreLat(Integer userID, String lat, String lon, String newLat) {
+        ContentValues cv = new ContentValues();
+        cv.put("StoreLat", newLat);
+        String whereClause = "UserID=? AND StoreLat=? AND StoreLong=?";
+        String whereArgs[] = {userID.toString(), lat, lon};
+        long result = db.update("Stores", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean updateStoreLong(Integer userID, String lat, String lon, String newLat) {
+        ContentValues cv = new ContentValues();
+        cv.put("StoreLong", newLat);
+        String whereClause = "UserID=? AND StoreLat=? AND StoreLong=?";
+        String whereArgs[] = {userID.toString(), lat, lon};
+        long result = db.update("Stores", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
     public boolean updatePic(String name, String email, String password, String userType,
                               String gender, String picURL) {
         ContentValues cv = new ContentValues();

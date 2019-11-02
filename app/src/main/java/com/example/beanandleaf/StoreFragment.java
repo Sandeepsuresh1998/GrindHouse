@@ -136,6 +136,75 @@ public class StoreFragment extends Fragment {
                     String newName = nameEditText.getText().toString();
                     String newLat = latEditText.getText().toString();
                     String newLong = lonEditText.getText().toString();
+
+                    DatabaseHelper db = new DatabaseHelper(getActivity());
+                    ArrayList<String> updates = new ArrayList<>();
+                    SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+                    SharedPreferences.Editor editor = preferences.edit();
+
+                    boolean error = false;
+
+                    if (!newName.contentEquals(selectedStore.getName())) {
+                        if (newName != null) {
+                            updates.add("name");
+                            if (db.updateStoreName(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newName))
+                                editor.putString("currentStore", newName);
+                            else
+                                error = true;
+                        } else {
+                            Toast.makeText(getActivity().getApplicationContext(), "Store name cannot be empty", Toast.LENGTH_LONG).show();
+                            nameEditText.setText(selectedStore.getName());
+                        }
+
+                    }
+                    if (!newLat.contentEquals(Float.toString(selectedStore.getLatitude()))) {
+                        if (isValidFloat(newLat)) {
+                            updates.add("latitude");
+                            if (db.updateStoreLat(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newLat))
+                                editor.putString("currentLat", newLat);
+                            else
+                                error = true;
+                        }
+                        else {
+                            Toast.makeText(getActivity().getApplicationContext(), "Store latitude cannot be empty", Toast.LENGTH_LONG).show();
+                            latEditText.setText(Float.toString(selectedStore.getLatitude()));
+                        }
+
+                    }
+                    if (!newLong.contentEquals(Float.toString(selectedStore.getLongitude()))) {
+                        if (isValidFloat(newLong)) {
+                            updates.add("longitude");
+                            if (db.updateStoreLong(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newLong))
+                                editor.putString("currentLong", newLong);
+                            else
+                                error = true;
+                        }
+                        else {
+                            Toast.makeText(getActivity().getApplicationContext(), "Store longitude cannot be empty", Toast.LENGTH_LONG).show();
+                            lonEditText.setText(Float.toString(selectedStore.getLongitude()));
+                        }
+
+                    }
+                    editor.commit();
+                    String updateString;
+                    if (updates.size() == 1) {
+                        updateString = "Your store's " + updates.get(0) + " has been updated";
+                    }
+                    else if (updates.size() == 2) {
+                        updateString = "Your store's " + updates.get(0) + " and " + updates.get(1) + " have been updated";
+                    }
+                    else if (updates.size() == 3) {
+                        updateString = "Your store's name, latitude, and longitude have been updated";
+                    }
+                    else {
+                        updateString = "No updates have been made";
+                    }
+                    if (!error) {
+                        Toast.makeText(getActivity().getApplicationContext(), updateString, Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Error: please try again later", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -151,6 +220,11 @@ public class StoreFragment extends Fragment {
                         .commit();
             }
         });
+    }
+
+    private boolean isValidFloat(String s) {
+        String regex = "[-+]?[0-9]*\\.?[0-9]+";
+        return s.matches(regex);
     }
 
 }
