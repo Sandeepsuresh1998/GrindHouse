@@ -91,7 +91,58 @@ public abstract class SimpleFragment extends Fragment {
 //        ds4.setColors(ColorTemplate.VORDIPLOM_COLORS);
 //        sets.add(ds4);
 
-        BarDataSet ds = new BarDataSet(entries, getLabel(0));
+        BarDataSet ds = new BarDataSet(entries, getLabelsBCDP(0));
+        ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        sets.add(ds);
+
+        BarData d = new BarData(sets);
+        d.setValueTypeface(tf);
+        return d;
+    }
+
+    protected BarData generateBarDataMoneySpent(int dataSets, float range, int count) {
+
+        ArrayList<IBarDataSet> sets = new ArrayList<>();
+
+//        for(int i = 0; i < dataSets; i++) {
+//
+//            ArrayList<BarEntry> entries = new ArrayList<>();
+//
+//            for(int j = 0; j < count; j++) {
+//                entries.add(new BarEntry(j, (float) (Math.random() * range) + range / 4));
+//            }
+//
+//            BarDataSet ds = new BarDataSet(entries, getLabel(i));
+//            ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//            sets.add(ds);
+//        }
+
+        ArrayList<BarEntry> entries = new ArrayList<>();
+        entries.add(new BarEntry(0, 12));
+//        BarDataSet ds0 = new BarDataSet(entries, getLabel(0));
+//        ds0.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds0);
+        entries.add(new BarEntry(1, 20));
+//        BarDataSet ds1 = new BarDataSet(entries, getLabel(1));
+//        ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds1);
+        entries.add(new BarEntry(2, 16));
+//        BarDataSet ds2 = new BarDataSet(entries, getLabel(2));
+//        ds2.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds2);
+        entries.add(new BarEntry(3, 6));
+//        BarDataSet ds3 = new BarDataSet(entries, getLabel(3));
+//        ds3.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds3);
+        entries.add(new BarEntry(4, 22));
+//        BarDataSet ds4 = new BarDataSet(entries, getLabel(4));
+//        ds4.setColors(ColorTemplate.VORDIPLOM_COLORS);
+//        sets.add(ds4);
+        entries.add(new BarEntry(5, 30));
+        entries.add(new BarEntry(6, 26));
+
+
+        BarDataSet ds = new BarDataSet(entries, getLabelsBCMS(0));
         ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
         sets.add(ds);
 
@@ -142,12 +193,12 @@ public abstract class SimpleFragment extends Fragment {
         entries1.add(new PieEntry(4, "4"));
         entries1.add(new PieEntry(7, "5+"));
 
-        PieDataSet ds1 = new PieDataSet(entries1, "Number of Times Customer Returns");
+        PieDataSet ds1 = new PieDataSet(entries1, "Number of Times Customers Return");
         ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
         ds1.setSliceSpace(2f);
         ds1.setValueTextColor(Color.BLACK);
-        ds1.setValueTextSize(0f);
-        //ds1.setValueTypeface(tf);
+        ds1.setValueTextSize(10f);
+        ds1.setValueTypeface(tf);
         ds1.setXValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
         //ds1.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 
@@ -245,9 +296,15 @@ public abstract class SimpleFragment extends Fragment {
 //        return d;
 //    }
 
-    private final String[] mLabels = new String[] { "Starbucks", "CB&TL", "Nature's Brew", "DRNK", "Cafe Dulce" };
+    private final String[] labelsBCDP = new String[] { "Starbucks", "CB&TL", "Nature's Brew", "DRNK", "Cafe Dulce" };
 
-    private String getLabel(int i) {
-        return mLabels[i];
+    private String getLabelsBCDP(int i) {
+        return labelsBCDP[i];
+    }
+
+    private final String[] labelsBCMS = new String[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+    private String getLabelsBCMS(int i) {
+        return labelsBCMS[i];
     }
 }
