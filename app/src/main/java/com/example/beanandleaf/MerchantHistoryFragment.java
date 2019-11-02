@@ -67,34 +67,6 @@ public class MerchantHistoryFragment extends SimpleFragment {
         pcdp.setData(generatePieDataDrinksPurchased());
 
 
-//        *********** BAR CHART STORES & NUMBER OF DRINKS***********
-        // create a new chart object
-        bcdp = new BarChart(getActivity());
-        bcdp = v.findViewById(R.id.barChartStoresDrinks);
-        bcdp.getDescription().setEnabled(false);
-        //bc.setOnChartGestureListener(this);
-
-//        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
-//        mv.setChartView(chart); // For bounds control
-//        chart.setMarker(mv);
-
-        bcdp.setDrawGridBackground(false);
-        bcdp.setDrawBarShadow(false);
-
-        bcdp.setData(generateBarDataStoresDrinks(1, 20000, 12));
-
-//        Legend l = chart.getLegend();
-//        l.setTypeface(tf);
-
-//        YAxis leftAxis = chart.getAxisLeft();
-//        leftAxis.setTypeface(tf);
-//        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-
-        bcdp.getAxisRight().setEnabled(false);
-
-        XAxis xAxis = bcdp.getXAxis();
-        xAxis.setEnabled(false);
-
 
         //      *********** PIE CHART OF RETURN RATES ***********
 
@@ -124,7 +96,7 @@ public class MerchantHistoryFragment extends SimpleFragment {
 
         pcrr.setData(generatePieDataReturnRates());
 
- //        *********** BAR CHART STORES & NUMBER OF DRINKS***********
+ //        *********** BAR CHART MONEY SPENT***********
         // create a new chart object
         bcms = new BarChart(getActivity());
         bcms = v.findViewById(R.id.barChartMoneySpent);
