@@ -3,6 +3,7 @@ package com.example.beanandleaf;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,19 +81,32 @@ public class ProfileFragment extends Fragment {
                 boolean error = false;
 
                 if (!newUsername.contentEquals(username)) {
-                    updates.add("username");
-                    if (db.updateUserName(email, userType, newUsername))
-                        editor.putString("username", newUsername);
-                    else
-                        error = true;
+                    if (isUsernameValid(newUsername)) {
+                        updates.add("username");
+                        if (db.updateUserName(email, userType, newUsername))
+                            editor.putString("username", newUsername);
+                        else
+                            error = true;
+                    }
+                    else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter your first and last name separated by a space", Toast.LENGTH_LONG).show();
+                        usernameText.setText(username);
+                    }
 
                 }
                 if (!newEmail.contentEquals(email)) {
-                    updates.add("email");
-                    if (db.updateUserEmail(email, userType, newEmail))
-                        editor.putString("email", newEmail);
-                    else
-                        error = true;
+                    if (isEmailValid(newEmail)) {
+                        updates.add("email");
+                        if (db.updateUserEmail(email, userType, newEmail))
+                            editor.putString("email", newEmail);
+                        else
+                            error = true;
+                    }
+                    else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid email address", Toast.LENGTH_LONG).show();
+                        emailText.setText(email);
+                    }
+
                 }
                 if (!newGender.contentEquals(gender)) {
                     updates.add("gender");
@@ -123,6 +137,21 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private boolean isUsernameValid(String username) {
+        return username != null && username.split(" ").length > 1;
+    }
+
+    private boolean isEmailValid(String email) {
+        if (email == null) {
+            return false;
+        }
+        if (email.contains("@")) {
+            return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        } else {
+            return false;
+        }
     }
 
 }
