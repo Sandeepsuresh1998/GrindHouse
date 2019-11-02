@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     // SQLite database and table names are not case sensitive
     public static final String DATABASE_NAME = "BeanAndLeaf.db";
@@ -32,7 +34,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Stores(" +
                 "StoreID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "UserID INTEGER NOT NULL," +
-                "StoreLoc TEXT NOT NULL," +
+                "StoreLat REAL NOT NULL," +
+                "StoreLong REAL NOT NULL," +
                 "StoreName TEXT NOT NULL," +
                 "FOREIGN KEY (UserID) REFERENCES Users(UserID))");
         db.execSQL("CREATE TABLE MenuItems(" +
@@ -108,6 +111,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else {
             return "NULL"; // no user found
         }
+    }
+
+    public int getUserId(String email, String userType) {
+        String whereClause = "SELECT UserID FROM Users WHERE Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getInt(0);
+        }
+        return -1;
     }
 
     public String getUserGender(String email, String userType) {
@@ -199,10 +213,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean insertStore(Integer userId, String storeLoc, String storeName) {
+    public boolean insertStore(Integer userId, Float lat, Float lon, String storeName) {
         ContentValues cv = new ContentValues();
         cv.put("UserID", userId);
-        cv.put("StoreLoc", storeLoc);
+        cv.put("StoreLat", lat);
+        cv.put("StoreLong", lon);
         cv.put("StoreName", storeName);
         long result = db.insert("Stores", null, cv);
         if (result == -1) {
@@ -212,6 +227,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
+    public ArrayList<String> getStores(Integer userId) {
+        ArrayList<String> stores = new ArrayList<>();
+        String whereClause = "SELECT StoreName FROM Stores WHERE UserID=?";
+        String whereArgs[] = {Integer.toString(userId)};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        while (res.moveToNext()) {
+            stores.add(res.getString(0));
+        }
+        return stores;
+    }
+
     public boolean removeStore(Integer userId, String storeLoc, String storeName) {
         String whereClause = "UserID=? AND StoreLoc=? AND StoreName=?";
         String whereArgs[] = {userId.toString(), storeLoc, storeName};

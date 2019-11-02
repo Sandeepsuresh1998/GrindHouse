@@ -87,8 +87,7 @@ public class ProfileFragment extends Fragment {
                             editor.putString("username", newUsername);
                         else
                             error = true;
-                    }
-                    else {
+                    } else {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter your first and last name separated by a space", Toast.LENGTH_LONG).show();
                         usernameText.setText(username);
                     }
