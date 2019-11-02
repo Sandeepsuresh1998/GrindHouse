@@ -32,6 +32,7 @@ public class detection extends AppCompatActivity {
     }
 
     public void openDialog(){
+        System.out.println("in Open Dialog");
         ExampleDialog exampleDialog = new ExampleDialog();
         exampleDialog.show(getSupportFragmentManager(), "example dialog");
     }
