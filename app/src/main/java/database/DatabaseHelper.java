@@ -315,6 +315,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return menu;
     }
 
+    public MenuItem getMenuItem(Integer storeID, String name, String size) {
+        MenuItem item = null;
+        String whereClause = "SELECT * FROM MenuItems WHERE StoreID=? AND ItemName=? AND Size=?";
+        String whereArgs[] = {Integer.toString(storeID), name, size};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            item = new MenuItem(res.getInt(0),
+                    res.getString(2),
+                    res.getInt(3),
+                    res.getString(4),
+                    res.getInt(5),
+                    Double.parseDouble(res.getString(6)),
+                    res.getString(7));
+        }
+        return item;
+    }
+
     public boolean insertMenuItem(Integer storeId, String name, String calories, String size, String caffeine, String price, String timeCreated) {
         ContentValues cv = new ContentValues();
         cv.put("StoreID", storeId);
@@ -332,9 +350,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    public boolean removeMenuItem(Integer storeId, String price, String name) {
-        String whereClause = "storeId=? AND Price=? AND ItemName=?";
-        String whereArgs[] = {storeId.toString(), price, name};
+    public boolean removeMenuItem(Integer storeID, String name, String size) {
+        String whereClause = "StoreID=? AND ItemName=? AND Size=?";
+        String whereArgs[] = {storeID.toString(), name, size};
         long result = db.delete("MenuItems", whereClause, whereArgs);
         if (result > 0){
             return true;
