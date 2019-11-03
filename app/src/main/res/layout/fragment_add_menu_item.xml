@@ -255,7 +255,7 @@
             android:layout_marginLeft="150dp"
             android:layout_marginTop="615dp"
             android:background="@drawable/green_round_button"
-            android:enabled="false"
+            android:enabled="true"
             android:fontFamily="@font/amatic_regular"
             android:text="@string/add_menu_item"
             android:textColor="@color/white"
