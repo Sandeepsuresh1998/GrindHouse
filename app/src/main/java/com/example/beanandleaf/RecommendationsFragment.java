@@ -8,10 +8,27 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.SupportMapFragment;
+
 public class RecommendationsFragment extends Fragment implements onMapReadyCallBack {
-    @Nullable
+    GoogleMap mGoogleMap;
+    MapView mMapView;
+    View mView;
+
+    SupportMapFragment mapFragment;
+    public RecommendationsFragment() {
+
+    }
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //just change the fragment_dashboard
         //with the fragment you want to inflate
