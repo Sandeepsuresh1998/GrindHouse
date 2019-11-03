@@ -43,7 +43,6 @@ public class RecommendationsFragment extends Fragment {
             mapFragment = SupportMapFragment.newInstance();
             ft.replace(R.id.map,  mapFragment).commit();
         }
-        //mapFragment.getMapAsync(this);
 
         return mView;
     }
