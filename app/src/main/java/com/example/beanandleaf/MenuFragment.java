@@ -70,6 +70,15 @@ public class MenuFragment extends Fragment {
             ArrayList<MenuItem> menu = db.getMenu(storeID);
             ArrayList<Integer> created = new ArrayList<>();
             for (int i = 0; i < menu.size(); ++i) {
+                boolean alreadyCreated = false;
+                for (Integer n : created) {
+                    if (i == n) {
+                        alreadyCreated = true;
+                    }
+                }
+                if (alreadyCreated)
+                    continue;
+
                 TableRow row = new TableRow(getActivity());
                 TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                 row.setLayoutParams(lp);
@@ -78,17 +87,37 @@ public class MenuFragment extends Fragment {
                 TextView itemNameView = new TextView(getActivity());
                 TextView descriptionView = new TextView(getActivity());
                 itemNameView.setText("\n" + menu.get(i).getName());
-                String description = "Flavor = Vanilla \n Price = $4, $5, $6 \n Caffeine = 115mg, 150mg, 190mg";
-                descriptionView.setText(description);
+                MenuItem cur = menu.get(i);
+                String prices = "Price = $" + cur.getPrice();
+                String caffeine = "Caffeine = " + cur.getCaffeine() + "mg";
+                String calories = "Calories = " + cur.getCalories();
+                if (i + 1 != menu.size()) {
+                    for (int j = i ; j < menu.size(); ++j) {
+                        MenuItem next = menu.get(j);
+                        if (next.getTimeCreated().contentEquals(cur.getTimeCreated())) {
+                            prices += ", $" + next.getPrice();
+                            caffeine += ", " + next.getCaffeine() + "mg";
+                            calories += ", " + next.getCalories();
+                            created.add(j);
+                        }
+                    }
+                }
+                descriptionView.setText(prices + " \n " + caffeine + " \n " + calories);
                 editItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_edit_green_24dp, 0,0,0);
+                editItemButton.setTag(cur.getID());
                 deleteItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_delete_red_24dp,0,0,0);
 
                 editItemButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        Integer id = (Integer) v.getTag();
                     }
                 });
+                row.addView(editItemButton);
+                row.addView(itemNameView);
+                row.addView(descriptionView);
+                row.addView(deleteItemButton);
+                table.addView(row);
             }
         }
     }
