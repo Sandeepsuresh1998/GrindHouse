@@ -38,7 +38,7 @@ public class AddStoreFragment extends Fragment {
                 String lat = latText.getText().toString();
                 String lon = lonText.getText().toString();
                 String regex = "[-+]?[0-9]*\\.?[0-9]+";
-                if (storeName == null ||lat == null || lon == null)
+                if (storeName.contentEquals("") ||lat.contentEquals("") || lon.contentEquals(""))
                     return;
                 if (!lat.matches(regex)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid latitude", Toast.LENGTH_SHORT).show();

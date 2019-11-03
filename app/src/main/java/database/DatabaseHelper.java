@@ -45,14 +45,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "MenuItemID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "StoreID INTEGER NOT NULL," +
                 "ItemName TEXT NOT NULL," +
-                "Flavor TEXT," +
                 "Calories INTEGER NOT NULL," +
-                "CaffieneSmall INTEGER," +
-                "CaffieneMedium INTEGER," +
-                "CaffieneLarge INTEGER," +
-                "PriceSmall INTEGER," +
-                "PriceMedium INTEGER," +
-                "PriceLarge INTEGER," +
+                "Size TEXT NOT NULL," +
+                "Caffeine INTEGER NOT NULL," +
+                "Price TEXT NOT NULL," +
                 "FOREIGN KEY (StoreID) REFERENCES Stores(StoreID))");
         db.execSQL("CREATE TABLE Orders(" +
                 "OrderID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -239,26 +235,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean updatePic(String name, String email, String password, String userType,
-                              String gender, String picURL) {
-        ContentValues cv = new ContentValues();
-        cv.put("Username", name);
-        cv.put("Password", password);
-        cv.put("Email", email);
-        cv.put("UserType", userType);
-        cv.put("Gender", gender);
-        cv.put("PicURL", picURL);
-        String whereClause = "PicURL=?";
-        String whereArgs[] = {picURL};
-        long result = db.update("Users", cv, whereClause, whereArgs);
-        if (result > 1) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     public boolean insertStore(Integer userId, Float lat, Float lon, String storeName) {
         ContentValues cv = new ContentValues();
         cv.put("UserID", userId);
@@ -332,11 +308,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return menu;
     }
 
-    public boolean insertMenuItem(Integer storeId, String price, String name) {
+    public boolean insertMenuItem(Integer storeId, String name, String calories, String size, String caffeine, String price) {
         ContentValues cv = new ContentValues();
         cv.put("StoreID", storeId);
         cv.put("Price", price);
         cv.put("ItemName", name);
+        cv.put("Calories", calories);
+        cv.put("Size", size);
+        cv.put("Caffeine", caffeine);
         long result = db.insert("MenuItems", null, cv);
         if (result == -1) {
             return false;

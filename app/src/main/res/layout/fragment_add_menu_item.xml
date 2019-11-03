@@ -14,274 +14,208 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         >
 
-        <TextView
-            android:id="@+id/edit_menu_item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/amatic_bold"
-            android:text="Edit Menu Item"
-            android:textColor="@color/white"
-            android:textSize="40dp"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/edit_menu_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/amatic_bold"
+        android:text="Add Menu Item"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="125dp"
+        android:fontFamily="@font/amatic"
+        android:text="Item Name"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/item_name_edit"
+        android:layout_width="208dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginTop="110dp"
+        android:ems="10"
+        android:fontFamily="@font/amatic_regular"
+        android:scrollbarSize="4dp"
+        android:textStyle="bold"/>
+
 
         <TextView
-            android:id="@+id/item_name"
+            android:id="@+id/calories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="225dp"
             android:fontFamily="@font/amatic"
-            android:text="Item Name"
+            android:text="Calories"
             android:textSize="22dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/item_name_edit"
-            android:layout_width="160dp"
+            android:id="@+id/calories_edit"
+            android:layout_width="208dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
-            android:layout_marginTop="85dp"
+            android:layout_marginTop="210dp"
             android:ems="10"
             android:fontFamily="@font/amatic_regular"
             android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
-
-
-        <TextView
-            android:id="@+id/flavor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="150dp"
-            android:fontFamily="@font/amatic"
-            android:text="Flavor"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/flavor_edit"
-            android:layout_width="160dp"
-            android:layout_height="53dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="135dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/caffeine_small_intake"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="200dp"
-            android:fontFamily="@font/amatic"
-            android:text="Caffeine for Small"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
+        android:id="@+id/caffeine_small_intake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="275dp"
+        android:fontFamily="@font/amatic"
+        android:text="Caffeine for Small"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/caffeine_small_edit"
-            android:layout_width="160dp"
+            android:layout_width="208dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
-            android:layout_marginTop="185dp"
+            android:layout_marginTop="260dp"
             android:ems="10"
             android:fontFamily="@font/amatic_regular"
             android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/caffeine_medium_intake"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="250dp"
-            android:fontFamily="@font/amatic"
-            android:text="Caffeine for Medium"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
+        android:id="@+id/caffeine_medium_intake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="325dp"
+        android:fontFamily="@font/amatic"
+        android:text="Caffeine for Medium"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
 
-        <EditText
-            android:id="@+id/caffeine_medium_edit"
-            android:layout_width="160dp"
-            android:layout_height="53dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="235dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/caffeine_medium_edit"
+        android:layout_width="208dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginTop="310dp"
+        android:ems="10"
+        android:fontFamily="@font/amatic_regular"
+        android:scrollbarSize="4dp"
+        android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/caffeine_large_intake"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="300dp"
-            android:fontFamily="@font/amatic"
-            android:text="Caffeine for Large"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/caffeine_large_intake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="375dp"
+        android:fontFamily="@font/amatic"
+        android:text="Caffeine for Large"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/caffeine_large_edit"
-            android:layout_width="160dp"
+            android:layout_width="208dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
-            android:layout_marginTop="285dp"
+            android:layout_marginTop="360dp"
             android:ems="10"
             android:fontFamily="@font/amatic_regular"
             android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/price_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="350dp"
-            android:fontFamily="@font/amatic"
-            android:text="Price for Small"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/price_small_edit"
-            android:layout_width="160dp"
-            android:layout_height="53dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="335dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/price_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="400dp"
-            android:fontFamily="@font/amatic"
-            android:text="Price for Medium"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/price_medium_edit"
-            android:layout_width="160dp"
-            android:layout_height="53dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="385dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/price_large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="450dp"
-            android:fontFamily="@font/amatic"
-            android:text="Price for Large"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/price_large_edit"
-            android:layout_width="160dp"
-            android:layout_height="53dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="435dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/calories_for_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="500dp"
-            android:fontFamily="@font/amatic"
-            android:text="Calories for Small"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/calories_for_small_edit"
-            android:layout_width="160dp"
-            android:layout_height="53dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="485dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/calories_for_medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="550dp"
-            android:fontFamily="@font/amatic"
-            android:text="Calories for Medium"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/calories_for_medium_edit"
-            android:layout_width="160dp"
-            android:layout_height="53dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="535dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/calories_for_large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="600dp"
-            android:fontFamily="@font/amatic"
-            android:text="Calories for Large"
-            android:textSize="22dp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/calories_for_large_edit"
-            android:layout_width="160dp"
-            android:layout_height="53dp"
-            android:layout_marginLeft="175dp"
-            android:layout_marginTop="585dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:scrollbarSize="4dp"
-            android:textStyle="bold"/>
-
-    <Button
-        android:id="@+id/update_item_button"
-        android:layout_width="100dp"
+        android:id="@+id/price_small"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="650dp"
-        android:background="@drawable/green_round_button"
-        android:enabled="false"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="425dp"
+        android:fontFamily="@font/amatic"
+        android:text="Price for Small"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/price_small_edit"
+        android:layout_width="208dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginTop="410dp"
+        android:ems="10"
         android:fontFamily="@font/amatic_regular"
-        android:text="@string/add_menu_item"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        android:scrollbarSize="4dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/price_medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="475dp"
+        android:fontFamily="@font/amatic"
+        android:text="Price for Medium"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/price_medium_edit"
+        android:layout_width="208dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginTop="460dp"
+        android:ems="10"
+        android:fontFamily="@font/amatic_regular"
+        android:scrollbarSize="4dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/price_large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="525dp"
+        android:fontFamily="@font/amatic"
+        android:text="Price for Large"
+        android:textSize="22dp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/price_large_edit"
+        android:layout_width="208dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="175dp"
+        android:layout_marginTop="505dp"
+        android:ems="10"
+        android:fontFamily="@font/amatic_regular"
+        android:scrollbarSize="4dp"
+        android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/add_item_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="575dp"
+            android:background="@drawable/green_round_button"
+            android:enabled="true"
+            android:fontFamily="@font/amatic_regular"
+            android:text="@string/add_menu_item"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
 
 </RelativeLayout>

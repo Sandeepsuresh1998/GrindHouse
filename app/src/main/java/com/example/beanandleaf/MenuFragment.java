@@ -48,7 +48,14 @@ public class MenuFragment extends Fragment {
         int storeID = pref.getInt("selectedStore", 0);
         DatabaseHelper db = new DatabaseHelper(getActivity());
         Store selectedStore = db.getStore(storeID);
-        menuTitle.setText(selectedStore.getName() + "'s Menu");
+        if (selectedStore == null) {
+            menuTitle.setText("No stores yet");
+            addItemButton.setVisibility(View.GONE);
+        }
+        else {
+            menuTitle.setText(selectedStore.getName() + "'s Menu");
+        }
+
 
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
