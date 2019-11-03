@@ -39,7 +39,7 @@
 
         <EditText
             android:id="@+id/item_name_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="85dp"
@@ -62,7 +62,7 @@
 
         <EditText
             android:id="@+id/flavor_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="135dp"
@@ -84,7 +84,7 @@
 
         <EditText
             android:id="@+id/caffeine_small_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="185dp"
@@ -106,7 +106,7 @@
 
         <EditText
             android:id="@+id/caffeine_medium_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="235dp"
@@ -128,7 +128,7 @@
 
         <EditText
             android:id="@+id/caffeine_large_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="285dp"
@@ -150,7 +150,7 @@
 
         <EditText
             android:id="@+id/price_small_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="335dp"
@@ -172,7 +172,7 @@
 
         <EditText
             android:id="@+id/price_medium_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="385dp"
@@ -194,7 +194,7 @@
 
         <EditText
             android:id="@+id/price_large_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="435dp"
@@ -216,7 +216,7 @@
 
         <EditText
             android:id="@+id/calories_for_small_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="485dp"
@@ -238,7 +238,7 @@
 
         <EditText
             android:id="@+id/calories_for_medium_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="535dp"
@@ -260,7 +260,7 @@
 
         <EditText
             android:id="@+id/calories_for_large_edit"
-            android:layout_width="208dp"
+            android:layout_width="160dp"
             android:layout_height="53dp"
             android:layout_marginLeft="175dp"
             android:layout_marginTop="585dp"
