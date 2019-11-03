@@ -102,7 +102,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         float[] colours = { BitmapDescriptorFactory.HUE_ORANGE, BitmapDescriptorFactory.HUE_RED};
-        //BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]);
 
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.024120, -118.278170)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.022090, -118.282460)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
