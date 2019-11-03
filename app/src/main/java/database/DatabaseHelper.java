@@ -315,10 +315,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return menu;
     }
 
-    public MenuItem getMenuItem(Integer itemID) {
+    public MenuItem getMenuItem(Integer storeID, String name, String size) {
         MenuItem item = null;
-        String whereClause = "SELECT * FROM MenuItems WHERE MenuItemID=?";
-        String whereArgs[] = {Integer.toString(itemID)};
+        String whereClause = "SELECT * FROM MenuItems WHERE StoreID=? AND ItemName=? AND Size=?";
+        String whereArgs[] = {Integer.toString(storeID), name, size};
 
         Cursor res = db.rawQuery(whereClause, whereArgs);
         if (res.moveToNext()) {
@@ -350,9 +350,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
-    public boolean removeMenuItem(Integer menuItemID) {
-        String whereClause = "MenuItemID=?";
-        String whereArgs[] = {menuItemID.toString()};
+    public boolean removeMenuItem(Integer storeID, String name, String size) {
+        String whereClause = "StoreID=? AND ItemName=? AND Size=?";
+        String whereArgs[] = {storeID.toString(), name, size};
         long result = db.delete("MenuItems", whereClause, whereArgs);
         if (result > 0){
             return true;

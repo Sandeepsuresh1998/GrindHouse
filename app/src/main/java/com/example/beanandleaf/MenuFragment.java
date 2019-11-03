@@ -98,17 +98,28 @@ public class MenuFragment extends Fragment {
                 String prices = "Price = $" + String.format("%.2f",cur.getPrice());
                 String caffeine = "Caffeine = " + cur.getCaffeine() + "mg";
                 String calories = "Calories = " + cur.getCalories();
+                int otherSizes = 0;
+                String otherSize1 = "";
+                String otherSize2 = "";
                 if (i + 1 != menu.size()) {
                     for (int j = i + 1 ; j < menu.size(); ++j) {
                         MenuItem next = menu.get(j);
                         if (next.getTimeCreated().contentEquals(cur.getTimeCreated())) {
+                            otherSizes++;
                             prices += ", $" + String.format("%.2f",next.getPrice());
                             caffeine += ", " + next.getCaffeine() + "mg";
                             calories += ", " + next.getCalories();
                             created.add(j);
+                            if (otherSize1.contentEquals("")) {
+                                otherSize1 = next.getSize();
+                            }
+                            else if (otherSize2.contentEquals("")) {
+                                otherSize2 = next.getSize();
+                            }
                         }
                     }
                 }
+                final int otherSizesF = otherSizes;
                 descriptionView.setText(prices + " \n " + caffeine + " \n " + calories);
 
                 editItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_edit_green_24dp, 0,0,0);
@@ -141,16 +152,38 @@ public class MenuFragment extends Fragment {
                 //paramsEditButton.setMargins(4, 0, 0, 0);
                 //paramsEditButton.width = 20;
                 //paramsEditButton.height = 20;
-                deleteItemButton.setTag(cur.getID());
+                deleteItemButton.setTag(R.id.itemName, cur.getName());
+                deleteItemButton.setTag(R.id.itemSize1, cur.getSize());
+                if (otherSizes == 1) {
+                    deleteItemButton.setTag(R.id.itemSize2, otherSize1);
+                }
+                else if (otherSizes == 2) {
+                    deleteItemButton.setTag(R.id.itemSize2, otherSize1);
+                    deleteItemButton.setTag(R.id.itemSize3, otherSize2);
+                }
                 deleteItemButton.setLayoutParams(paramsDeleteButton);
                 deleteItemButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        int itemID = (int) v.getTag();
                         DatabaseHelper db = new DatabaseHelper(getActivity());
-                        MenuItem item = db.getMenuItem(itemID);
-                        if (db.removeMenuItem(itemID)) {
-                            Toast.makeText(getActivity().getApplicationContext(), item.getName() + " successfully removed", Toast.LENGTH_LONG).show();
+                        boolean error = false;
+                        for (int i = 0; i < otherSizesF + 1; ++i) {
+                            String name = (String) v.getTag(R.id.itemName);
+                            if (i == 0) {
+                                if (!db.removeMenuItem(selectedStore.getStoreID(), name, (String) v.getTag(R.id.itemSize1)))
+                                    error = true;
+                            }
+                            if (i == 1) {
+                                if (!db.removeMenuItem(selectedStore.getStoreID(), name, (String) v.getTag(R.id.itemSize2)))
+                                    error = true;
+                            }
+                            if (i == 2) {
+                                if (!db.removeMenuItem(selectedStore.getStoreID(), name, (String) v.getTag(R.id.itemSize3)))
+                                    error = true;
+                            }
+                        }
+                        if (!error) {
+                            Toast.makeText(getActivity().getApplicationContext(), v.getTag(R.id.itemName) + " successfully removed", Toast.LENGTH_LONG).show();
                             TableLayout container = (TableLayout) ((TableRow) v.getParent()).getParent();
                             container.removeView((View) v.getParent());
                             container.invalidate();
