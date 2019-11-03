@@ -1,6 +1,8 @@
 package com.example.beanandleaf;
 
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,11 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+<<<<<<< HEAD
 import com.google.android.gms.maps.model.Marker;
+=======
+import com.google.android.gms.maps.model.MapStyleOptions;
+>>>>>>> c53b2d0b13ddc660f66f29ec7ad1ecc6fa9cf30b
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -51,6 +57,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             ft.replace(R.id.map,  mapFragment).commit();
         }
         mapFragment.getMapAsync(this);
+
         return mView;
     }
 
@@ -74,6 +81,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle(
+                            this.getContext(), R.raw.mapstyle));
+
+            if (!success) {
+                Log.e("MapActivity", "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e("MapActivity", "Can't find style. Error: ", e);
+        }
+
 
 
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.026, -118.277)).title("Starbucks"));
