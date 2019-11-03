@@ -61,7 +61,7 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/caffeine_small_edit"
+        android:id="@+id/menu_caffeine_small_edit"
         android:layout_width="160dp"
         android:layout_height="53dp"
         android:layout_marginLeft="175dp"
@@ -127,7 +127,7 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/price_small_edit"
+        android:id="@+id/menu_price_small_edit"
         android:layout_width="160dp"
         android:layout_height="53dp"
         android:layout_marginLeft="175dp"
@@ -193,7 +193,7 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/calories_for_small_edit"
+        android:id="@+id/menu_calories_for_small_edit"
         android:layout_width="160dp"
         android:layout_height="53dp"
         android:layout_marginLeft="175dp"

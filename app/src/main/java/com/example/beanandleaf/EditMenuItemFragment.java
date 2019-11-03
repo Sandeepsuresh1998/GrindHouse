@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import database.DatabaseHelper;
+import model.MenuItem;
 
 
 public class EditMenuItemFragment extends Fragment {
@@ -58,16 +59,50 @@ public class EditMenuItemFragment extends Fragment {
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         final TextView nameEdit = view.findViewById(R.id.item_name_edit);
-        final TextView calSmallEdit = view.findViewById(R.id.calories_for_small_edit);
+        final TextView calSmallEdit = view.findViewById(R.id.menu_calories_for_small_edit);
         final TextView calMediumEdit = view.findViewById(R.id.calories_for_medium_edit);
         final TextView calLargeEdit = view.findViewById(R.id.calories_for_large_edit);
-        final TextView cafSmallEdit = view.findViewById(R.id.caffeine_small_edit);
+        final TextView cafSmallEdit = view.findViewById(R.id.menu_caffeine_small_edit);
         final TextView cafMediumEdit = view.findViewById(R.id.caffeine_medium_edit);
         final TextView cafLargeEdit = view.findViewById(R.id.caffeine_large_edit);
-        final TextView priceSmallEdit = view.findViewById(R.id.price_small_edit);
+        final TextView priceSmallEdit = view.findViewById(R.id.menu_price_small_edit);
         final TextView priceMediumEdit = view.findViewById(R.id.price_medium_edit);
         final TextView priceLargeEdit = view.findViewById(R.id.price_large_edit);
         final Button updateItemButton = view.findViewById(R.id.update_item_button);
+
+        nameEdit.setText(itemName);
+        DatabaseHelper db = new DatabaseHelper(getActivity());
+        for (int i = 0; i < numSizes; ++i) {
+            MenuItem cur;
+            String cal, caf, price;
+            if (i == 0) {
+                cur = db.getMenuItem(storeID, itemName, size1);
+                cal = Integer.toString(cur.getCalories());
+                caf = Integer.toString(cur.getCaffeine());
+                price = String.format("%.2f", cur.getPrice());
+                calSmallEdit.setText(cal);
+                cafSmallEdit.setText(caf);
+                priceSmallEdit.setText(price);
+            }
+            if (i == 1) {
+                cur = db.getMenuItem(storeID, itemName, size2);
+                cal = Integer.toString(cur.getCalories());
+                caf = Integer.toString(cur.getCaffeine());
+                price = String.format("%.2f", cur.getPrice());
+                calMediumEdit.setText(cal);
+                cafMediumEdit.setText(caf);
+                priceMediumEdit.setText(price);
+            }
+            if (i == 2) {
+                cur = db.getMenuItem(storeID, itemName, size3);
+                cal = Integer.toString(cur.getCalories());
+                caf = Integer.toString(cur.getCaffeine());
+                price = String.format("%.2f", cur.getPrice());
+                calLargeEdit.setText(cal);
+                cafLargeEdit.setText(caf);
+                priceLargeEdit.setText(price);
+            }
+        }
 
 
 
