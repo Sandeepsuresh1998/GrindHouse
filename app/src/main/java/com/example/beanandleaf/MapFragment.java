@@ -21,11 +21,11 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-<<<<<<< HEAD
+
 import com.google.android.gms.maps.model.Marker;
-=======
+
 import com.google.android.gms.maps.model.MapStyleOptions;
->>>>>>> c53b2d0b13ddc660f66f29ec7ad1ecc6fa9cf30b
+
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -100,19 +100,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.026, -118.277)).title("Starbucks"));
         CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.026, -118.277)).zoom(16).bearing(0).tilt(45).build();
-        //mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
-//        {
-//            @Override
-//            public void onInfoWindowClick(Marker arg0) {
-//                // call an activity(xml file)
-//                Intent I = new Intent(this, BusInfo.class);
-//                startActivity(I);
-//            }
-//
-//        });
+        mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
+        {
+            @Override
+            public void onInfoWindowClick(Marker arg0) {
+                // this needs to open the fragment_map_view_menu
+                Intent I = new Intent(getActivity(), MapClickMenu.class);
+                startActivity(I);
+            }
 
-        //String contentString =
-        //var infoWindow = new google.maps.InfoWindow({});
+        });
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Starbucks));
 
