@@ -19,6 +19,20 @@
             android:paddingTop="@dimen/activity_vertical_margin"
             >
 
+            <Button
+                android:id="@+id/recordOrder"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="260dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/green_round_button"
+                android:enabled="true"
+                android:fontFamily="@font/amatic_regular"
+                android:text="Record Order"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/edit_menu_item_title"
                 android:layout_width="wrap_content"
@@ -94,19 +108,6 @@
 
             </TableLayout>
 
-            <Button
-                android:id="@+id/recordOrder"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="150dp"
-                android:layout_marginTop="580dp"
-                android:background="@drawable/green_round_button"
-                android:enabled="true"
-                android:fontFamily="@font/amatic_regular"
-                android:text="Record Order"
-                android:textColor="@color/white"
-                android:textSize="18dp"
-                android:textStyle="bold" />
 
         </RelativeLayout>
 
