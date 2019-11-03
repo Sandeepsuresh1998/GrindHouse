@@ -49,6 +49,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "Size TEXT NOT NULL," +
                 "Caffeine INTEGER NOT NULL," +
                 "Price TEXT NOT NULL," +
+                "TimeCreated TEXT NOT NULL," +
                 "FOREIGN KEY (StoreID) REFERENCES Stores(StoreID))");
         db.execSQL("CREATE TABLE Orders(" +
                 "OrderID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -303,12 +304,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor res = db.rawQuery(whereClause, whereArgs);
         while (res.moveToNext()) {
-
+            menu.add(new MenuItem(res.getInt(0),
+                    res.getString(2),
+                    res.getInt(3),
+                    res.getString(4),
+                    res.getInt(5),
+                    Double.parseDouble(res.getString(6)),
+                    res.getString(7)));
         }
         return menu;
     }
 
-    public boolean insertMenuItem(Integer storeId, String name, String calories, String size, String caffeine, String price) {
+    public boolean insertMenuItem(Integer storeId, String name, String calories, String size, String caffeine, String price, String timeCreated) {
         ContentValues cv = new ContentValues();
         cv.put("StoreID", storeId);
         cv.put("Price", price);
@@ -316,6 +323,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put("Calories", calories);
         cv.put("Size", size);
         cv.put("Caffeine", caffeine);
+        cv.put("TimeCreated", timeCreated);
         long result = db.insert("MenuItems", null, cv);
         if (result == -1) {
             return false;

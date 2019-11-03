@@ -140,21 +140,21 @@ public class AddMenuItemFragment extends Fragment {
                 DatabaseHelper db = new DatabaseHelper(getActivity());
                 SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
                 int storeID = pref.getInt("selectedStore", 0);
-
+                String timestamp = Long.toString(System.currentTimeMillis());
                 if (addSmall) {
-                    if (!db.insertMenuItem(storeID, name, calSmall, "Small", cafSmall, priceSmall)) {
+                    if (!db.insertMenuItem(storeID, name, calSmall, "Small", cafSmall, priceSmall, timestamp)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Error: small menu item not added", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
                 if (addMedium) {
-                    if (!db.insertMenuItem(storeID, name, calMedium, "Medium", cafMedium, priceMedium)) {
+                    if (!db.insertMenuItem(storeID, name, calMedium, "Medium", cafMedium, priceMedium, timestamp)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Error: medium menu item not added", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
                 if (addLarge) {
-                    if (!db.insertMenuItem(storeID, name, calLarge, "Large", cafLarge, priceLarge)) {
+                    if (!db.insertMenuItem(storeID, name, calLarge, "Large", cafLarge, priceLarge, timestamp)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Error: large menu item not added", Toast.LENGTH_SHORT).show();
                         return;
                     }

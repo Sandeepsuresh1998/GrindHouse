@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -54,21 +55,41 @@ public class MenuFragment extends Fragment {
         }
         else {
             menuTitle.setText(selectedStore.getName() + "'s Menu");
-        }
+            addItemButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment addMenuItemFragment = new AddMenuItemFragment();
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container_merchant, addMenuItemFragment)
+                            .commit();
+                }
+            });
 
+            TableLayout table = view.findViewById(R.id.menu_table);
+            ArrayList<MenuItem> menu = db.getMenu(storeID);
+            ArrayList<Integer> created = new ArrayList<>();
+            for (final int i = 0; i < menu.size(); ++i) {
+                TableRow row = new TableRow(getActivity());
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+                row.setLayoutParams(lp);
+                Button editItemButton = new Button(getActivity());
+                Button deleteItemButton = new Button(getActivity());
+                TextView itemNameView = new TextView(getActivity());
+                TextView descriptionView = new TextView(getActivity());
+                itemNameView.setText("\n" + menu.get(i).getName());
+                String description = "Flavor = Vanilla \n Price = $4, $5, $6 \n Caffeine = 115mg, 150mg, 190mg";
+                descriptionView.setText();
+                editItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_edit_green_24dp, 0,0,0);
+                deleteItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_delete_red_24dp,0,0,0);
 
-        addItemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment addMenuItemFragment = new AddMenuItemFragment();
-                getFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container_merchant, addMenuItemFragment)
-                        .commit();
+                editItemButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }
-        });
-
-        final TableLayout table = view.findViewById(R.id.menu_table);
-        ArrayList<MenuItem> menu = db.getMenu(storeID);
+        }
     }
 }
