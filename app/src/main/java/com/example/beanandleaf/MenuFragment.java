@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
 import database.DatabaseHelper;
+import model.MenuItem;
 import model.Store;
 
 public class MenuFragment extends Fragment {
@@ -39,6 +43,7 @@ public class MenuFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         final TextView menuTitle = view.findViewById(R.id.edit_menu_title);
         final Button addItemButton = view.findViewById(R.id.add_menu_item_button);
+
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         int storeID = pref.getInt("selectedStore", 0);
         DatabaseHelper db = new DatabaseHelper(getActivity());
@@ -55,5 +60,8 @@ public class MenuFragment extends Fragment {
                         .commit();
             }
         });
+
+        final TableLayout table = view.findViewById(R.id.menu_table);
+        ArrayList<MenuItem> menu = db.getMenu(storeID);
     }
 }

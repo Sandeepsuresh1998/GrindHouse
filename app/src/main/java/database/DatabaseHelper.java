@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import model.MenuItem;
 import model.Store;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -43,8 +44,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE MenuItems(" +
                 "MenuItemID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "StoreID INTEGER NOT NULL," +
-                "Price REAL NOT NULL," +
                 "ItemName TEXT NOT NULL," +
+                "Flavor TEXT," +
+                "Calories INTEGER NOT NULL," +
+                "CaffieneSmall INTEGER," +
+                "CaffieneMedium INTEGER," +
+                "CaffieneLarge INTEGER," +
+                "PriceSmall INTEGER," +
+                "PriceMedium INTEGER," +
+                "PriceLarge INTEGER," +
                 "FOREIGN KEY (StoreID) REFERENCES Stores(StoreID))");
         db.execSQL("CREATE TABLE Orders(" +
                 "OrderID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -311,6 +319,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    public ArrayList<MenuItem> getMenu(Integer storeId) {
+        ArrayList<MenuItem> menu = new ArrayList<>();
+        String whereClause = "SELECT * FROM MenuItems WHERE storeID=?";
+        String whereArgs[] = {Integer.toString(storeId)};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        while (res.moveToNext()) {
+
+        }
+        return menu;
+    }
+
     public boolean insertMenuItem(Integer storeId, String price, String name) {
         ContentValues cv = new ContentValues();
         cv.put("StoreID", storeId);
