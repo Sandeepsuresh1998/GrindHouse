@@ -1,7 +1,5 @@
 package model;
 
-import android.view.Menu;
-
 public class MenuItem {
 
     private Integer itemID;
