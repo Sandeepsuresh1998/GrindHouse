@@ -125,6 +125,15 @@ public class MenuFragment extends Fragment {
                 editItemButton.setCompoundDrawablesWithIntrinsicBounds(0, 0,R.drawable.ic_edit_green_24dp,0);
                 editItemButton.setBackgroundColor(Color.TRANSPARENT);
                 TableRow.LayoutParams paramsEditButton = new TableRow.LayoutParams(0);
+                editItemButton.setTag(R.id.itemName, cur.getName());
+                editItemButton.setTag(R.id.itemSize1, cur.getSize());
+                if (otherSizes == 1) {
+                    editItemButton.setTag(R.id.itemSize2, otherSize1);
+                }
+                else if (otherSizes == 2) {
+                    editItemButton.setTag(R.id.itemSize2, otherSize1);
+                    editItemButton.setTag(R.id.itemSize3, otherSize2);
+                }
                 editItemButton.setLayoutParams(paramsEditButton);
 
                 TableRow.LayoutParams paramsNameText = new TableRow.LayoutParams(1);
@@ -154,6 +163,27 @@ public class MenuFragment extends Fragment {
                     deleteItemButton.setTag(R.id.itemSize3, otherSize2);
                 }
                 deleteItemButton.setLayoutParams(paramsDeleteButton);
+
+                editItemButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Fragment EditMenuItemFragment = null;
+                        if (otherSizesF == 0) {
+                            EditMenuItemFragment = new EditMenuItemFragment(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1));
+                        }
+                        else if (otherSizesF == 1) {
+                            EditMenuItemFragment = new EditMenuItemFragment(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1), (String) v.getTag(R.id.itemSize2));
+                        }
+                        else if (otherSizesF == 2) {
+                            EditMenuItemFragment = new EditMenuItemFragment(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1), (String) v.getTag(R.id.itemSize2), (String) v.getTag(R.id.itemSize3));
+                        }
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container_merchant, EditMenuItemFragment)
+                                .commit();
+                    }
+                });
+
                 deleteItemButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
