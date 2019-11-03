@@ -73,7 +73,7 @@ public class MenuFragment extends Fragment {
             });
 
             TableLayout table = view.findViewById(R.id.menu_table);
-            ArrayList<MenuItem> menu = db.getMenu(storeID);
+            final ArrayList<MenuItem> menu = db.getMenu(storeID);
             ArrayList<Integer> created = new ArrayList<>();
             for (int i = 0; i < menu.size(); ++i) {
                 boolean alreadyCreated = false;
