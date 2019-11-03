@@ -79,7 +79,7 @@ public class MenuFragment extends Fragment {
                 TextView descriptionView = new TextView(getActivity());
                 itemNameView.setText("\n" + menu.get(i).getName());
                 String description = "Flavor = Vanilla \n Price = $4, $5, $6 \n Caffeine = 115mg, 150mg, 190mg";
-                descriptionView.setText();
+                descriptionView.setText(description);
                 editItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_edit_green_24dp, 0,0,0);
                 deleteItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_delete_red_24dp,0,0,0);
 
