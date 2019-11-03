@@ -7,12 +7,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
-public class RecommendationsFragment extends Fragment implements onMapReadyCallBack {
+public class RecommendationsFragment extends Fragment {
     GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
@@ -30,11 +33,18 @@ public class RecommendationsFragment extends Fragment implements onMapReadyCallB
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        //just change the fragment_dashboard
-        //with the fragment you want to inflate
-        //like if the class is HomeFragment it should have R.layout.home_fragment
-        //if it is DashboardFragment it should have R.layout.fragment_dashboard
-        return inflater.inflate(R.layout.fragment_recommendations, null);
+        System.out.println("On Create View");
+        mView = inflater.inflate(R.layout.fragment_recommendations, container, false);
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapRec);
+        if(mapFragment == null) {
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            mapFragment = SupportMapFragment.newInstance();
+            ft.replace(R.id.map,  mapFragment).commit();
+        }
+        //mapFragment.getMapAsync(this);
+
+        return mView;
     }
 
 }
