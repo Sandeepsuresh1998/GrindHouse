@@ -9,10 +9,17 @@
 
     <color name="pinkBrown">#e9dcd9</color>
     <color name="black">#222222</color>
-    <color name="green">#afd186</color>
     <color name="lightGreen">#e6f3d3</color>
     <color name="base">#AAAAAA</color>
     <color name="iron">#CCCCCC</color>
     <color name="white">#FFFFFF</color>
+
+    <item name="orange" type="color">#FF6D00</item>
+    <item name="darkred" type="color">#FFCC0000</item>
+
+    <integer-array name="mapcolors">
+        <item>@color/orange</item>
+        <item>@color/darkred</item>
+    </integer-array>
 
 </resources>
