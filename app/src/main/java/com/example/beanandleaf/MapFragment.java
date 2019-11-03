@@ -100,7 +100,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
 
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.026, -118.277)).title("Starbucks"));
-        CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.026, -118.277)).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.0224, -118.2851)).zoom(14).bearing(0).tilt(0).build();
         mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
         {
             @Override
