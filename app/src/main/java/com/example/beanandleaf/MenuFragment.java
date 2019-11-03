@@ -122,13 +122,9 @@ public class MenuFragment extends Fragment {
                 final int otherSizesF = otherSizes;
                 descriptionView.setText(prices + " \n " + caffeine + " \n " + calories);
 
-                editItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_edit_green_24dp, 0,0,0);
+                editItemButton.setCompoundDrawablesWithIntrinsicBounds(0, 0,R.drawable.ic_edit_green_24dp,0);
                 editItemButton.setBackgroundColor(Color.TRANSPARENT);
                 TableRow.LayoutParams paramsEditButton = new TableRow.LayoutParams(0);
-                //paramsEditButton.setMargins(4, 0, 0, 0);
-                //paramsEditButton.width = 22;
-                //paramsEditButton.height = 12;
-                editItemButton.setTag(cur.getID());
                 editItemButton.setLayoutParams(paramsEditButton);
 
                 TableRow.LayoutParams paramsNameText = new TableRow.LayoutParams(1);
@@ -139,7 +135,6 @@ public class MenuFragment extends Fragment {
                 itemNameView.setLayoutParams(paramsNameText);
 
                 TableRow.LayoutParams paramsDescText = new TableRow.LayoutParams(2);
-                paramsDescText.width = 125;
                 descriptionView.setBackgroundResource(R.drawable.black_border);
                 descriptionView.setTextAppearance(R.style.fontForMenuTable);
                 descriptionView.setPadding(10,10,10,10);
@@ -149,9 +144,6 @@ public class MenuFragment extends Fragment {
                 deleteItemButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_delete_red_24dp, 0,0,0);
                 deleteItemButton.setBackgroundColor(Color.TRANSPARENT);
                 TableRow.LayoutParams paramsDeleteButton = new TableRow.LayoutParams(3);
-                //paramsEditButton.setMargins(4, 0, 0, 0);
-                //paramsEditButton.width = 20;
-                //paramsEditButton.height = 20;
                 deleteItemButton.setTag(R.id.itemName, cur.getName());
                 deleteItemButton.setTag(R.id.itemSize1, cur.getSize());
                 if (otherSizes == 1) {
