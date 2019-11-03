@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,6 +19,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -75,6 +78,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.026, -118.277)).title("Starbucks"));
         CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.026, -118.277)).zoom(16).bearing(0).tilt(45).build();
+        //mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
+//        {
+//            @Override
+//            public void onInfoWindowClick(Marker arg0) {
+//                // call an activity(xml file)
+//                Intent I = new Intent(this, BusInfo.class);
+//                startActivity(I);
+//            }
+//
+//        });
 
         //String contentString =
         //var infoWindow = new google.maps.InfoWindow({});
@@ -83,4 +96,5 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         System.out.println("Done");
     }
+
 }

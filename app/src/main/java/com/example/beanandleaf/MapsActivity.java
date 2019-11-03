@@ -2,15 +2,10 @@ package com.example.beanandleaf;
 
 import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
+
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +13,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Marker;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -54,5 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng starbucks = new LatLng(34.026, -118.277);
         mMap.addMarker(new MarkerOptions().position(starbucks).title("Marker at Starbucks"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(starbucks));
+
     }
+
 }
