@@ -1,12 +1,19 @@
 package com.example.beanandleaf;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import database.DatabaseHelper;
+import model.Store;
 
 public class MenuFragment extends Fragment {
 
@@ -27,5 +34,26 @@ public class MenuFragment extends Fragment {
         //display as table
 
         return inflater.inflate(R.layout.fragment_menu, null);
+    }
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        final TextView menuTitle = view.findViewById(R.id.edit_menu_title);
+        final Button addItemButton = view.findViewById(R.id.add_menu_item_button);
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+        int storeID = pref.getInt("selectedStore", 0);
+        DatabaseHelper db = new DatabaseHelper(getActivity());
+        Store selectedStore = db.getStore(storeID);
+        menuTitle.setText(selectedStore.getName() + "'s Menu");
+
+        addItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment addMenuItemFragment = new AddMenuItemFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container_merchant, addMenuItemFragment)
+                        .commit();
+            }
+        });
     }
 }

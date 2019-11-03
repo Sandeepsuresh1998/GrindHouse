@@ -40,7 +40,8 @@ public class StoreFragment extends Fragment {
         final Button updateStoreButton = view.findViewById(R.id.update_store);
 
         DatabaseHelper db = new DatabaseHelper(getActivity());
-        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+        final SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+        final SharedPreferences.Editor editor = pref.edit();
         final String email = pref.getString("email", null);
         final String userType = pref.getString("userType", null);
         final Integer userID = db.getUserId(email, userType);
@@ -86,12 +87,16 @@ public class StoreFragment extends Fragment {
                             nameEditText.setText(null);
                             latEditText.setText(null);
                             lonEditText.setText(null);
+                            editor.putInt("selectedStore", -1);
+                            editor.commit();
                         }
                         else {
                             selectedStore = stores.get(0);
                             nameEditText.setText(selectedStore.getName());
                             latEditText.setText(Float.toString(selectedStore.getLatitude()));
                             lonEditText.setText(Float.toString(selectedStore.getLongitude()));
+                            editor.putInt("selectedStore", selectedStore.getStoreID());
+                            editor.commit();
                         }
                         msg = "Store successfully removed";
                     }
@@ -116,6 +121,9 @@ public class StoreFragment extends Fragment {
                         nameEditText.setText(selectedStore.getName());
                         latEditText.setText(Float.toString(selectedStore.getLatitude()));
                         lonEditText.setText(Float.toString(selectedStore.getLongitude()));
+                        editor.putInt("selectedStore", selectedStore.getStoreID());
+                        editor.commit();
+
                     }
                 }
                 public void onNothingSelected(AdapterView<?> parent) {
@@ -139,17 +147,14 @@ public class StoreFragment extends Fragment {
 
                     DatabaseHelper db = new DatabaseHelper(getActivity());
                     ArrayList<String> updates = new ArrayList<>();
-                    SharedPreferences preferences = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
-                    SharedPreferences.Editor editor = preferences.edit();
+
 
                     boolean error = false;
 
                     if (!newName.contentEquals(selectedStore.getName())) {
                         if (newName != null) {
                             updates.add("name");
-                            if (db.updateStoreName(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newName))
-                                editor.putString("currentStore", newName);
-                            else
+                            if (!db.updateStoreName(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newName))
                                 error = true;
                         } else {
                             Toast.makeText(getActivity().getApplicationContext(), "Store name cannot be empty", Toast.LENGTH_LONG).show();
@@ -160,9 +165,7 @@ public class StoreFragment extends Fragment {
                     if (!newLat.contentEquals(Float.toString(selectedStore.getLatitude()))) {
                         if (isValidFloat(newLat)) {
                             updates.add("latitude");
-                            if (db.updateStoreLat(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newLat))
-                                editor.putString("currentLat", newLat);
-                            else
+                            if (!db.updateStoreLat(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newLat))
                                 error = true;
                         }
                         else {
@@ -174,9 +177,7 @@ public class StoreFragment extends Fragment {
                     if (!newLong.contentEquals(Float.toString(selectedStore.getLongitude()))) {
                         if (isValidFloat(newLong)) {
                             updates.add("longitude");
-                            if (db.updateStoreLong(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newLong))
-                                editor.putString("currentLong", newLong);
-                            else
+                            if (!db.updateStoreLong(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newLong))
                                 error = true;
                         }
                         else {

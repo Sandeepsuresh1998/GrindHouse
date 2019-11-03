@@ -15,7 +15,10 @@ import android.widget.Toast;
 
 import com.example.beanandleaf.ui.login.LoginActivity;
 
+import java.util.ArrayList;
+
 import database.DatabaseHelper;
+import model.Store;
 
 public class Register extends AppCompatActivity {
 
@@ -75,6 +78,13 @@ public class Register extends AppCompatActivity {
                         editor.putString("email", email);
                         editor.putString("userType", userType);
                         editor.putString("gender", gender);
+                        if (userType.contentEquals("Merchant")) {
+                            ArrayList<Store> stores = db.getStores(db.getUserId(email, userType));
+                            if (!stores.isEmpty())
+                                editor.putInt("selectedStore", stores.get(0).getStoreID());
+                            else
+                                editor.putInt("selectedStore", -1);
+                        }
                         editor.commit();
                         Intent mapActivity = null;
                         if (userType.contentEquals("Customer")) {

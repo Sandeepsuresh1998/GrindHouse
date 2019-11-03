@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fillViewport="true"> <!--IMPORTANT otherwise backgrnd img. will not fill the whole screen -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -20,7 +20,7 @@
         >
 
         <TextView
-            android:id="@+id/edit_menu_item_title"
+            android:id="@+id/edit_menu_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -38,7 +38,7 @@
             android:layout_marginLeft="260dp"
             android:layout_marginTop="70dp"
             android:background="@drawable/green_round_button"
-            android:enabled="false"
+            android:enabled="true"
             android:fontFamily="@font/amatic_regular"
             android:text="@string/add_menu_item"
             android:textColor="@color/white"
