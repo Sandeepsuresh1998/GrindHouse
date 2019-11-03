@@ -69,7 +69,7 @@ public class MenuFragment extends Fragment {
             TableLayout table = view.findViewById(R.id.menu_table);
             ArrayList<MenuItem> menu = db.getMenu(storeID);
             ArrayList<Integer> created = new ArrayList<>();
-            for (final int i = 0; i < menu.size(); ++i) {
+            for (int i = 0; i < menu.size(); ++i) {
                 TableRow row = new TableRow(getActivity());
                 TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
                 row.setLayoutParams(lp);
