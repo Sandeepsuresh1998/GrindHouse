@@ -101,7 +101,7 @@
                     android:textStyle="bold" />
 
             </TableRow>
-
+            <!-- COMMENTING OUT THIS EXAMPLE TABLE ROW
             <TableRow
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -126,7 +126,6 @@
                     android:text="\n Latte \n"
                     android:textSize="22dp" />
 
-                <!--                might be unnecessary bc there is a delete button in the edit fragment-->
                 <TextView
                     android:layout_width="125dp"
                     android:layout_column="2"
@@ -148,7 +147,7 @@
                     android:fontFamily="@font/amatic_regular" />
 
             </TableRow>
-
+            -->
         </TableLayout>
 
     </RelativeLayout>
