@@ -188,13 +188,13 @@ public class EditMenuItemFragment extends Fragment {
                 }
                 if (!cafSmall.contentEquals("") && !priceSmall.contentEquals("") && !calSmall.contentEquals("")) {
                     if (!isValidInteger(cafSmall)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the small size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the small size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceSmall)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the small size", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidInteger(calSmall)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the small size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the small size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (checkSizes("Small")) {
                         MenuItem item = db.getMenuItem(storeID, itemName, "Small");
@@ -230,13 +230,13 @@ public class EditMenuItemFragment extends Fragment {
                 }
                 if (!cafMedium.contentEquals("") && !priceMedium.contentEquals("") && !calMedium.contentEquals("")) {
                     if (!isValidInteger(cafMedium)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the medium size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the medium size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceMedium)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the medium size", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidInteger(calMedium)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the medium size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the medium size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (checkSizes("Medium")) {
                         MenuItem item = db.getMenuItem(storeID, itemName, "Medium");
@@ -272,13 +272,13 @@ public class EditMenuItemFragment extends Fragment {
                 }
                 if (!cafLarge.contentEquals("") && !priceLarge.contentEquals("") && !calLarge.contentEquals("")) {
                     if (!isValidInteger(cafLarge)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the large size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the large size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceLarge)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the large size", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidInteger(calLarge)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the large size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the large size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (checkSizes("Large")) {
                         MenuItem item = db.getMenuItem(storeID, itemName, "Large");
@@ -394,12 +394,18 @@ public class EditMenuItemFragment extends Fragment {
 
     private boolean isValidDouble(String s) {
         String regex = "[0-9]*\\.?[0-9]+";
-        return s.matches(regex);
+        String[] split = s.split("\\.");
+        if (split.length == 1) {
+            return s.matches(regex);
+        }
+        if (split.length != 2)
+            return false;
+        return s.matches(regex) && split[1].length() <= 2;
     }
 
     private boolean isValidInteger(String s) {
         String regex = "\\d+";
-        return s.matches(regex);
+        return s.matches(regex) && s.length() <= 3;
     }
 
     private boolean checkSizes(String size) {

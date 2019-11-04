@@ -333,6 +333,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return item;
     }
 
+    public boolean checkMenuItemNameExists(Integer storeID, String name) {
+        String whereClause = "SELECT * FROM MenuItems WHERE StoreID=? AND ItemName=?";
+        String whereArgs[] = {Integer.toString(storeID), name};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return true;
+        }
+        return false;
+    }
+
     public boolean insertMenuItem(Integer storeId, String name, String calories, String size, String caffeine, String price, String timeCreated) {
         ContentValues cv = new ContentValues();
         cv.put("StoreID", storeId);

@@ -227,7 +227,7 @@ public class StoreFragment extends Fragment {
     private boolean isValidCoord(String s) {
         if (!s.matches("[-+]?[0-9]*\\.?[0-9]+"))
             return false;
-        String[] split = s.split(".");
+        String[] split = s.split("\\.");
         if (split.length != 2 || split[1].length() < 4)
             return false;
         return true;
