@@ -11,11 +11,9 @@ import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 
 
@@ -99,7 +97,7 @@ public class MerchantHistoryFragment extends SimpleFragment {
  //        *********** BAR CHART MONEY SPENT***********
         // create a new chart object
         bcms = new BarChart(getActivity());
-        bcms = v.findViewById(R.id.barChartMoneySpent);
+        bcms = v.findViewById(R.id.bar_chart_money_spent);
         bcms.getDescription().setEnabled(false);
         //bc.setOnChartGestureListener(this);
 

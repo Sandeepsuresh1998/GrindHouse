@@ -104,7 +104,7 @@ public class AddOrderFragment extends Fragment {
                 MenuItem item = db.getMenuItem(storeID, itemName, size);
 
                 String quant = quantSpinner.getSelectedItem().toString();
-                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant), item.getCalories() * Integer.parseInt(quant), Double.toString(item.getPrice() * Double.parseDouble(quant)), item.getName(), Long.toString(System.currentTimeMillis()))) {
+                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant), item.getCalories() * Integer.parseInt(quant), Double.toString(item.getPrice() * Double.parseDouble(quant)), item.getName(), Long.toString(System.currentTimeMillis()), true, false)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
                     Fragment addOrderFragment = new AddOrderFragment(storeID);
                     getFragmentManager()
@@ -127,7 +127,7 @@ public class AddOrderFragment extends Fragment {
                 MenuItem item = db.getMenuItem(storeID, itemName, size);
 
                 String quant = quantSpinner.getSelectedItem().toString();
-                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant), item.getCalories() * Integer.parseInt(quant), Double.toString(item.getPrice() * Double.parseDouble(quant)), item.getName(), Long.toString(System.currentTimeMillis()))) {
+                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant), item.getCalories() * Integer.parseInt(quant), Double.toString(item.getPrice() * Double.parseDouble(quant)), item.getName(), Long.toString(System.currentTimeMillis()), false, true)) {
                     Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
                     Fragment mapFragment = new MapFragment();
                     getFragmentManager()

@@ -14,6 +14,16 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         >
 
+        <Spinner
+            android:id="@+id/time_period_spinner"
+            android:layout_width="160dp"
+            android:layout_height="38dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="225dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:fontFamily="@font/amatic"
+            android:spinnerMode="dropdown" />
+
         <TextView
             android:id="@+id/historyTitle"
             android:layout_width="wrap_content"
@@ -27,10 +37,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/moneySpentTotalValue"
+            android:id="@+id/money_spent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="90dp"
             android:fontFamily="@font/amatic_bold"
             android:text="$250"
@@ -39,13 +49,25 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/moneySpentTotalDescription"
+            android:id="@+id/money_spent_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
+            android:layout_marginLeft="7dp"
             android:layout_marginTop="165dp"
             android:fontFamily="@font/amatic_bold"
-            android:text="spent on coffee"
+            android:text="spent on drinks"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/time_period_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="225dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="See statistics for:"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -63,7 +85,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/caffeineIntakeTotalValue"
+            android:id="@+id/caffeine_intake"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="133dp"
@@ -75,13 +97,25 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/caffeineIntakeTotalDescription"
+            android:id="@+id/calories_consumed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="128dp"
+            android:layout_marginLeft="290dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="300"
+            android:textColor="@color/white"
+            android:textSize="60dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/caffeine_intake_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="132dp"
             android:layout_marginTop="165dp"
             android:fontFamily="@font/amatic_bold"
-            android:text="caffeine intake today"
+            android:text="caffeine consumed"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -99,25 +133,13 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/milesWalkedTotalValue"
+            android:id="@+id/calories_consumed_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="305dp"
-            android:layout_marginTop="90dp"
-            android:fontFamily="@font/amatic_bold"
-            android:text="3"
-            android:textColor="@color/white"
-            android:textSize="60dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/milesWalkedTotalDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="265dp"
+            android:layout_marginLeft="270dp"
             android:layout_marginTop="165dp"
             android:fontFamily="@font/amatic_bold"
-            android:text="miles walked to shop"
+            android:text="calories consumed"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -126,19 +148,19 @@
             android:id="@+id/barChartStoresDrinks"
             android:layout_width="376dp"
             android:layout_height="314dp"
-            android:layout_marginTop="205dp" />
+            android:layout_marginTop="275dp" />
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChartDrinksPurchased"
             android:layout_width="381dp"
             android:layout_height="500dp"
-            android:layout_marginTop="525dp" />
+            android:layout_marginTop="600dp" />
 
         <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barChartMoneySpent"
+            android:id="@+id/bar_chart_money_spent"
             android:layout_width="376dp"
             android:layout_height="500dp"
-            android:layout_marginTop="1050dp" />
+            android:layout_marginTop="1125dp" />
 
     </RelativeLayout>
 </ScrollView>

@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/moneySpentTotalValue"
+            android:id="@+id/merchant_money_spent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="82dp"
@@ -39,7 +39,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/moneySpentTotalDescription"
+            android:id="@+id/merchant_money_spent_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="75dp"
@@ -63,7 +63,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/milesWalkedTotalValue"
+            android:id="@+id/merchant_orders_placed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="250dp"
@@ -75,7 +75,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/milesWalkedTotalDescription"
+            android:id="@+id/merchant_orders_placed_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="220dp"
@@ -93,7 +93,7 @@
             android:layout_marginTop="210dp" />
 
         <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barChartMoneySpent"
+            android:id="@+id/merchant_bar_chart_money_spent"
             android:layout_width="376dp"
             android:layout_height="500dp"
             android:layout_marginTop="525dp" />
