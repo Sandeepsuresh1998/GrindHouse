@@ -2,6 +2,7 @@ package com.example.beanandleaf;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -35,7 +36,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
 import java.util.Random;
+
+import database.DatabaseHelper;
+import model.Store;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
@@ -86,7 +91,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        System.out.println("On Create View");
         mView = inflater.inflate(R.layout.fragment_map, container, false);
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if(mapFragment == null) {
@@ -106,7 +110,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         mMapView = (MapView) mView.findViewById(R.id.map);
         if(mMapView != null) {
-            System.out.println("Hi");
             mMapView.onCreate(null);
             mMapView.onResume();
             mMapView.getMapAsync(this);
@@ -116,7 +119,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        System.out.println("Made it");
         LatLng latLng = new LatLng(34, -115);
         if(currentLocation != null) {
             System.out.println("A non null location");
@@ -145,6 +147,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         //Marker for current location
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude)).title("Current Location"));
+        DatabaseHelper db = new DatabaseHelper(getActivity());
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        String email = pref.getString("email", null);
+        String userType = pref.getString("userType", null);
+        Integer userID = db.getUserId(email, userType);
+        ArrayList<Store> stores = db.getStores(userID);
+
+        for (Store s : stores) {
+            MarkerOptions mo = new MarkerOptions().position(new LatLng(s.getLatitude(), s.getLongitude())).title(s.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
+            Marker m = mGoogleMap.addMarker(mo);
+            m.setTag(s.getStoreID());
+        }
+
+        /* !!!!!!!!!DUMMY MARKERS ARE HIDDEN FOR NOW! PLEASE DON'T UNCOMMENT AND PUSH. To add a marker on the map, create a merchant account and create a store with a latitude/longitude of one of the stores below. Thanks! -Ethan
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.024120, -118.278170)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.022090, -118.282460)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.026409, -118.277473)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
@@ -162,15 +179,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.026550, -118.285301)).title("Cafe Dulce").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.031966, -118.284216)).title("DRNK coffee + tea").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.034422, -118.283604)).title("Nature's Brew").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
-
+        */
 
         CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.0224, -118.2851)).zoom(14).bearing(0).tilt(0).build();
         mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
-            public void onInfoWindowClick(Marker arg0) {
-                // this needs to open the fragment_map_view_menu
-                Intent I = new Intent(getActivity(), MapClickMenu.class);
-                startActivity(I);
+            public void onInfoWindowClick(Marker marker) {
+                Fragment mapClickMenuFragment = new MapClickMenuFragment((int) marker.getTag());
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container_merchant, mapClickMenuFragment)
+                        .commit();
             }
 
         });
