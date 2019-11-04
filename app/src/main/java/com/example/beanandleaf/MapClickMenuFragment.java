@@ -1,17 +1,10 @@
 package com.example.beanandleaf;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +13,6 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -44,7 +36,7 @@ public class MapClickMenuFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         TextView title = view.findViewById(R.id.map_click_menu_title);
         DatabaseHelper db = new DatabaseHelper(getActivity());
-        Store selectedStore = db.getStore(storeID);
+        final Store selectedStore = db.getStore(storeID);
         title.setText(selectedStore.getName() + " Menu");
 
         TableLayout table = view.findViewById(R.id.map_click_menu_table);
@@ -101,6 +93,18 @@ public class MapClickMenuFragment extends Fragment {
             row.addView(itemNameView);
             row.addView(descriptionView);
             table.addView(row);
+
+            Button recordOrderButton = view.findViewById(R.id.record_order_button);
+            recordOrderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment addOrderFragment = new AddOrderFragment(storeID);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container_merchant, addOrderFragment)
+                            .commit();
+                }
+            });
         }
     }
 

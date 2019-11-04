@@ -20,7 +20,7 @@
             >
 
             <Button
-                android:id="@+id/recordOrder"
+                android:id="@+id/record_order_button"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="260dp"
