@@ -50,7 +50,6 @@ public class RecommendationsFragment extends Fragment {
         return mView;
     }
 
-    @Override
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
 
