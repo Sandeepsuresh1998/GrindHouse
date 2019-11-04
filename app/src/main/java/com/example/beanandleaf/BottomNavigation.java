@@ -52,17 +52,32 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
                 Integer userID = db.getUserId(email, userType);
 
                 int caffeineToday = getCaffeineFromOrdersToday(db.getRecentOrders(userID));
+                if(caffeineToday < 350)
+                {
+                    // Displaying posotioned Toast message
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Your caffeine intake amount today is " + caffeineToday,
+                            Toast.LENGTH_LONG);
+                    t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    t.show();
+                }
+                else if(caffeineToday >= 350 && caffeineToday <= 400)
+                {
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Your caffeine intake amount today is " + caffeineToday + ". You're nearing the daily reccommended limit of 400mg.",
+                            Toast.LENGTH_LONG);
+                    t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    t.show();
+                }
+                else
+                    {
+                        Toast t = Toast.makeText(getApplicationContext(),
+                                "You've exceeded the daily reccommended amount of caffeine!.",
+                                Toast.LENGTH_LONG);
+                        t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                        t.show();
+                    }
 
-
-
-
-
-                // Displaying posotioned Toast message
-                Toast t = Toast.makeText(getApplicationContext(),
-                        "Your caffeine intake amount today is " + caffeineToday,
-                        Toast.LENGTH_LONG);
-                t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                t.show();
             }
         });
     }
