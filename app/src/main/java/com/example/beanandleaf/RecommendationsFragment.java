@@ -31,10 +31,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Random;
 
 import database.DatabaseHelper;
 import model.Store;
+import model.Order;
 
 public class RecommendationsFragment  extends Fragment implements OnMapReadyCallback {
 
@@ -125,11 +127,23 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
         Integer userID = db.getUserId(email, userType);
         ArrayList<Store> stores = db.getStores();
 
-        for (Store s : stores) {
-            MarkerOptions mo = new MarkerOptions().position(new LatLng(s.getLatitude(), s.getLongitude())).title(s.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
-            Marker m = mGoogleMap.addMarker(mo);
-            m.setTag(s.getStoreID());
-        }
+//        for (Store s : stores) {
+//            MarkerOptions mo = new MarkerOptions().position(new LatLng(s.getLatitude(), s.getLongitude())).title(s.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
+//            Marker m = mGoogleMap.addMarker(mo);
+//            m.setTag(s.getStoreID());
+//        }
+
+        //Get the number of purchases the user has made
+        //See if that number exceeds 6
+        //find the most frequent ones
+        //recommend places that may have those
+
+//        ArrayList <Order> orders = db.getRecentOrders(userID);
+//        Map<
+//        if(orders.size() > 6) //Now we want to run our algorithm to generate recs
+//        {
+//
+//        }
 
         /* !!!!!!!!!DUMMY MARKERS ARE HIDDEN FOR NOW! PLEASE DON'T UNCOMMENT AND PUSH. To add a marker on the map, create a merchant account and create a store with a latitude/longitude of one of the stores below. Thanks! -Ethan
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.024120, -118.278170)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
@@ -151,7 +165,6 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.034422, -118.283604)).title("Nature's Brew").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
         */
 
-        CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.0224, -118.2851)).zoom(14).bearing(0).tilt(0).build();
         mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -164,8 +177,6 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
             }
 
         });
-
-        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Starbucks));
 
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mGoogleMap.setMyLocationEnabled(true);
