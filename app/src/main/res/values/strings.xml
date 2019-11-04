@@ -33,15 +33,16 @@
     <string name="dialog_message">Welcome to Alert Dialog</string>
     <string name="dialog_title">Javatpoint Alert Dialog</string>
     <string name="title_activity_log_orders">LogOrders</string>
-    <item type="id" name="itemName" />
-    <item type="id" name="itemSize1" />
-    <item type="id" name="itemSize2" />
-    <item type="id" name="itemSize3" />
+    <item name="itemName" type="id" />
+    <item name="itemSize1" type="id" />
+    <item name="itemSize2" type="id" />
+    <item name="itemSize3" type="id" />
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_map_click_menu">MapClickMenu</string>
+    <string name="title_activity_forgot_password">ForgotPassword</string>
 
 
 </resources>
