@@ -50,7 +50,7 @@ public class ChangePasswordFragment extends Fragment {
                 String newPassConf = newPassConfEdit.getText().toString();
 
                 SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
-                String curPass = pref.getString("Password", null);
+                String curPass = pref.getString("password", null);
                 String email = pref.getString("email", null);
                 String userType = pref.getString("userType", null);
 
