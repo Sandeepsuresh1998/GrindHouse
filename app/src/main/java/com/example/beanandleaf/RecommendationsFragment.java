@@ -61,13 +61,13 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.fragment_map, container, false);
-        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mView = inflater.inflate(R.layout.fragment_recommendations, container, false);
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.mapRec);
         if(mapFragment == null) {
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             mapFragment = SupportMapFragment.newInstance();
-            ft.replace(R.id.map,  mapFragment).commit();
+            ft.replace(R.id.mapRec,  mapFragment).commit();
         }
         mapFragment.getMapAsync(this);
 
@@ -78,7 +78,7 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mMapView = (MapView) mView.findViewById(R.id.map);
+        mMapView = (MapView) mView.findViewById(R.id.mapRec);
         if(mMapView != null) {
             mMapView.onCreate(null);
             mMapView.onResume();
