@@ -119,10 +119,7 @@ public class MapFragment  extends Fragment implements OnMapReadyCallback {
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude)).title("Current Location"));
         DatabaseHelper db = new DatabaseHelper(getActivity());
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
-        SharedPreferences.Editor editor = pref.edit();
-        String email = pref.getString("email", null);
         final String userType = pref.getString("userType", null);
-        Integer userID = db.getUserId(email, userType);
         ArrayList<Store> stores = db.getStores();
 
         for (Store s : stores) {
