@@ -164,25 +164,25 @@ public class StoreFragment extends Fragment {
 
                     }
                     if (!newLat.contentEquals(Float.toString(selectedStore.getLatitude()))) {
-                        if (isValidFloat(newLat)) {
+                        if (isValidCoord(newLat)) {
                             updates.add("latitude");
                             if (!db.updateStoreLat(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newLat))
                                 error = true;
                         }
                         else {
-                            Toast.makeText(getActivity().getApplicationContext(), "Store latitude must be an integer or decimal", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid latitude with at least four digits after the decimal", Toast.LENGTH_LONG).show();
                             latEditText.setText(Float.toString(selectedStore.getLatitude()));
                         }
 
                     }
                     if (!newLong.contentEquals(Float.toString(selectedStore.getLongitude()))) {
-                        if (isValidFloat(newLong)) {
+                        if (isValidCoord(newLong)) {
                             updates.add("longitude");
                             if (!db.updateStoreLong(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newLong))
                                 error = true;
                         }
                         else {
-                            Toast.makeText(getActivity().getApplicationContext(), "Store longitude must be an integer or decimal", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid longitude with at least four digits after the decimal", Toast.LENGTH_LONG).show();
                             lonEditText.setText(Float.toString(selectedStore.getLongitude()));
                         }
 
@@ -224,9 +224,13 @@ public class StoreFragment extends Fragment {
         });
     }
 
-    private boolean isValidFloat(String s) {
-        String regex = "[-+]?[0-9]*\\.?[0-9]+";
-        return s.matches(regex);
+    private boolean isValidCoord(String s) {
+        if (!s.matches("[-+]?[0-9]*\\.?[0-9]+"))
+            return false;
+        String[] split = s.split("\\.");
+        if (split.length != 2 || split[1].length() < 4)
+            return false;
+        return true;
     }
 
 }

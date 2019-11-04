@@ -1,5 +1,6 @@
 package com.example.beanandleaf;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -36,6 +37,9 @@ public class MapClickMenuFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         TextView title = view.findViewById(R.id.map_click_menu_title);
         DatabaseHelper db = new DatabaseHelper(getActivity());
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref",0);
+        String userType = pref.getString("userType", null);
+
         final Store selectedStore = db.getStore(storeID);
         title.setText(selectedStore.getName() + " Menu");
 
@@ -95,16 +99,22 @@ public class MapClickMenuFragment extends Fragment {
             table.addView(row);
 
             Button recordOrderButton = view.findViewById(R.id.record_order_button);
-            recordOrderButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Fragment addOrderFragment = new AddOrderFragment(storeID);
-                    getFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container_merchant, addOrderFragment)
-                            .commit();
-                }
-            });
+            if (userType.contentEquals("Merchant")) {
+                recordOrderButton.setVisibility(View.GONE);
+            }
+            else {
+                recordOrderButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Fragment addOrderFragment = new AddOrderFragment(storeID);
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment_container_merchant, addOrderFragment)
+                                .commit();
+                    }
+                });
+            }
+
         }
     }
 

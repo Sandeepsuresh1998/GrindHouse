@@ -72,13 +72,13 @@ public class AddMenuItemFragment extends Fragment {
                 }
                 if (!cafSmall.contentEquals("") && !priceSmall.contentEquals("") && !calSmall.contentEquals("")) {
                     if (!isValidInteger(cafSmall)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the small size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the small size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceSmall)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the small size", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidInteger(calSmall)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the small size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the small size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else {
                         addSmall = true;
@@ -98,13 +98,13 @@ public class AddMenuItemFragment extends Fragment {
                 }
                 if (!cafMedium.contentEquals("") && !priceMedium.contentEquals("") && !calMedium.contentEquals("")) {
                     if (!isValidInteger(cafMedium)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the medium size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the medium size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceMedium)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the medium size", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidInteger(calMedium)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the medium size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the medium size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else {
                         addMedium = true;
@@ -124,13 +124,13 @@ public class AddMenuItemFragment extends Fragment {
                 }
                 if (!cafLarge.contentEquals("") && !priceLarge.contentEquals("") && !calLarge.contentEquals("")) {
                     if (!isValidInteger(cafLarge)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the large size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the large size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceLarge)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the large size", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidInteger(calLarge)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the large size", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid number of calories for the large size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else {
                         addLarge = true;
@@ -141,6 +141,12 @@ public class AddMenuItemFragment extends Fragment {
                 SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
                 int storeID = pref.getInt("selectedStore", 0);
                 String timestamp = Long.toString(System.currentTimeMillis());
+                if (addSmall || addMedium || addLarge) {
+                    if (db.checkMenuItemNameExists(storeID, name)) {
+                        Toast.makeText(getActivity().getApplicationContext(), "Error: an item with that name already exists in your store", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
                 if (addSmall) {
                     if (!db.insertMenuItem(storeID, name, calSmall, "Small", cafSmall, priceSmall, timestamp)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Error: small menu item not added", Toast.LENGTH_SHORT).show();
@@ -174,11 +180,17 @@ public class AddMenuItemFragment extends Fragment {
 
     private boolean isValidDouble(String s) {
         String regex = "[0-9]*\\.?[0-9]+";
-        return s.matches(regex);
+        String[] split = s.split("\\.");
+        if (split.length == 1) {
+            return s.matches(regex);
+        }
+        if (split.length != 2)
+            return false;
+        return s.matches(regex) && split[1].length() <= 2;
     }
 
     private boolean isValidInteger(String s) {
         String regex = "\\d+";
-        return s.matches(regex);
+        return s.matches(regex) && s.length() <= 3;
     }
 }

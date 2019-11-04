@@ -37,15 +37,15 @@ public class AddStoreFragment extends Fragment {
                 String storeName = storeNameText.getText().toString();
                 String lat = latText.getText().toString();
                 String lon = lonText.getText().toString();
-                String regex = "[-+]?[0-9]*\\.?[0-9]+";
+
                 if (storeName.contentEquals("") ||lat.contentEquals("") || lon.contentEquals(""))
                     return;
-                if (!lat.matches(regex)) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid latitude", Toast.LENGTH_SHORT).show();
+                if (!isValidCoord(lat)) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid latitude with at least four digits after the decimal", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (!lon.matches(regex)) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid longitude", Toast.LENGTH_SHORT).show();
+                if (!isValidCoord(lon)) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid longitude with at least four digits after the decimal", Toast.LENGTH_LONG).show();
                     return;
                 }
                 DatabaseHelper db = new DatabaseHelper(getActivity());
@@ -67,5 +67,14 @@ public class AddStoreFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private boolean isValidCoord(String s) {
+        if (!s.matches("[-+]?[0-9]*\\.?[0-9]+"))
+            return false;
+        String[] split = s.split("\\.");
+        if (split.length != 2 || split[1].length() < 4)
+            return false;
+        return true;
     }
 }
