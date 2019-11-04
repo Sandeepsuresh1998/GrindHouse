@@ -61,7 +61,7 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
                     t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     t.show();
                 }
-                else if(caffeineToday >= 350 && caffeineToday <= 400)
+                else if(caffeineToday >= 350 && caffeineToday < 400)
                 {
                     Toast t = Toast.makeText(getApplicationContext(),
                             "Your caffeine intake amount today is " + caffeineToday + ". You're nearing the daily reccommended limit of 400mg.",
@@ -69,10 +69,17 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
                     t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                     t.show();
                 }
+                else if (caffeineToday == 400) {
+                    Toast t = Toast.makeText(getApplicationContext(),
+                            "Your caffeine intake amount today is 400 mg. You've reached the daily recommended amount of caffeine.",
+                            Toast.LENGTH_LONG);
+                    t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                    t.show();
+                }
                 else
                     {
                         Toast t = Toast.makeText(getApplicationContext(),
-                                "You've exceeded the daily recommended amount of caffeine!.",
+                                "Your caffeine intake amount today is " + caffeineToday + ".You've exceeded the daily recommended amount of caffeine!",
                                 Toast.LENGTH_LONG);
                         t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                         t.show();
