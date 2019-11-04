@@ -9,6 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.CameraUpdateFactory;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -45,6 +48,16 @@ public class RecommendationsFragment extends Fragment {
         }
 
         return mView;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mGoogleMap = googleMap;
+
+        // Add a marker in Sydney, Australia, and move the camera.
+        LatLng sydney = new LatLng(-34, 151);
+        mGoogleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
 }
