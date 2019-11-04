@@ -59,7 +59,7 @@ public class AddMenuItemFragment extends Fragment {
 
 
                 if (cafSmall.contentEquals("") && !priceSmall.contentEquals("") && !calSmall.contentEquals("")) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Please enter the amount of caffeine for the small size", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Please enter the amount of caffeine in mg for the small size", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (!cafSmall.contentEquals("") && priceSmall.contentEquals("") && !calSmall.contentEquals("")) {
@@ -72,7 +72,7 @@ public class AddMenuItemFragment extends Fragment {
                 }
                 if (!cafSmall.contentEquals("") && !priceSmall.contentEquals("") && !calSmall.contentEquals("")) {
                     if (!isValidInteger(cafSmall)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the small size (three digits or less)", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount in mg for the small size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceSmall)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the small size", Toast.LENGTH_LONG).show();
@@ -85,7 +85,7 @@ public class AddMenuItemFragment extends Fragment {
                     }
                 }
                 if (cafMedium.contentEquals("") && !priceMedium.contentEquals("") && !calMedium.contentEquals("")) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Please enter the amount of caffeine for the medium size", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Please enter the amount of caffeine in mg for the medium size", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (!cafMedium.contentEquals("") && priceMedium.contentEquals("") && !calMedium.contentEquals("")) {
@@ -98,7 +98,7 @@ public class AddMenuItemFragment extends Fragment {
                 }
                 if (!cafMedium.contentEquals("") && !priceMedium.contentEquals("") && !calMedium.contentEquals("")) {
                     if (!isValidInteger(cafMedium)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the medium size (three digits or less)", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount in mg for the medium size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceMedium)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the medium size", Toast.LENGTH_LONG).show();
@@ -111,7 +111,7 @@ public class AddMenuItemFragment extends Fragment {
                     }
                 }
                 if (cafLarge.contentEquals("") && !priceLarge.contentEquals("") && !calLarge.contentEquals("")) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Please enter the amount of caffeine for the large size", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Please enter the amount of caffeine in mg for the large size", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (!cafLarge.contentEquals("") && priceLarge.contentEquals("") && !calLarge.contentEquals("")) {
@@ -124,7 +124,7 @@ public class AddMenuItemFragment extends Fragment {
                 }
                 if (!cafLarge.contentEquals("") && !priceLarge.contentEquals("") && !calLarge.contentEquals("")) {
                     if (!isValidInteger(cafLarge)) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount for the large size (three digits or less)", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid caffeine amount in mg for the large size (three digits or less)", Toast.LENGTH_LONG).show();
                     }
                     else if (!isValidDouble(priceLarge)) {
                         Toast.makeText(getActivity().getApplicationContext(), "Please enter a valid price for the large size", Toast.LENGTH_LONG).show();
