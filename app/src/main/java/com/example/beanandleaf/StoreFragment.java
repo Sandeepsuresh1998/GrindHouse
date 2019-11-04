@@ -83,6 +83,7 @@ public class StoreFragment extends Fragment {
                         spinnerArray.remove(selectedStoreName);
                         ArrayAdapter<String> newAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
                         sItems.setAdapter(newAdapter);
+                        db.removeStoreMenu(selectedStore.getStoreID());
                         if (stores.isEmpty()) {
                             nameEditText.setText(null);
                             latEditText.setText(null);

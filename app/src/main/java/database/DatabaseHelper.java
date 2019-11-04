@@ -350,6 +350,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
     }
+
     public boolean removeMenuItem(Integer storeID, String name, String size) {
         String whereClause = "StoreID=? AND ItemName=? AND Size=?";
         String whereArgs[] = {storeID.toString(), name, size};
@@ -360,6 +361,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else{
             return false;
         }
+    }
+
+    public boolean removeStoreMenu(Integer storeID) {
+        String whereClause = "StoreID=?";
+        String whereArgs[] = {storeID.toString()};
+        long result = db.delete("MenuItems", whereClause, whereArgs);
+        if (result > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean updateMenuItem(Integer menuItemID, String newName, String newCal, String newCaf, String newPrice) {
+        ContentValues cv = new ContentValues();
+        cv.put("Price", newPrice);
+        cv.put("ItemName", newName);
+        cv.put("Calories", newCal);
+        cv.put("Caffeine", newCaf);
+        String whereClause = "MenuItemID=?";
+        String whereArgs[] = {menuItemID.toString()};
+        long result = db.update("MenuItems", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
     }
 
     public boolean insertOrder(Integer userId, Integer menuItemId, Integer storeId, Integer quantity, String time) {
