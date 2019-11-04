@@ -104,12 +104,11 @@ public class AddOrderFragment extends Fragment {
                 MenuItem item = db.getMenuItem(storeID, itemName, size);
 
                 String quant = quantSpinner.getSelectedItem().toString();
-                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), Long.toString(System.currentTimeMillis()))) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
+                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant),  Long.toString(System.currentTimeMillis()))) {                    Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
                     Fragment addOrderFragment = new AddOrderFragment(storeID);
                     getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container_merchant, addOrderFragment)
+                            .replace(R.id.fragment_container_customer, addOrderFragment)
                             .commit();
                 }
                 else {
@@ -127,12 +126,12 @@ public class AddOrderFragment extends Fragment {
                 MenuItem item = db.getMenuItem(storeID, itemName, size);
 
                 String quant = quantSpinner.getSelectedItem().toString();
-                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), Long.toString(System.currentTimeMillis()))) {
+                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant), Long.toString(System.currentTimeMillis()))) {
                     Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
                     Fragment mapFragment = new MapFragment();
                     getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_container_merchant, mapFragment)
+                            .replace(R.id.fragment_container_customer, mapFragment)
                             .commit();
                 }
                 else {

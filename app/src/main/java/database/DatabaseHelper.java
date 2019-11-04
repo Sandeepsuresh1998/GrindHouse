@@ -5,12 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
 import model.MenuItem;
+import model.Order;
 import model.Store;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -57,6 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "MenuItemID INTEGER NOT NULL," +
                 "StoreID INTEGER NOT NULL," +
                 "Quantity INTEGER NOT NULL," +
+                "CaffeineLogged INTEGER NOT NULL," +
                 "OrderTime TEXT NOT NULL," +
                 "FOREIGN KEY (UserID) REFERENCES Users(UserID)," +
                 "FOREIGN KEY (MenuItemID) REFERENCES MenuItems(MenuItemID)," +
@@ -267,10 +270,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return store;
     }
 
-    public ArrayList<Store> getStores(Integer userId) {
+    public ArrayList<Store> getStores() {
+        ArrayList<Store> stores = new ArrayList<>();
+        String whereClause = "SELECT * FROM Stores";
+
+        Cursor res = db.rawQuery(whereClause, null);
+        while (res.moveToNext()) {
+            stores.add(new Store(
+                    res.getInt(0),
+                    Float.parseFloat(res.getString(3)),
+                    Float.parseFloat(res.getString(2)),
+                    res.getString(4)
+            ));
+        }
+        return stores;
+    }
+
+    public ArrayList<Store> getStores(Integer userID) {
         ArrayList<Store> stores = new ArrayList<>();
         String whereClause = "SELECT * FROM Stores WHERE UserID=?";
-        String whereArgs[] = {Integer.toString(userId)};
+        String[] whereArgs = {userID.toString()};
 
         Cursor res = db.rawQuery(whereClause, whereArgs);
         while (res.moveToNext()) {
@@ -401,12 +420,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertOrder(Integer userId, Integer menuItemId, Integer storeId, Integer quantity, String time) {
+    public boolean insertOrder(Integer userId, Integer menuItemId, Integer storeId, Integer quantity, Integer caffeine, String time) {
         ContentValues cv = new ContentValues();
         cv.put("UserID", userId);
         cv.put("MenuItemID", menuItemId);
         cv.put("StoreID", storeId);
         cv.put("Quantity", quantity);
+        cv.put("CaffeineLogged", caffeine);
         cv.put("OrderTime", time);
         long result = db.insert("Orders", null, cv);
         if (result == -1) {
@@ -415,6 +435,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else {
             return true;
         }
+    }
+
+    public ArrayList<Order> getRecentOrders(Integer userId) {
+        ArrayList<Order> orders = new ArrayList<>();
+        String whereClause = "SELECT * FROM Orders WHERE UserID=?";
+        String whereArgs[] = {userId.toString()};
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        while (res.moveToNext()) {
+            orders.add(new Order(
+                    res.getInt(0),
+                    res.getInt(2),
+                    res.getInt(4),
+                    res.getInt(5),
+                    res.getInt(6)
+            ));
+        }
+        return orders;
     }
 
     public boolean insertTrip(Integer userId, String startLoc, String endLoc, Integer tripDuration) {

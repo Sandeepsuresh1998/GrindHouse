@@ -109,7 +109,7 @@ public class MapClickMenuFragment extends Fragment {
                         Fragment addOrderFragment = new AddOrderFragment(storeID);
                         getFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.fragment_container_merchant, addOrderFragment)
+                                .replace(R.id.fragment_container_customer, addOrderFragment)
                                 .commit();
                     }
                 });

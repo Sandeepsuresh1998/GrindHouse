@@ -17,7 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import database.DatabaseHelper;
+import model.Order;
 
 //implement the interface OnNavigationItemSelectedListener in your activity class
 public class BottomNavigation extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -36,19 +41,27 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
         navigation.setOnNavigationItemSelectedListener(this);
 
         //TO DO: THIS NEEDS TO PULL FROM THE DATABASE AND FIND THE CURRENT AMOUNT OF CAFFEINE AND DISPLAY ACCORDINGLY
-        Button btn = findViewById(R.id.testToast);
-        btn.setOnClickListener(new View.OnClickListener() {
+        Button caffeineCheckButton = findViewById(R.id.caffeine_check_button);
+        caffeineCheckButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                String email = pref.getString("email", null);
+                String userType = pref.getString("userType", null);
+                Integer userID = db.getUserId(email, userType);
+
+                int caffeineToday = getCaffeineFromOrdersToday(db.getRecentOrders(userID));
+
+
+
+
 
                 // Displaying posotioned Toast message
                 Toast t = Toast.makeText(getApplicationContext(),
-                        "Your caffeine intake amount is 375 mg. Daily recommended intake does not exceed 400mg.",
+                        "Your caffeine intake amount today is " + caffeineToday,
                         Toast.LENGTH_LONG);
                 t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                TextView view = (TextView) t.getView().findViewById(android.R.id.message);
-                view.setShadowLayer(0, 0, 0, Color.LTGRAY);
-                view.setTextColor(Color.BLACK);
                 t.show();
             }
         });
@@ -100,5 +113,16 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
         editor.commit();
         Intent logout = new Intent(BottomNavigation.this, LoginActivity.class);
         startActivity(logout);
+    }
+
+    private int getCaffeineFromOrdersToday(ArrayList<Order> orders) {
+        int caffeineToday = 0;
+        int timeDayAgo = (int) (System.currentTimeMillis() - TimeUnit.DAYS.toMillis(1));
+        for (Order order : orders) {
+            if (order.getOrderTime() - timeDayAgo > 0) {
+                caffeineToday += order.getCaffeine();
+            }
+        }
+        return caffeineToday;
     }
 }

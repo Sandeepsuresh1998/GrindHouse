@@ -152,9 +152,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = pref.edit();
         String email = pref.getString("email", null);
-        String userType = pref.getString("userType", null);
+        final String userType = pref.getString("userType", null);
         Integer userID = db.getUserId(email, userType);
-        ArrayList<Store> stores = db.getStores(userID);
+        ArrayList<Store> stores = db.getStores();
 
         for (Store s : stores) {
             MarkerOptions mo = new MarkerOptions().position(new LatLng(s.getLatitude(), s.getLongitude())).title(s.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
@@ -186,10 +186,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
+                int id = userType.contentEquals("Customer") ? R.id.fragment_container_customer : R.id.fragment_container_merchant;
                 Fragment mapClickMenuFragment = new MapClickMenuFragment((int) marker.getTag());
                 getFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.fragment_container_merchant, mapClickMenuFragment)
+                        .replace(id, mapClickMenuFragment)
                         .commit();
             }
 

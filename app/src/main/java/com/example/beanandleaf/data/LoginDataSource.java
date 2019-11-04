@@ -14,7 +14,7 @@ public class LoginDataSource {
     public Result<LoggedInUser> login(String username, String password, String userType, DatabaseHelper db) {
         String result = db.verifyUser(username, password, userType);
         if (result.contentEquals("NULL")) {
-            return new Result.Error(new IOException("That email isn't registered to a " + userType + " account yet"));
+            return new Result.Error(new IOException("That email isn't registered to a " + userType.toLowerCase() + " account yet"));
         }
         else if (result.contentEquals("INVALID")) {
             return new Result.Error(new IOException("Invalid password. Please try again"));
