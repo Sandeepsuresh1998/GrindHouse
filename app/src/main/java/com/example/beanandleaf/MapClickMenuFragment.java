@@ -45,7 +45,7 @@ public class MapClickMenuFragment extends Fragment {
         TextView title = view.findViewById(R.id.map_click_menu_title);
         DatabaseHelper db = new DatabaseHelper(getActivity());
         Store selectedStore = db.getStore(storeID);
-        title.setText(selectedStore.getName() + "'s Menu");
+        title.setText(selectedStore.getName() + " Menu");
 
         TableLayout table = view.findViewById(R.id.map_click_menu_table);
         final ArrayList<MenuItem> menu = db.getMenu(storeID);

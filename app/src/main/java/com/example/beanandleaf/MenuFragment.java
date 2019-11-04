@@ -60,7 +60,7 @@ public class MenuFragment extends Fragment {
             addItemButton.setVisibility(View.GONE);
         }
         else {
-            menuTitle.setText(selectedStore.getName() + "'s Menu");
+            menuTitle.setText(selectedStore.getName() + " Menu");
             addItemButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
