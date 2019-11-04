@@ -59,7 +59,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "MenuItemID INTEGER NOT NULL," +
                 "StoreID INTEGER NOT NULL," +
                 "Quantity INTEGER NOT NULL," +
-                "CaffeineLogged INTEGER NOT NULL," +
+                "CaffeineLogged INTEGER NOT NULL, " +
+                "CaloriesLogged INTEGER NOT NULL, " +
+                "PriceLogged TEXT NOT NULL, " +
+                "Name TEXT NOT NULL, " +
                 "OrderTime TEXT NOT NULL," +
                 "FOREIGN KEY (UserID) REFERENCES Users(UserID)," +
                 "FOREIGN KEY (MenuItemID) REFERENCES MenuItems(MenuItemID)," +
@@ -420,13 +423,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertOrder(Integer userId, Integer menuItemId, Integer storeId, Integer quantity, Integer caffeine, String time) {
+    public boolean insertOrder(Integer userId, Integer menuItemId, Integer storeId, Integer quantity, Integer caffeine, Integer calories, String price, String name, String time) {
         ContentValues cv = new ContentValues();
         cv.put("UserID", userId);
         cv.put("MenuItemID", menuItemId);
         cv.put("StoreID", storeId);
         cv.put("Quantity", quantity);
         cv.put("CaffeineLogged", caffeine);
+        cv.put("CaloriesLogged", calories);
+        cv.put("PriceLogged", price);
+        cv.put("Name", name);
         cv.put("OrderTime", time);
         long result = db.insert("Orders", null, cv);
         if (result == -1) {
@@ -437,7 +443,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public ArrayList<Order> getRecentOrders(Integer userId) {
+    public ArrayList<Order> getUserOrders(Integer userId) {
         ArrayList<Order> orders = new ArrayList<>();
         String whereClause = "SELECT * FROM Orders WHERE UserID=?";
         String whereArgs[] = {userId.toString()};
@@ -448,7 +454,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     res.getInt(2),
                     res.getInt(4),
                     res.getInt(5),
-                    res.getInt(6)
+                    res.getInt(6),
+                    Double.parseDouble(res.getString(7)),
+                    res.getString(8),
+                    res.getInt(9)
+            ));
+        }
+        return orders;
+    }
+
+    public ArrayList<Order> getStoreOrders(Integer storeID) {
+        ArrayList<Order> orders = new ArrayList<>();
+        String whereClause = "SELECT * FROM Orders WHERE StoreID=?";
+        String whereArgs[] = {storeID.toString()};
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        while (res.moveToNext()) {
+            orders.add(new Order(
+                    res.getInt(0),
+                    res.getInt(2),
+                    res.getInt(4),
+                    res.getInt(5),
+                    res.getInt(6),
+                    Double.parseDouble(res.getString(7)),
+                    res.getString(8),
+                    res.getInt(9)
             ));
         }
         return orders;

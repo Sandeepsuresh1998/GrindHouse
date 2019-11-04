@@ -51,7 +51,7 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
                 String userType = pref.getString("userType", null);
                 Integer userID = db.getUserId(email, userType);
 
-                int caffeineToday = getCaffeineFromOrdersToday(db.getRecentOrders(userID));
+                int caffeineToday = getCaffeineFromOrdersToday(db.getUserOrders(userID));
                 if(caffeineToday < 350)
                 {
                     // Displaying posotioned Toast message
@@ -72,7 +72,7 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
                 else
                     {
                         Toast t = Toast.makeText(getApplicationContext(),
-                                "You've exceeded the daily reccommended amount of caffeine!.",
+                                "You've exceeded the daily recommended amount of caffeine!.",
                                 Toast.LENGTH_LONG);
                         t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                         t.show();
