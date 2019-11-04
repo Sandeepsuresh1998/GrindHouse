@@ -133,17 +133,21 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
 //            m.setTag(s.getStoreID());
 //        }
 
-        //Get the number of purchases the user has made
-        //See if that number exceeds 6
         //find the most frequent ones
         //recommend places that may have those
 
-//        ArrayList <Order> orders = db.getRecentOrders(userID);
-//        Map<
-//        if(orders.size() > 6) //Now we want to run our algorithm to generate recs
-//        {
-//
-//        }
+        ArrayList <Order> orders = db.getUserOrders(userID);
+        if(orders.size() > 6) //Now we want to run our algorithm to generate recs
+        {
+            for(int i =0; i < orders.size(); i++)
+            {
+                int itemID = orders.get(i).getItemID();
+            }
+            //find the most frequented drink item
+                //use OrderID to find itemName
+            //find if another place has that drink item
+            //recommend 3 places that may have those
+        }
 
         /* !!!!!!!!!DUMMY MARKERS ARE HIDDEN FOR NOW! PLEASE DON'T UNCOMMENT AND PUSH. To add a marker on the map, create a merchant account and create a store with a latitude/longitude of one of the stores below. Thanks! -Ethan
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.024120, -118.278170)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
