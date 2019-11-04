@@ -95,5 +95,51 @@ public class AddOrderFragment extends Fragment {
                 // IGNORE
             }
         });
+
+        addAnotherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String itemName = itemSpinner.getSelectedItem().toString();
+                String size = sizeSpinner.getSelectedItem().toString();
+                MenuItem item = db.getMenuItem(storeID, itemName, size);
+
+                String quant = quantSpinner.getSelectedItem().toString();
+                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), Long.toString(System.currentTimeMillis()))) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
+                    Fragment addOrderFragment = new AddOrderFragment(storeID);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container_merchant, addOrderFragment)
+                            .commit();
+                }
+                else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Error: order not recorded", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
+        submitOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String itemName = itemSpinner.getSelectedItem().toString();
+                String size = sizeSpinner.getSelectedItem().toString();
+                MenuItem item = db.getMenuItem(storeID, itemName, size);
+
+                String quant = quantSpinner.getSelectedItem().toString();
+                if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), Long.toString(System.currentTimeMillis()))) {
+                    Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
+                    Fragment mapFragment = new MapFragment();
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container_merchant, mapFragment)
+                            .commit();
+                }
+                else {
+                    Toast.makeText(getActivity().getApplicationContext(), "Error: order not recorded", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
     }
 }
