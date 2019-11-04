@@ -136,6 +136,26 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
+        Button changePasswordBtn = view.findViewById(R.id.change_password);
+        changePasswordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id;
+                Fragment fragment = new ChangePasswordFragment();
+                if (userType.contentEquals("Customer")) {
+                    id = R.id.fragment_container_customer;
+                }
+                else {
+                    id = R.id.fragment_container_merchant;
+                }
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(id, fragment)
+                        .commit();
+            }
+        });
+
     }
 
     private boolean isUsernameValid(String username) {

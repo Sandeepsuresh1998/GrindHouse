@@ -206,6 +206,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    public boolean updateUserPassword(Integer userID, String newPass) {
+        ContentValues cv = new ContentValues();
+        cv.put("Password", newPass);
+        String whereClause = "UserID=?";
+        String whereArgs[] = {userID.toString()};
+        long result = db.update("Users", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
     public boolean updateStoreName(Integer userID, String lat, String lon, String newName) {
         ContentValues cv = new ContentValues();
         cv.put("StoreName", newName);

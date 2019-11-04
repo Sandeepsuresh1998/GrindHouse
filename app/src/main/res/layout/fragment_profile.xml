@@ -148,7 +148,7 @@
         android:textStyle="bold" />
 
         <Button
-            android:id="@+id/changePassword"
+            android:id="@+id/change_password"
             android:layout_width="76dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="220dp"
