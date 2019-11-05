@@ -1,27 +1,32 @@
 package com.example.beanandleaf;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
@@ -29,13 +34,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 import database.DatabaseHelper;
 import model.Order;
 import model.Store;
 
-public class RecommendationsFragment  extends Fragment implements OnMapReadyCallback {
+public class RecommendationsFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mGoogleMap;
     MapView mMapView;
@@ -118,38 +126,64 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude)).title("Current Location"));
         DatabaseHelper db = new DatabaseHelper(getActivity());
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
-        SharedPreferences.Editor editor = pref.edit();
-        String email = pref.getString("email", null);
         final String userType = pref.getString("userType", null);
+        String email = pref.getString("email", null);
         Integer userID = db.getUserId(email, userType);
         ArrayList<Store> stores = db.getStores();
+        ArrayList<Store> userStores = db.getStores(userID);
+        ArrayList <Order> orders = db.getUserOrders(userID);
+
+        Map<String, Integer> map = new HashMap<>();
+            for (Order o : orders) {
+                if (map.containsKey(o.getName())) {
+                    map.put(o.getName(), map.get(o.getName()) + 1); }
+                else { map.put(o.getName(), 1); } }
+
+        Map.Entry<String, Integer> maxEntry = null;
+        for (Map.Entry<String, Integer> entry : map.entrySet())
+        { if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+                maxEntry = entry; } }
+
+        String drinkName = maxEntry.getKey();
+        Set<Store> set = new HashSet<Store>();
+        for (Store x : userStores)
+            set.add(x);
+        //Find Stores Users haven't visited
+        ArrayList<Store> unvisitedStores = new ArrayList<Store>();
+        for(Store s: stores) {
+            if(!set.contains(s)) //the user hasn't visited the store
+            {
+                unvisitedStores.add(s); } }
+        Activity activity = getActivity();
+        if(unvisitedStores == null){
+            Toast t = Toast.makeText(activity, "No recommendations at this time! You've visited all the coffee shops!", Toast.LENGTH_LONG);
+            t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            t.show();
+        }
+        Store ofChoice = null;
+        for(Store s: unvisitedStores)
+        {
+            boolean exists = db.checkMenuItemNameExists(s.getStoreID(), drinkName);
+            if(exists == true)
+            {
+                ofChoice = s;
+                break; } }
+        if(ofChoice != null)
+        {
+            MarkerOptions mo = new MarkerOptions().position(new LatLng(ofChoice.getLatitude(), ofChoice.getLongitude())).title(ofChoice.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
+            Marker m = mGoogleMap.addMarker(mo);
+            m.setTag(ofChoice.getStoreID());
+            Toast t = Toast.makeText(activity, "Try a " + drinkName + " at " + ofChoice.getName() + "!", Toast.LENGTH_LONG);
+            t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            t.show();
+        }
+
 
 //        for (Store s : stores) {
 //            MarkerOptions mo = new MarkerOptions().position(new LatLng(s.getLatitude(), s.getLongitude())).title(s.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
 //            Marker m = mGoogleMap.addMarker(mo);
 //            m.setTag(s.getStoreID());
 //        }
-
-        //find the most frequent ones
-        //recommend places that may have those
-
-        ArrayList <Order> orders = db.getUserOrders(userID);
-        Map <Pair, Integer> frequency = new HashMap<Pair, Integer>();
-        if(orders.size() > 6) //Now we want to run our algorithm to generate recs
-        {
-            for(int i =0; i < orders.size(); i++)
-            {
-                int ITID = orders.get(i).getItemID();
-                String itemName = orders.get(i).getName();
-
-
-
-            }
-            //find the most frequented drink item
-                //use OrderID to find itemName
-            //find if another place has that drink item
-            //recommend 3 places that may have those
-        }
 
         /* !!!!!!!!!DUMMY MARKERS ARE HIDDEN FOR NOW! PLEASE DON'T UNCOMMENT AND PUSH. To add a marker on the map, create a merchant account and create a store with a latitude/longitude of one of the stores below. Thanks! -Ethan
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.024120, -118.278170)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
@@ -171,6 +205,7 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.034422, -118.283604)).title("Nature's Brew").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
         */
 
+        CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.0224, -118.2851)).zoom(14).bearing(0).tilt(0).build();
         mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
@@ -183,6 +218,8 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
             }
 
         });
+
+        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Starbucks));
 
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mGoogleMap.setMyLocationEnabled(true);
