@@ -484,33 +484,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    // FOR TESTING PURPOSES ONLY
-    public boolean insertOrder(Integer userId, Integer menuItemId, Integer storeId, Integer quantity, Integer caffeine, Integer calories, String price, String name, String time, boolean fiveDay, boolean tenDay) {
-        ContentValues cv = new ContentValues();
-        cv.put("UserID", userId);
-        cv.put("MenuItemID", menuItemId);
-        cv.put("StoreID", storeId);
-        cv.put("Quantity", quantity);
-        cv.put("CaffeineLogged", caffeine);
-        cv.put("CaloriesLogged", calories);
-        cv.put("PriceLogged", price);
-        cv.put("Name", name);
-        if (fiveDay && !tenDay) {
-            time = Long.toString(Long.parseLong(time) - TimeUnit.DAYS.toMillis(5));
-        }
-        else if (!fiveDay && tenDay) {
-            time = Long.toString(Long.parseLong(time) - TimeUnit.DAYS.toMillis(10));
-        }
-        cv.put("OrderTime", time);
-        long result = db.insert("Orders", null, cv);
-        if (result == -1) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
     public ArrayList<Order> getUserOrders(Integer userId) {
         ArrayList<Order> orders = new ArrayList<>();
         String whereClause = "SELECT * FROM Orders WHERE UserID=?";
