@@ -21,9 +21,11 @@ import androidx.fragment.app.Fragment;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import database.DatabaseHelper;
@@ -112,13 +114,24 @@ public class HistoryFragment extends SimpleFragment {
 
         bcdp.setData(generateBarDataStoresDrinks(dayOrders));
         bcdp.getAxisRight().setEnabled(false);
+        bcdp.getAxisLeft().setGranularity(1f);
+        bcdp.getAxisLeft().setGranularityEnabled(true);
+        bcdp.getLegend().setEnabled(false);
 
         XAxis xAxis = bcdp.getXAxis();
-        xAxis.setEnabled(false);
         xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+
+        Map<String,Integer> storeMap = separateOrdersByStore(dayOrders);
+        ArrayList<String> labels = new ArrayList<>();
+        for (Map.Entry entry : storeMap.entrySet()) {
+            labels.add((String)entry.getKey());
+        }
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
 
-        //        *********** BAR CHART STORES & NUMBER OF DRINKS***********
+        //        *********** BAR CHART MONEY SPENT & DAY OF THE WEEK***********
         // create a new chart object
         bcms = new BarChart(getActivity());
         bcms = v.findViewById(R.id.bar_chart_money_spent);
@@ -179,6 +192,12 @@ public class HistoryFragment extends SimpleFragment {
                 pcdp.setData(generatePieDataDrinksPurchased(orders));
                 pcdp.invalidate();
                 bcdp.setData(generateBarDataStoresDrinks(orders));
+                Map<String,Integer> storeMap = separateOrdersByStore(orders);
+                ArrayList<String> labels = new ArrayList<>();
+                for (Map.Entry entry : storeMap.entrySet()) {
+                    labels.add((String)entry.getKey());
+                }
+                bcdp.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
                 bcdp.invalidate();
 
             }

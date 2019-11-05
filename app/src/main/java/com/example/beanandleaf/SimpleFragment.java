@@ -34,6 +34,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IScatterDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.FileUtils;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -91,16 +92,15 @@ public abstract class SimpleFragment extends Fragment {
             i++;
         }
 
-        BarDataSet ds = new BarDataSet(entries, getLabelsBCDP(0));
+        BarDataSet ds = new BarDataSet(entries, null);
         ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
         ds.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-                return entries.get((int) value).toString();
+                return "" + (int) value;
             }
         });
-        sets.add(ds);
-
+                sets.add(ds);
         BarData d = new BarData(sets);
         d.setValueTypeface(tf);
         return d;
