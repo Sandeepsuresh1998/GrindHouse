@@ -69,10 +69,8 @@ public class Register extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
                     }
                     else {
-                        db.insertUser(username, email, password, userType, gender);
                         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
                         SharedPreferences.Editor editor = pref.edit();
-                        editor.putBoolean("loggedIn", true);
                         editor.putString("username", username);
                         editor.putString("password", password);
                         editor.putString("email", email);
@@ -85,13 +83,16 @@ public class Register extends AppCompatActivity {
                             else
                                 editor.putInt("selectedStore", -1);
                         }
+                        else {
+                            db.insertUser(username, email, password, userType, gender);
+                        }
                         editor.commit();
                         Intent mapActivity = null;
                         if (userType.contentEquals("Customer")) {
                             mapActivity = new Intent(Register.this, BottomNavigation.class);
                         }
                         else {
-                            mapActivity = new Intent(Register.this, MerchantBottomNav.class);
+                            mapActivity = new Intent(Register.this, MerchantVerification.class);
                         }
 
                         if (mapActivity != null)
