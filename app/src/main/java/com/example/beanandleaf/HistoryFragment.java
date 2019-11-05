@@ -82,7 +82,7 @@ public class HistoryFragment extends SimpleFragment {
         pcdp.getDescription().setEnabled(false);
         pcdp.getLegend().setEnabled(false);
 
-        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf");
+        final Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf");
 
         pcdp.setCenterTextTypeface(tf);
         pcdp.setCenterText(generateCenterTextDrinksPurchased());
@@ -97,30 +97,39 @@ public class HistoryFragment extends SimpleFragment {
         pcdp.setTransparentCircleRadius(40f);
         pcdp.setData(generatePieDataDrinksPurchased(dayOrders));
 
-//        Legend l = chart.getLegend();
-//        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-//        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-//        l.setOrientation(Legend.LegendOrientation.VERTICAL);
-//        l.setDrawInside(false);
 
-
-//        *********** BAR CHART STORES & NUMBER OF DRINKS***********
+//        *********** BAR CHART NUMBER OF DRINKS BY STORE***********
         // create a new chart object
         bcdp = new BarChart(getActivity());
         bcdp = v.findViewById(R.id.barChartStoresDrinks);
         bcdp.getDescription().setEnabled(false);
         bcdp.setDrawGridBackground(false);
         bcdp.setDrawBarShadow(false);
+        bcdp.setExtraOffsets(10,10,10,10);
 
-        bcdp.setData(generateBarDataStoresDrinks(dayOrders));
+        bcdp.setData(generateBarDataStoresDrinks(dayOrders, tf));
         bcdp.getAxisRight().setEnabled(false);
         bcdp.getAxisLeft().setGranularity(1f);
         bcdp.getAxisLeft().setGranularityEnabled(true);
+        bcdp.getAxisLeft().setTextColor(Color.WHITE);
+        bcdp.getAxisLeft().setTextSize(20f);
+        bcdp.getAxisLeft().setGridColor(Color.GRAY);
+        bcdp.getAxisLeft().setGridLineWidth(0.5f);
+        bcdp.getAxisLeft().setAxisLineColor(Color.WHITE);
+        bcdp.getAxisLeft().setAxisLineWidth(2f);
+        bcdp.getAxisLeft().setTypeface(tf);
         bcdp.getLegend().setEnabled(false);
 
         XAxis xAxis = bcdp.getXAxis();
+        xAxis.setGridColor(Color.GRAY);
+        xAxis.setAxisLineColor(Color.WHITE);
+        xAxis.setAxisLineWidth(2f);
+        xAxis.setGridLineWidth(0.5f);
         xAxis.setGranularity(1f);
         xAxis.setGranularityEnabled(true);
+        xAxis.setTextColor(Color.WHITE);
+        xAxis.setTextSize(20f);
+        xAxis.setTypeface(tf);
 
         Map<String,Integer> storeMap = separateOrdersByStore(dayOrders);
         ArrayList<String> labels = new ArrayList<>();
@@ -136,12 +145,6 @@ public class HistoryFragment extends SimpleFragment {
         bcms = new BarChart(getActivity());
         bcms = v.findViewById(R.id.bar_chart_money_spent);
         bcms.getDescription().setEnabled(false);
-        //bc.setOnChartGestureListener(this);
-
-//        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
-//        mv.setChartView(chart); // For bounds control
-//        chart.setMarker(mv);
-
         bcms.setDrawGridBackground(false);
         bcms.setDrawBarShadow(false);
 
@@ -191,7 +194,7 @@ public class HistoryFragment extends SimpleFragment {
 
                 pcdp.setData(generatePieDataDrinksPurchased(orders));
                 pcdp.invalidate();
-                bcdp.setData(generateBarDataStoresDrinks(orders));
+                bcdp.setData(generateBarDataStoresDrinks(orders, tf));
                 Map<String,Integer> storeMap = separateOrdersByStore(orders);
                 ArrayList<String> labels = new ArrayList<>();
                 for (Map.Entry entry : storeMap.entrySet()) {

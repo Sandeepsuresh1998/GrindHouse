@@ -38,10 +38,13 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
 
 import database.DatabaseHelper;
 import model.Order;
@@ -64,23 +67,7 @@ public abstract class SimpleFragment extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    protected ValueFormatter generateBarChartFormatter(ArrayList<Order> orders) {
-        Map<String,Integer> data = separateOrdersByStore(orders);
-        final ArrayList<String> labels = new ArrayList<>();
-        for (Map.Entry entry : data.entrySet()) {
-            labels.add((String)entry.getKey());
-        }
-        ValueFormatter formatter = new ValueFormatter() {
-
-            @Override
-            public String getFormattedValue(float value, AxisBase axis) {
-                return labels.get((int)value);
-            }
-        };
-        return formatter;
-    }
-
-    protected BarData generateBarDataStoresDrinks(ArrayList<Order> orders) {
+    protected BarData generateBarDataStoresDrinks(ArrayList<Order> orders, Typeface tf) {
 
         ArrayList<IBarDataSet> sets = new ArrayList<>();
         final ArrayList<BarEntry> entries = new ArrayList<>();
@@ -94,6 +81,9 @@ public abstract class SimpleFragment extends Fragment {
 
         BarDataSet ds = new BarDataSet(entries, null);
         ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        ds.setValueTextColor(Color.WHITE);
+        ds.setValueTextSize(25f);
+        ds.setValueTypeface(tf);
         ds.setValueFormatter(new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
@@ -109,20 +99,6 @@ public abstract class SimpleFragment extends Fragment {
     protected BarData generateBarDataMoneySpent(int dataSets, float range, int count) {
 
         ArrayList<IBarDataSet> sets = new ArrayList<>();
-
-//        for(int i = 0; i < dataSets; i++) {
-//
-//            ArrayList<BarEntry> entries = new ArrayList<>();
-//
-//            for(int j = 0; j < count; j++) {
-//                entries.add(new BarEntry(j, (float) (Math.random() * range) + range / 4));
-//            }
-//
-//            BarDataSet ds = new BarDataSet(entries, getLabel(i));
-//            ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
-//            sets.add(ds);
-//        }
-
         ArrayList<BarEntry> entries = new ArrayList<>();
         entries.add(new BarEntry(0, 12));
         entries.add(new BarEntry(1, 20));
@@ -141,34 +117,6 @@ public abstract class SimpleFragment extends Fragment {
         d.setValueTypeface(tf);
         return d;
     }
-
-//
-//    protected ScatterData generateScatterData(int dataSets, float range, int count) {
-//
-//        ArrayList<IScatterDataSet> sets = new ArrayList<>();
-//
-//        ScatterChart.ScatterShape[] shapes = ScatterChart.ScatterShape.getAllDefaultShapes();
-//
-//        for(int i = 0; i < dataSets; i++) {
-//
-//            ArrayList<Entry> entries = new ArrayList<>();
-//
-//            for(int j = 0; j < count; j++) {
-//                entries.add(new Entry(j, (float) (Math.random() * range) + range / 4));
-//            }
-//
-//            ScatterDataSet ds = new ScatterDataSet(entries, getLabel(i));
-//            ds.setScatterShapeSize(12f);
-//            ds.setScatterShape(shapes[i % shapes.length]);
-//            ds.setColors(ColorTemplate.COLORFUL_COLORS);
-//            ds.setScatterShapeSize(9f);
-//            sets.add(ds);
-//        }
-//
-//        ScatterData d = new ScatterData(sets);
-//        d.setValueTypeface(tf);
-//        return d;
-//    }
 
     /**
      * generates less data (1 DataSet, 4 values)
@@ -191,10 +139,8 @@ public abstract class SimpleFragment extends Fragment {
         ds1.setValueTextSize(10f);
         ds1.setValueTypeface(tf);
         ds1.setXValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
-        //ds1.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 
         PieData d = new PieData(ds1);
-        //d.setValueTypeface(tf);
 
         return d;
     }
@@ -212,8 +158,15 @@ public abstract class SimpleFragment extends Fragment {
         ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
         ds1.setSliceSpace(2f);
         ds1.setValueTextColor(Color.BLACK);
-        ds1.setValueTextSize(0f);
+        ds1.setValueTextSize(20f);
         ds1.setXValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
+        ds1.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf"));
+        ds1.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return "" + (int) value;
+            }
+        });
         PieData d = new PieData(ds1);
 
         return d;
@@ -270,5 +223,44 @@ public abstract class SimpleFragment extends Fragment {
             }
         }
         return map;
+    }
+
+    protected Map<String,Double> separateOrdersByDay(ArrayList<Order> orders) {
+        Map<String,Double> map = new HashMap<>();
+        for (Order o : orders) {
+            String dow = getDayOfWeekFromMillis(o.getOrderTime());
+            if (map.containsKey(dow)) {
+                map.put(dow, map.get(dow) + o.getPrice());
+            }
+            else {
+                map.put(dow, o.getPrice());
+            }
+        }
+        return map;
+    }
+
+    private String getDayOfWeekFromMillis(long msecs) {
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+        cal.setTimeInMillis(msecs);
+        int dow = cal.get(Calendar.DAY_OF_WEEK);
+
+        switch (dow) {
+            case Calendar.MONDAY:
+                return "Monday";
+            case Calendar.TUESDAY:
+                return "Tuesday";
+            case Calendar.WEDNESDAY:
+                return "Wednesday";
+            case Calendar.THURSDAY:
+                return "Thursday";
+            case Calendar.FRIDAY:
+                return "Friday";
+            case Calendar.SATURDAY:
+                return "Saturday";
+            case Calendar.SUNDAY:
+                return "Sunday";
+        }
+        return "Unknown";
     }
 }

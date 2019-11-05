@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="125dp"
-            android:layout_marginTop="670dp"
+            android:layout_marginTop="672dp"
             android:fontFamily="@font/amatic_bold"
             android:text="Orders by Drink"
             android:textColor="@color/white"
@@ -65,9 +65,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
-            android:layout_marginTop="1235dp"
+            android:layout_marginTop="1100dp"
             android:fontFamily="@font/amatic_bold"
-            android:text="Orders by Day of the Week"
+            android:text="Money Spent in Past Week"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -183,20 +183,20 @@
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChartStoresDrinks"
             android:layout_width="376dp"
-            android:layout_height="314dp"
-            android:layout_marginTop="336dp" />
+            android:layout_height="300dp"
+            android:layout_marginTop="340dp" />
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChartDrinksPurchased"
             android:layout_width="381dp"
-            android:layout_height="500dp"
+            android:layout_height="350dp"
             android:layout_marginTop="710dp" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/bar_chart_money_spent"
             android:layout_width="376dp"
             android:layout_height="500dp"
-            android:layout_marginTop="1270dp" />
+            android:layout_marginTop="1140dp" />
 
     </RelativeLayout>
 </ScrollView>
