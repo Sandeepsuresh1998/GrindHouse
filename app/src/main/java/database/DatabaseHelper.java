@@ -171,6 +171,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public Integer getUserIDfromOrderID(Integer orderID) {
+        String whereClause = "SELECT UserID FROM Orders WHERE OrderID=?";
+        String whereArgs[] = {orderID.toString()};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getInt(0);
+        }
+        return null;
+    }
+
     public boolean updateUserName(String email, String userType, String newName) {
         ContentValues cv = new ContentValues();
         cv.put("Username", newName);

@@ -78,7 +78,7 @@ public class HistoryFragment extends SimpleFragment {
 //      *********** PIE CHART OF DRINKS PURCHASED ***********
 
         pcdp = new PieChart(getActivity());
-        pcdp = v.findViewById(R.id.pieChartDrinksPurchased);
+        pcdp = v.findViewById(R.id.pie_chart_drinks_purchased);
         pcdp.getDescription().setEnabled(false);
         pcdp.getLegend().setEnabled(false);
 

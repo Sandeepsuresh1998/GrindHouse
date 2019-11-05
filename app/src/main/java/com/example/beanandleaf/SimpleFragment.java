@@ -42,6 +42,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TimeZone;
@@ -129,23 +130,31 @@ public abstract class SimpleFragment extends Fragment {
      * generates less data (1 DataSet, 4 values)
      * @return PieData
      */
-    protected PieData generatePieDataReturnRates() {
+    protected PieData generatePieDataReturnRates(ArrayList<Order> orders) {
 
-        ArrayList<PieEntry> entries1 = new ArrayList<>();
+        Map<Integer,Integer> map = separateOrdersByRepeatVisits(orders);
+        ArrayList<Pair<String,Integer>> data = countRepeatVisits(map);
+        ArrayList<PieEntry> entries = new ArrayList<>();
 
-        entries1.add(new PieEntry(10, "1"));
-        entries1.add(new PieEntry(6, "2"));
-        entries1.add(new PieEntry(3, "3"));
-        entries1.add(new PieEntry(4, "4"));
-        entries1.add(new PieEntry(7, "5+"));
+        for (Pair<String,Integer> entry : data) {
+            entries.add(new PieEntry(entry.getValue(), entry.getKey()));
+        }
 
-        PieDataSet ds1 = new PieDataSet(entries1, "Number of Times Customers Return");
+        PieDataSet ds1 = new PieDataSet(entries, "Number of Times Customers Return");
         ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
         ds1.setSliceSpace(2f);
         ds1.setValueTextColor(Color.BLACK);
-        ds1.setValueTextSize(10f);
+        ds1.setValueTextSize(20f);
         ds1.setValueTypeface(tf);
         ds1.setXValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
+        ds1.setValueLinePart1OffsetPercentage(130.f);
+        ds1.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf"));
+        ds1.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return "(" + (int) value + ")";
+            }
+        });
 
         PieData d = new PieData(ds1);
 
@@ -165,7 +174,7 @@ public abstract class SimpleFragment extends Fragment {
         ds1.setColors(ColorTemplate.VORDIPLOM_COLORS);
         ds1.setSliceSpace(2f);
         ds1.setValueTextColor(Color.BLACK);
-        ds1.setValueTextSize(20f);
+        ds1.setValueTextSize(25f);
         ds1.setXValuePosition(PieDataSet.ValuePosition.INSIDE_SLICE);
         ds1.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "amatic_bold.ttf"));
         ds1.setValueFormatter(new ValueFormatter() {
@@ -192,14 +201,16 @@ public abstract class SimpleFragment extends Fragment {
         return map;
     }
 
-    protected Map<Integer,Integer> separateOrdersByDrinkID(ArrayList<Order> orders) {
+    protected Map<Integer,Integer> separateOrdersByRepeatVisits(ArrayList<Order> orders) {
         Map<Integer, Integer> map = new HashMap<>();
+        DatabaseHelper db = new DatabaseHelper(getActivity());
         for (Order o : orders) {
-            if (map.containsKey(o.getItemID())) {
-                map.put(o.getItemID(), map.get(o.getItemID()) + 1);
+            int userID = db.getUserIDfromOrderID(o.getOrderID());
+            if (map.containsKey(userID)) {
+                map.put(userID, map.get(userID) + 1);
             }
             else {
-                map.put(o.getItemID(), 1);
+                map.put(userID, 1);
             }
         }
         return map;
@@ -240,6 +251,40 @@ public abstract class SimpleFragment extends Fragment {
             }
         }
         return map;
+    }
+
+    private ArrayList<Pair<String,Integer>> countRepeatVisits(Map<Integer,Integer> map) {
+        ArrayList<Pair<String,Integer>> repeatVisits = new ArrayList<>();
+        repeatVisits.add(new Pair("Did Not Return",0));
+        repeatVisits.add(new Pair("1",0));
+        repeatVisits.add(new Pair("2",0));
+        repeatVisits.add(new Pair("3",0));
+        repeatVisits.add(new Pair("4",0));
+        repeatVisits.add(new Pair("5+",0));
+        for (Map.Entry entry : map.entrySet()) {
+            if ((int)entry.getValue() == 1) {
+                repeatVisits.get(0).setValue(repeatVisits.get(0).getValue() + 1);
+            }
+            else if ((int)entry.getValue() == 2) {
+                repeatVisits.get(1).setValue(repeatVisits.get(1).getValue() + 1);
+            }
+            else if ((int)entry.getValue() == 3) {
+                repeatVisits.get(2).setValue(repeatVisits.get(2).getValue() + 1);
+            }
+            else if ((int)entry.getValue() == 4) {
+                repeatVisits.get(3).setValue(repeatVisits.get(3).getValue() + 1);
+            }
+            else if ((int)entry.getValue() >= 5) {
+                repeatVisits.get(4).setValue(repeatVisits.get(4).getValue() + 1);
+            }
+        }
+        ListIterator<Pair<String,Integer>> iter = repeatVisits.listIterator();
+        while (iter.hasNext()) {
+            if (iter.next().getValue() == 0) {
+               iter.remove();
+            }
+        }
+        return repeatVisits;
     }
 
     private String getDayOfWeekFromMillis(long msecs) {
