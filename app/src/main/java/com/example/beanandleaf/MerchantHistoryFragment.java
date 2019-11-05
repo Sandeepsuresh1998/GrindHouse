@@ -107,7 +107,7 @@ public class MerchantHistoryFragment extends SimpleFragment {
         bcms.setDrawGridBackground(false);
         bcms.setDrawBarShadow(false);
 
-        bcms.setData(generateBarDataMoneySpent(1, 20000, 12));
+        //bcms.setData(generateBarDataMoneySpent(orders));
 
 //        Legend l = chart.getLegend();
 //        l.setTypeface(tf);

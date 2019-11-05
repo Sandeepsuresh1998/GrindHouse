@@ -48,6 +48,7 @@ import java.util.TimeZone;
 
 import database.DatabaseHelper;
 import model.Order;
+import model.Pair;
 
 @SuppressWarnings({"SameParameterValue", "WeakerAccess"})
 public abstract class SimpleFragment extends Fragment {
@@ -70,7 +71,7 @@ public abstract class SimpleFragment extends Fragment {
     protected BarData generateBarDataStoresDrinks(ArrayList<Order> orders, Typeface tf) {
 
         ArrayList<IBarDataSet> sets = new ArrayList<>();
-        final ArrayList<BarEntry> entries = new ArrayList<>();
+        ArrayList<BarEntry> entries = new ArrayList<>();
         Map<String,Integer> data = separateOrdersByStore(orders);
 
         int i = 0;
@@ -90,31 +91,37 @@ public abstract class SimpleFragment extends Fragment {
                 return "" + (int) value;
             }
         });
-                sets.add(ds);
+        sets.add(ds);
         BarData d = new BarData(sets);
         d.setValueTypeface(tf);
         return d;
     }
 
-    protected BarData generateBarDataMoneySpent(int dataSets, float range, int count) {
-
+    protected BarData generateBarDataMoneySpent(ArrayList<Order> orders, Typeface tf) {
         ArrayList<IBarDataSet> sets = new ArrayList<>();
         ArrayList<BarEntry> entries = new ArrayList<>();
-        entries.add(new BarEntry(0, 12));
-        entries.add(new BarEntry(1, 20));
-        entries.add(new BarEntry(2, 16));
-        entries.add(new BarEntry(3, 6));
-        entries.add(new BarEntry(4, 22));
-        entries.add(new BarEntry(5, 30));
-        entries.add(new BarEntry(6, 26));
+        ArrayList<Pair<String,Float>> data = separateOrdersByDay(orders);
 
-
-        BarDataSet ds = new BarDataSet(entries, getLabelsBCMS(0));
+        int i = 0;
+        for (Pair<String,Float> entry : data) {
+            entries.add(new BarEntry(i, entry.getValue(), entry.getKey()));
+            i++;
+        }
+        BarDataSet ds = new BarDataSet(entries, null);
         ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        ds.setValueTextColor(Color.WHITE);
+        ds.setValueTextSize(25f);
+        ds.setValueTypeface(tf);
+        ds.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.format("%.2f",value);
+            }
+        });
         sets.add(ds);
-
         BarData d = new BarData(sets);
         d.setValueTypeface(tf);
+        d.setBarWidth(0.7f);
         return d;
     }
 
@@ -172,18 +179,6 @@ public abstract class SimpleFragment extends Fragment {
         return d;
     }
 
-    private final String[] labelsBCDP = new String[] { "Starbucks", "CB&TL", "Nature's Brew", "DRNK", "Cafe Dulce" };
-
-    private String getLabelsBCDP(int i) {
-        return labelsBCDP[i];
-    }
-
-    private final String[] labelsBCMS = new String[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-
-    private String getLabelsBCMS(int i) {
-        return labelsBCMS[i];
-    }
-
     protected Map<String,Integer> separateOrdersByDrink(ArrayList<Order> orders) {
         Map<String, Integer> map = new HashMap<>();
         for (Order o : orders) {
@@ -225,15 +220,23 @@ public abstract class SimpleFragment extends Fragment {
         return map;
     }
 
-    protected Map<String,Double> separateOrdersByDay(ArrayList<Order> orders) {
-        Map<String,Double> map = new HashMap<>();
+    protected ArrayList<Pair<String,Float>> separateOrdersByDay(ArrayList<Order> orders) {
+        ArrayList<Pair<String,Float>> map = new ArrayList<>();
+        map.add(new Pair("Monday",0f));
+        map.add(new Pair("Tuesday",0f));
+        map.add(new Pair("Wednesday",0f));
+        map.add(new Pair("Thursday",0f));
+        map.add(new Pair("Friday",0f));
+        map.add(new Pair("Saturday",0f));
+        map.add(new Pair("Sunday",0f));
         for (Order o : orders) {
             String dow = getDayOfWeekFromMillis(o.getOrderTime());
-            if (map.containsKey(dow)) {
-                map.put(dow, map.get(dow) + o.getPrice());
-            }
-            else {
-                map.put(dow, o.getPrice());
+            if (!dow.contentEquals("Unknown")) {
+                for (Pair<String,Float> p : map) {
+                    if (p.getKey().contentEquals(dow)) {
+                        p.setValue(p.getValue() + (float) o.getPrice());
+                    }
+                }
             }
         }
         return map;
@@ -247,19 +250,19 @@ public abstract class SimpleFragment extends Fragment {
 
         switch (dow) {
             case Calendar.MONDAY:
-                return "Monday";
-            case Calendar.TUESDAY:
                 return "Tuesday";
-            case Calendar.WEDNESDAY:
+            case Calendar.TUESDAY:
                 return "Wednesday";
-            case Calendar.THURSDAY:
+            case Calendar.WEDNESDAY:
                 return "Thursday";
-            case Calendar.FRIDAY:
+            case Calendar.THURSDAY:
                 return "Friday";
-            case Calendar.SATURDAY:
+            case Calendar.FRIDAY:
                 return "Saturday";
-            case Calendar.SUNDAY:
+            case Calendar.SATURDAY:
                 return "Sunday";
+            case Calendar.SUNDAY:
+                return "Monday";
         }
         return "Unknown";
     }

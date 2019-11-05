@@ -147,24 +147,48 @@ public class HistoryFragment extends SimpleFragment {
         bcms.getDescription().setEnabled(false);
         bcms.setDrawGridBackground(false);
         bcms.setDrawBarShadow(false);
+        bcms.setExtraOffsets(10,10,10,10);
 
-        bcms.setData(generateBarDataMoneySpent(1, 20000, 12));
-
-//        Legend l = chart.getLegend();
-//        l.setTypeface(tf);
-
-//        YAxis leftAxis = chart.getAxisLeft();
-//        leftAxis.setTypeface(tf);
-//        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-
+        bcms.setData(generateBarDataMoneySpent(weekOrders,tf));
         bcms.getAxisRight().setEnabled(false);
+        bcms.getAxisRight().setEnabled(false);
+        bcms.getAxisLeft().setGranularity(1f);
+        bcms.getAxisLeft().setGranularityEnabled(true);
+        bcms.getAxisLeft().setTextColor(Color.WHITE);
+        bcms.getAxisLeft().setTextSize(20f);
+        bcms.getAxisLeft().setGridColor(Color.GRAY);
+        bcms.getAxisLeft().setGridLineWidth(0.5f);
+        bcms.getAxisLeft().setAxisLineColor(Color.WHITE);
+        bcms.getAxisLeft().setAxisLineWidth(2f);
+        bcms.getAxisLeft().setTypeface(tf);
+        bcms.getAxisLeft().setAxisMinimum(0f);
+        bcms.getLegend().setEnabled(false);
 
         XAxis xAxis1 = bcms.getXAxis();
-        xAxis1.setEnabled(false);
+        xAxis1.setGridColor(Color.GRAY);
+        xAxis1.setAxisLineColor(Color.WHITE);
+        xAxis1.setAxisLineWidth(2f);
+        xAxis1.setGridLineWidth(0.5f);
+        xAxis1.setGranularity(1f);
+        xAxis1.setGranularityEnabled(true);
+        xAxis1.setTextColor(Color.WHITE);
+        xAxis1.setTextSize(20f);
+        xAxis1.setTypeface(tf);
+        xAxis1.setSpaceMax(0.4f);
 
-//        // programmatically add the chart
-//        FrameLayout parent = v.findViewById(R.id.parentLayout);
-//        parent.addView(bc);
+
+        ArrayList<String> labels1 = new ArrayList<>();
+        labels1.add("Mon");
+        labels1.add("Tues");
+        labels1.add("Wed");
+        labels1.add("Thur");
+        labels1.add("Fri");
+        labels1.add("Sat");
+        labels1.add("Sun");
+        xAxis1.setValueFormatter(new IndexAxisValueFormatter(labels1));
+        xAxis1.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+        final TextView bcmsTitle = v.findViewById(R.id.bcms_title);
 
         //        *********** DYNAMICALLY UPDATE CHARTS AND STATISTICS ***********
 
@@ -202,6 +226,18 @@ public class HistoryFragment extends SimpleFragment {
                 }
                 bcdp.getXAxis().setValueFormatter(new IndexAxisValueFormatter(labels));
                 bcdp.invalidate();
+
+                if (!timePeriod.contentEquals(timePeriod1)) {
+                    bcms.setData(generateBarDataMoneySpent(orders, tf));
+                    bcms.invalidate();
+                }
+                if (timePeriod.contentEquals(timePeriod2) || timePeriod.contentEquals(timePeriod1)) {
+                    bcmsTitle.setText("Money Spent in Past Week");
+                }
+                else {
+                    bcmsTitle.setText("Money Spent All Time");
+                }
+
 
             }
             public void onNothingSelected(AdapterView<?> parent) {
