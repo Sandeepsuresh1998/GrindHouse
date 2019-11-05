@@ -218,7 +218,7 @@ public class MerchantHistoryFragment extends SimpleFragment {
     }
 
     private SpannableString generateCenterTextReturnRates() {
-        SpannableString s = new SpannableString("Number of Times Customer Returns");
+        SpannableString s = new SpannableString("Number of Times Customer Vists");
         s.setSpan(new RelativeSizeSpan(2f), 0, s.length(), 0);
         s.setSpan(new ForegroundColorSpan(Color.GRAY), s.length(), s.length(), 0);
         return s;
