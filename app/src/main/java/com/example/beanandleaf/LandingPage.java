@@ -1,7 +1,10 @@
 package com.example.beanandleaf;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +30,9 @@ public class LandingPage extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("in Open Dialog");
+
+
                 Intent registerActivity = new Intent(LandingPage.this, Register.class);
                 startActivity(registerActivity);
             }

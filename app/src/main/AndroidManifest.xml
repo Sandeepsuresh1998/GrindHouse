@@ -40,11 +40,6 @@
             android:label="@string/title_activity_map_click_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".detection"
-            android:exported="true"
-            android:label="locationDetector"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".MerchantBottomNav"
             android:label="MerchantBottomNav"></activity>
         <activity android:name=".LandingPage">
