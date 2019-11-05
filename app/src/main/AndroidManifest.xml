@@ -26,15 +26,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".MerchantVerification"
+            android:label="@string/title_activity_merchant_verification"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ChangePasswordFragment"
             android:label="@string/title_activity_forgot_password"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".MapClickMenuFragment"
             android:label="@string/title_activity_map_click_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".detection"
             android:exported="true"
@@ -42,9 +44,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MerchantBottomNav"
-            android:label="MerchantBottomNav">
-
-        </activity>
+            android:label="MerchantBottomNav"></activity>
         <activity android:name=".LandingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,7 +55,7 @@
         <activity android:name=".Register" />
         <activity
             android:name=".BottomNavigation"
-            android:label="@string/title_activity_bottom_navigation"></activity>
+            android:label="@string/title_activity_bottom_navigation" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
