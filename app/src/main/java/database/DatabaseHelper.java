@@ -286,6 +286,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return store;
     }
 
+    public String getStoreName(Integer itemID) {
+        String name = null;
+        String whereClause = "SELECT StoreID FROM MenuItems WHERE MenuItemID=?";
+        String whereArgs[] = {Integer.toString(itemID)};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            String whereClause2 = "SELECT StoreName FROM Stores WHERE StoreID=?";
+            String whereArgs2[] = {Integer.toString(res.getInt(0))};
+            res = db.rawQuery(whereClause2, whereArgs2);
+            if (res.moveToNext()) {
+                name = res.getString(0);
+            }
+        }
+        return name;
+    }
+
     public ArrayList<Store> getStores() {
         ArrayList<Store> stores = new ArrayList<>();
         String whereClause = "SELECT * FROM Stores";

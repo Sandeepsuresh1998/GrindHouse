@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
@@ -29,7 +28,6 @@ import java.util.concurrent.TimeUnit;
 
 import database.DatabaseHelper;
 import model.Order;
-import model.Store;
 
 public class HistoryFragment extends SimpleFragment {
 
@@ -52,7 +50,14 @@ public class HistoryFragment extends SimpleFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_history, container, false);
+        SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+        String email = pref.getString("email", null);
+        String userType = pref.getString("userType", null);
         final DatabaseHelper db = new DatabaseHelper(getActivity());
+        int userId = db.getUserId(email, userType);
+        final ArrayList<Order> allOrders = db.getUserOrders(userId);
+        final ArrayList<Order> dayOrders = getOrdersInPeriod(allOrders, timePeriod1);
+        final ArrayList<Order> weekOrders = getOrdersInPeriod(allOrders, timePeriod2);
 
 //      ***************** TOP ROW STATISTICS ****************
 
@@ -67,28 +72,6 @@ public class HistoryFragment extends SimpleFragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, timePeriods);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeSpinner.setAdapter(adapter);
-
-        timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
-                String email = pref.getString("email", null);
-                String userType = pref.getString("userType", null);
-                int userId = db.getUserId(email, userType);
-
-                String timePeriod = parent.getItemAtPosition(position).toString();
-                ArrayList<Order> orders = db.getUserOrders(userId);
-                double moneySpent = getMoneySpent(orders, timePeriod);
-                int cafIntake = getCaffeineIntake(orders, timePeriod);
-                int calIntake = getCaloriesIntake(orders, timePeriod);
-                moneySpentView.setText("$" + String.format("%.2f", moneySpent));
-                cafIntakeView.setText(cafIntake + "mg");
-                calIntakeView.setText(Integer.toString(calIntake));
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-                // IGNORE
-            }
-        });
-
 
 //      *********** PIE CHART OF DRINKS PURCHASED ***********
 
@@ -110,6 +93,7 @@ public class HistoryFragment extends SimpleFragment {
         // radius of the center hole in percent of maximum radius
         pcdp.setHoleRadius(35f);
         pcdp.setTransparentCircleRadius(40f);
+        pcdp.setData(generatePieDataDrinksPurchased(dayOrders));
 
 //        Legend l = chart.getLegend();
 //        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
@@ -117,36 +101,21 @@ public class HistoryFragment extends SimpleFragment {
 //        l.setOrientation(Legend.LegendOrientation.VERTICAL);
 //        l.setDrawInside(false);
 
-        pcdp.setData(generatePieDataDrinksPurchased());
-
 
 //        *********** BAR CHART STORES & NUMBER OF DRINKS***********
         // create a new chart object
         bcdp = new BarChart(getActivity());
         bcdp = v.findViewById(R.id.barChartStoresDrinks);
         bcdp.getDescription().setEnabled(false);
-        //bc.setOnChartGestureListener(this);
-
-//        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
-//        mv.setChartView(chart); // For bounds control
-//        chart.setMarker(mv);
-
         bcdp.setDrawGridBackground(false);
         bcdp.setDrawBarShadow(false);
 
-        bcdp.setData(generateBarDataStoresDrinks(1, 20000, 12));
-
-//        Legend l = chart.getLegend();
-//        l.setTypeface(tf);
-
-//        YAxis leftAxis = chart.getAxisLeft();
-//        leftAxis.setTypeface(tf);
-//        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
-
+        bcdp.setData(generateBarDataStoresDrinks(dayOrders));
         bcdp.getAxisRight().setEnabled(false);
 
         XAxis xAxis = bcdp.getXAxis();
         xAxis.setEnabled(false);
+        xAxis.setGranularity(1f);
 
 
         //        *********** BAR CHART STORES & NUMBER OF DRINKS***********
@@ -181,6 +150,43 @@ public class HistoryFragment extends SimpleFragment {
 //        FrameLayout parent = v.findViewById(R.id.parentLayout);
 //        parent.addView(bc);
 
+        //        *********** DYNAMICALLY UPDATE CHARTS AND STATISTICS ***********
+
+        timeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String timePeriod = parent.getItemAtPosition(position).toString();
+
+                ArrayList<Order> orders = allOrders;
+                if (timePeriod.contentEquals(timePeriod1)) {
+                    orders = dayOrders;
+                }
+                else if (timePeriod.contentEquals(timePeriod2)) {
+                    orders = weekOrders;
+                }
+
+                double moneySpent = 0;
+                int cafIntake = 0;
+                int calIntake = 0;
+                for (Order o : orders) {
+                    moneySpent += o.getPrice();
+                    cafIntake += o.getCaffeine();
+                    calIntake += o.getCalories();
+                }
+                moneySpentView.setText("$" + String.format("%.2f", moneySpent));
+                cafIntakeView.setText(cafIntake + "mg");
+                calIntakeView.setText(Integer.toString(calIntake));
+
+                pcdp.setData(generatePieDataDrinksPurchased(orders));
+                pcdp.invalidate();
+                bcdp.setData(generateBarDataStoresDrinks(orders));
+                bcdp.invalidate();
+
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+                // IGNORE
+            }
+        });
+
         return v;
     }
 
@@ -191,34 +197,14 @@ public class HistoryFragment extends SimpleFragment {
         return s;
     }
 
-    private double getMoneySpent(ArrayList<Order> orders, String timePeriod) {
-        double moneySpent = 0;
-        for (Order order : orders) {
-            if (isTimeInPeriod(order.getOrderTime(), timePeriod)) {
-                moneySpent += order.getPrice();
+    private ArrayList<Order> getOrdersInPeriod(ArrayList<Order> orders, String timePeriod) {
+        ArrayList<Order> newOrders = new ArrayList<>();
+        for (Order o : orders) {
+            if (isTimeInPeriod(o.getOrderTime(), timePeriod)) {
+                newOrders.add(o);
             }
         }
-        return moneySpent;
-    }
-
-    private int getCaffeineIntake(ArrayList<Order> orders, String timePeriod) {
-        int cafIntake = 0;
-        for (Order order : orders) {
-            if (isTimeInPeriod(order.getOrderTime(), timePeriod)) {
-                cafIntake += order.getCaffeine();
-            }
-        }
-        return cafIntake;
-    }
-
-    private int getCaloriesIntake(ArrayList<Order> orders, String timePeriod) {
-        int calIntake = 0;
-        for (Order order : orders) {
-            if (isTimeInPeriod(order.getOrderTime(), timePeriod)) {
-                calIntake += order.getCalories();
-            }
-        }
-        return calIntake;
+        return newOrders;
     }
 
     private boolean isTimeInPeriod(int time, String timePeriod) {
@@ -240,6 +226,5 @@ public class HistoryFragment extends SimpleFragment {
         }
         return false;
     }
-
 }
 

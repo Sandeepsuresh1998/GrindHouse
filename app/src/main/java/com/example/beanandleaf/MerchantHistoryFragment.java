@@ -62,7 +62,6 @@ public class MerchantHistoryFragment extends SimpleFragment {
 //        l.setOrientation(Legend.LegendOrientation.VERTICAL);
 //        l.setDrawInside(false);
 
-        pcdp.setData(generatePieDataDrinksPurchased());
 
 
 

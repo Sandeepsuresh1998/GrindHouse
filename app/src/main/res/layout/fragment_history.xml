@@ -37,10 +37,46 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/bcsd_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="300dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="Orders by Store"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/pcdp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="670dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="Orders by Drink"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/bcms_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="1235dp"
+            android:fontFamily="@font/amatic_bold"
+            android:text="Orders by Day of the Week"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/money_spent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2dp"
             android:layout_marginTop="90dp"
             android:fontFamily="@font/amatic_bold"
             android:text="$250"
@@ -88,7 +124,7 @@
             android:id="@+id/caffeine_intake"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="133dp"
+            android:layout_marginLeft="130dp"
             android:layout_marginTop="90dp"
             android:fontFamily="@font/amatic_bold"
             android:text="350mg"
@@ -100,7 +136,7 @@
             android:id="@+id/calories_consumed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="290dp"
+            android:layout_marginLeft="287dp"
             android:layout_marginTop="90dp"
             android:fontFamily="@font/amatic_bold"
             android:text="300"
@@ -148,19 +184,19 @@
             android:id="@+id/barChartStoresDrinks"
             android:layout_width="376dp"
             android:layout_height="314dp"
-            android:layout_marginTop="275dp" />
+            android:layout_marginTop="336dp" />
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChartDrinksPurchased"
             android:layout_width="381dp"
             android:layout_height="500dp"
-            android:layout_marginTop="600dp" />
+            android:layout_marginTop="710dp" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/bar_chart_money_spent"
             android:layout_width="376dp"
             android:layout_height="500dp"
-            android:layout_marginTop="1125dp" />
+            android:layout_marginTop="1270dp" />
 
     </RelativeLayout>
 </ScrollView>
