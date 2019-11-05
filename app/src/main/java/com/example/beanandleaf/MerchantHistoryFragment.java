@@ -63,6 +63,8 @@ public class MerchantHistoryFragment extends SimpleFragment {
         final Spinner timeSpinner = v.findViewById(R.id.merchant_time_period_spinner);
         final TextView moneySpentView = v.findViewById(R.id.merchant_money_spent);
         final TextView ordersPlacedView = v.findViewById(R.id.merchant_orders_placed);
+        final TextView historyTitleView = v.findViewById(R.id.historyTitle);
+        historyTitleView.setText(db.getStore(storeID).getName() + " History");
 
         ArrayList<String> timePeriods = new ArrayList<>(
                 Arrays.asList(timePeriod1, timePeriod2, timePeriod3)
