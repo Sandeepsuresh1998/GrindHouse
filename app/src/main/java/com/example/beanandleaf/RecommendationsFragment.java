@@ -151,9 +151,10 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
         //Find Stores Users haven't visited
         ArrayList<Store> unvisitedStores = new ArrayList<Store>();
         for(Store s: stores) {
-            if(!set.contains(s)) //the user hasn't visited the store
+            if(!set.contains(s))
             {
                 unvisitedStores.add(s); } }
+        //If the user has visited all stores, we don't have recs
         Activity activity = getActivity();
         if(unvisitedStores == null){
             Toast t = Toast.makeText(activity, "No recommendations at this time! You've visited all the coffee shops!", Toast.LENGTH_LONG);
@@ -161,6 +162,7 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
             t.show();
         }
         Store ofChoice = null;
+        //Now we check if their most frequented drink exists at a place they haven't been
         for(Store s: unvisitedStores)
         {
             boolean exists = db.checkMenuItemNameExists(s.getStoreID(), drinkName);
@@ -168,6 +170,7 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
             {
                 ofChoice = s;
                 break; } }
+        //we add that choice to the map
         if(ofChoice != null)
         {
             MarkerOptions mo = new MarkerOptions().position(new LatLng(ofChoice.getLatitude(), ofChoice.getLongitude())).title(ofChoice.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
