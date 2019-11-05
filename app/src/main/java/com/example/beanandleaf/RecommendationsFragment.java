@@ -178,13 +178,6 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
             t.show();
         }
 
-
-//        for (Store s : stores) {
-//            MarkerOptions mo = new MarkerOptions().position(new LatLng(s.getLatitude(), s.getLongitude())).title(s.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
-//            Marker m = mGoogleMap.addMarker(mo);
-//            m.setTag(s.getStoreID());
-//        }
-
         /* !!!!!!!!!DUMMY MARKERS ARE HIDDEN FOR NOW! PLEASE DON'T UNCOMMENT AND PUSH. To add a marker on the map, create a merchant account and create a store with a latitude/longitude of one of the stores below. Thanks! -Ethan
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.024120, -118.278170)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
         mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(34.022090, -118.282460)).title("Starbucks").icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)])));
@@ -225,34 +218,4 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
             mGoogleMap.setMyLocationEnabled(true);
         }
     }
-}
-
-class Pair {
-
-    public String itemName;
-    public int storeID;
-
-    public Pair(String itemName, int storeID)
-    {
-        this.itemName = itemName;
-        this.storeID = storeID;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public Integer getStoreID() {
-        return storeID;
-    }
-
-    public void setStoreID(int storeID) {
-        this.storeID = storeID;
-    }
-
-
 }
