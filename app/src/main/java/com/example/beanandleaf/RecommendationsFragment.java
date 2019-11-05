@@ -4,39 +4,36 @@ import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.location.Location;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import database.DatabaseHelper;
-import model.Store;
 import model.Order;
+import model.Store;
 
 public class RecommendationsFragment  extends Fragment implements OnMapReadyCallback {
 
@@ -137,11 +134,16 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
         //recommend places that may have those
 
         ArrayList <Order> orders = db.getUserOrders(userID);
+        Map <Pair, Integer> frequency = new HashMap<Pair, Integer>();
         if(orders.size() > 6) //Now we want to run our algorithm to generate recs
         {
             for(int i =0; i < orders.size(); i++)
             {
-                int itemID = orders.get(i).getItemID();
+                int ITID = orders.get(i).getItemID();
+                String itemName = orders.get(i).getName();
+
+
+
             }
             //find the most frequented drink item
                 //use OrderID to find itemName
@@ -186,4 +188,34 @@ public class RecommendationsFragment  extends Fragment implements OnMapReadyCall
             mGoogleMap.setMyLocationEnabled(true);
         }
     }
+}
+
+class Pair {
+
+    public String itemName;
+    public int storeID;
+
+    public Pair(String itemName, int storeID)
+    {
+        this.itemName = itemName;
+        this.storeID = storeID;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public Integer getStoreID() {
+        return storeID;
+    }
+
+    public void setStoreID(int storeID) {
+        this.storeID = storeID;
+    }
+
+
 }
