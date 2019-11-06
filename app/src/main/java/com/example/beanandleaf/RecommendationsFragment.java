@@ -140,51 +140,61 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
             t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
             t.show();
         }
-        Map<String, Integer> map = new HashMap<>();
+        else{
+
+
+            Map<String, Integer> map = new HashMap<>();
             for (Order o : orders) {
                 if (map.containsKey(o.getName())) {
-                    map.put(o.getName(), map.get(o.getName()) + 1); }
-                else { map.put(o.getName(), 1); } }
+                    map.put(o.getName(), map.get(o.getName()) + 1);
+                } else {
+                    map.put(o.getName(), 1);
+                }
+            }
 
-        Map.Entry<String, Integer> maxEntry = null;
-        for (Map.Entry<String, Integer> entry : map.entrySet())
-        { if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
-                maxEntry = entry; } }
+            Map.Entry<String, Integer> maxEntry = null;
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+                    maxEntry = entry;
+                }
+            }
 
-        String drinkName = maxEntry.getKey();
-        Set<Store> set = new HashSet<Store>();
-        for (Store x : userStores)
-            set.add(x);
-        //Find Stores Users haven't visited
-        ArrayList<Store> unvisitedStores = new ArrayList<Store>();
-        for(Store s: stores) {
-            if(!set.contains(s))
-            {
-                unvisitedStores.add(s); } }
-        //If the user has visited all stores, we don't have recs
-        if(unvisitedStores == null){
-            Toast t = Toast.makeText(activity, "No recommendations at this time! You've visited all the coffee shops!", Toast.LENGTH_LONG);
-            t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            t.show();
-        }
-        Store ofChoice = null;
-        //Now we check if their most frequented drink exists at a place they haven't been
-        for(Store s: unvisitedStores)
-        {
-            boolean exists = db.checkMenuItemNameExists(s.getStoreID(), drinkName);
-            if(exists == true)
-            {
-                ofChoice = s;
-                break; } }
-        //we add that choice to the map
-        if(ofChoice != null)
-        {
-            MarkerOptions mo = new MarkerOptions().position(new LatLng(ofChoice.getLatitude(), ofChoice.getLongitude())).title(ofChoice.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
-            Marker m = mGoogleMap.addMarker(mo);
-            m.setTag(ofChoice.getStoreID());
-            Toast t = Toast.makeText(activity, "Try a " + drinkName + " at " + ofChoice.getName() + "!", Toast.LENGTH_LONG);
-            t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            t.show();
+            String drinkName = maxEntry.getKey();
+            Set<Store> set = new HashSet<Store>();
+            for (Store x : userStores)
+                set.add(x);
+            //Find Stores Users haven't visited
+            ArrayList<Store> unvisitedStores = new ArrayList<Store>();
+            for (Store s : stores) {
+                if (!set.contains(s)) {
+                    unvisitedStores.add(s);
+                }
+            }
+            //If the user has visited all stores, we don't have recs
+            if (unvisitedStores == null) {
+                Toast t = Toast.makeText(activity, "No recommendations at this time! You've visited all the coffee shops!", Toast.LENGTH_LONG);
+                t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                t.show();
+            }
+            Store ofChoice = null;
+            //Now we check if their most frequented drink exists at a place they haven't been
+            for (Store s : unvisitedStores) {
+                boolean exists = db.checkMenuItemNameExists(s.getStoreID(), drinkName);
+                if (exists == true) {
+                    ofChoice = s;
+                    break;
+                }
+            }
+            //we add that choice to the map
+            if (ofChoice != null) {
+                MarkerOptions mo = new MarkerOptions().position(new LatLng(ofChoice.getLatitude(), ofChoice.getLongitude())).title(ofChoice.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
+                Marker m = mGoogleMap.addMarker(mo);
+                m.setTag(ofChoice.getStoreID());
+                Toast t = Toast.makeText(activity, "Try a " + drinkName + " at " + ofChoice.getName() + "!", Toast.LENGTH_LONG);
+                t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                t.show();
+            }
+
         }
 
         /* !!!!!!!!!DUMMY MARKERS ARE HIDDEN FOR NOW! PLEASE DON'T UNCOMMENT AND PUSH. To add a marker on the map, create a merchant account and create a store with a latitude/longitude of one of the stores below. Thanks! -Ethan
