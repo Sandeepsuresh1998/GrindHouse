@@ -149,7 +149,9 @@
         android:gravity="center"
         android:textColor="@color/primary_lighter"
         android:background="@color/white"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dip"
+        android:textStyle="bold"/>
 
 S
 
@@ -157,14 +159,14 @@ S
         android:id="@+id/lnkLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:clickable="true"
         android:fontFamily="@font/amatic_regular"
         android:gravity="center"
         android:onClick="sendToLogin"
-        android:clickable="true"
         android:text="Registered? Login here."
         android:textColor="@color/white"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:textStyle="bold" />
 </LinearLayout>
     </RelativeLayout>
 </ScrollView>

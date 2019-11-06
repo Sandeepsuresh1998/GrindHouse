@@ -15,15 +15,16 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="191dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/amatic_regular"
-        android:gravity="center"
+        android:gravity="left"
         android:text="@string/BeanandLeaf"
         android:textColor="@color/white"
-        android:textSize="40dip"
+        android:textSize="50dip"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,9 +32,26 @@
         android:layout_width="95dp"
         android:layout_height="73dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="36dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/loginTitle"
+        android:layout_width="122dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="128dp"
+        android:fontFamily="@font/amatic_regular"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.581"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,6 +64,8 @@
         android:layout_marginEnd="24dp"
 
         android:hint="@string/prompt_email"
+        android:textSize="25dp"
+        android:textStyle="bold"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +83,8 @@
         android:layout_marginEnd="24dp"
 
         android:hint="@string/prompt_password"
+        android:textSize="25dp"
+        android:textStyle="bold"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
@@ -92,7 +114,9 @@
         app:layout_constraintVertical_bias="0.266"
         android:background="@color/white"
         android:textColor="@color/primary_lighter"
-        android:fontFamily="@font/amatic_regular"/>
+        android:fontFamily="@font/amatic_regular"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
 
     <ProgressBar
@@ -117,18 +141,19 @@
         android:layout_height="50dp"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="520dp"
+        android:layout_marginTop="524dp"
         android:layout_marginEnd="48dp"
         android:background="@color/white"
         android:fontFamily="@font/amatic_regular"
         android:gravity="center"
         android:text="No account yet? Create one"
         android:textColor="@color/primary_lighter"
-        android:textSize="16dip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="18dp"
+        android:textStyle="bold"/>
 
 
 <!--    <Button-->
@@ -164,7 +189,9 @@
             android:checked="true"
             android:fontFamily="@font/amatic_regular"
             android:text="Customer"
-            android:textColor="@color/primary_lighter" />
+            android:textColor="@color/primary_lighter"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
         <RadioButton
             android:id="@+id/Merchant"
@@ -172,7 +199,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/amatic_regular"
             android:text="Merchant"
-            android:textColor="@color/primary_lighter" />
+            android:textColor="@color/primary_lighter"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
     </RadioGroup>
 
