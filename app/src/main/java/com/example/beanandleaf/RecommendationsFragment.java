@@ -135,7 +135,7 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
         Activity activity = getActivity();
         if(stores == null || stores.size() < 4)
         {
-            Toast t = Toast.makeText(activity, "Sorry, unable to provide reccommendations until you've made at least 4 trips!", Toast.LENGTH_LONG);
+            Toast t = Toast.makeText(activity, "Sorry, unable to provide recommendations until you've made at least 4 trips!", Toast.LENGTH_LONG);
             t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
             t.show();
         }
