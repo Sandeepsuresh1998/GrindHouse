@@ -2,6 +2,7 @@ package com.example.beanandleaf;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -59,6 +61,7 @@ public class StoreFragment extends Fragment {
         final EditText nameEditText = view.findViewById(R.id.storename_edit);
         final EditText latEditText = view.findViewById(R.id.location_lat_edit);
         final EditText lonEditText = view.findViewById(R.id.location_long_edit);
+        final TextView verifStatusText = view.findViewById(R.id.verification);
 
         Store firstStore = null;
         if (!stores.isEmpty()) {
@@ -66,6 +69,14 @@ public class StoreFragment extends Fragment {
             nameEditText.setText(firstStore.getName());
             latEditText.setText(Float.toString(firstStore.getLatitude()));
             lonEditText.setText(Float.toString(firstStore.getLongitude()));
+            if (firstStore.isVerified()) {
+                verifStatusText.setText("Verified");
+                verifStatusText.setTextColor(Color.parseColor("#18E71A"));
+            }
+            else {
+                verifStatusText.setText("Not Verified");
+                verifStatusText.setTextColor(Color.parseColor("#7E0C1A"));
+            }
             deleteStoreButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -98,6 +109,14 @@ public class StoreFragment extends Fragment {
                             lonEditText.setText(Float.toString(selectedStore.getLongitude()));
                             editor.putInt("selectedStore", selectedStore.getStoreID());
                             editor.commit();
+                            if (selectedStore.isVerified()) {
+                                verifStatusText.setText("Verified");
+                                verifStatusText.setTextColor(Color.parseColor("#18E71A"));
+                            }
+                            else {
+                                verifStatusText.setText("Not Verified");
+                                verifStatusText.setTextColor(Color.parseColor("#7E0C1A"));
+                            }
                         }
                         msg = "Store successfully removed";
                     }
@@ -124,7 +143,14 @@ public class StoreFragment extends Fragment {
                         lonEditText.setText(Float.toString(selectedStore.getLongitude()));
                         editor.putInt("selectedStore", selectedStore.getStoreID());
                         editor.commit();
-
+                        if (selectedStore.isVerified()) {
+                            verifStatusText.setText("Verified");
+                            verifStatusText.setTextColor(Color.parseColor("#18E71A"));
+                        }
+                        else {
+                            verifStatusText.setText("Not Verified");
+                            verifStatusText.setTextColor(Color.parseColor("#7E0C1A"));
+                        }
                     }
                 }
                 public void onNothingSelected(AdapterView<?> parent) {

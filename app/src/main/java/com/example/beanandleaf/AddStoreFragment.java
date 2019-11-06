@@ -1,6 +1,7 @@
 package com.example.beanandleaf;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -50,21 +51,19 @@ public class AddStoreFragment extends Fragment {
                 }
                 DatabaseHelper db = new DatabaseHelper(getActivity());
                 SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
+                SharedPreferences.Editor editor = pref.edit();
 
                 String email = pref.getString("email", null);
                 String userType = pref.getString("userType", null);
                 int userId = db.getUserId(email, userType);
 
-                if (db.insertStore(userId, Float.parseFloat(lat), Float.parseFloat(lon), storeName)) {
-                    Fragment storeFragment = new StoreFragment();
-                    getFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container_merchant, storeFragment)
-                            .commit();
-                }
-                else {
-                    Toast.makeText(getActivity().getApplicationContext(), "Error: store not added", Toast.LENGTH_SHORT).show();
-                }
+                editor.putInt("userID", userId);
+                editor.putFloat("lat", Float.parseFloat(lat));
+                editor.putFloat("lon", Float.parseFloat(lon));
+                editor.putString("storeName", storeName);
+                editor.commit();
+                Intent i = new Intent(getActivity(), MerchantVerification.class);
+                startActivity(i);
             }
         });
     }

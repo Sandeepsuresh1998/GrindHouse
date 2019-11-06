@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +30,7 @@ public class MerchantVerification extends AppCompatActivity {
 
     private static int RESULT = 1;
     boolean photoSet;
+    Bitmap photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +58,25 @@ public class MerchantVerification extends AppCompatActivity {
             public void onClick(View arg0) {
                 if (photoSet) {
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-                    Intent navIntent = new Intent(MerchantVerification.this, MerchantBottomNav.class);
+                    SharedPreferences.Editor editor = pref.edit();
                     DatabaseHelper db = new DatabaseHelper(getApplicationContext());
-                    db.insertUser(pref.getString("username",null), pref.getString("email", null), pref.getString("password",null), pref.getString("userType",null), pref.getString("gender", null));
+
+                    int userID = pref.getInt("userID", 0);
+                    String storeName = pref.getString("storeName", null);
+                    float lat = pref.getFloat("lat",0f);
+                    float lon = pref.getFloat("lon",0f);
+
+                    if (db.insertStore(userID, lat, lon, storeName, photo)) {
+                        editor.putBoolean("addStore", true);
+                        Toast toast = Toast.makeText(getApplicationContext(), storeName + " has been added. Your store will be live once admins approve your verification.", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Error: your store was not added", Toast.LENGTH_LONG).show();
+                    }
+
+                    Intent navIntent = new Intent(MerchantVerification.this, MerchantBottomNav.class);
                     startActivity(navIntent);
                 }
                 else {
@@ -85,7 +104,8 @@ public class MerchantVerification extends AppCompatActivity {
             c.close();
 
             ImageView iV = findViewById(R.id.userImage);
-            iV.setImageBitmap(BitmapFactory.decodeFile(path));
+            photo = BitmapFactory.decodeFile(path);
+            iV.setImageBitmap(photo);
             photoSet = true;
         }
     }

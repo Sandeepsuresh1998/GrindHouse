@@ -29,6 +29,7 @@ import android.view.Gravity;
 import android.view.View;
 
 
+import com.example.beanandleaf.AdminLogin;
 import com.example.beanandleaf.BottomNavigation;
 import com.example.beanandleaf.MerchantBottomNav;
 import com.example.beanandleaf.R;
@@ -165,11 +166,19 @@ public class LoginActivity extends AppCompatActivity {
         }
         else if (userType.contentEquals("Merchant")) {
             homeScreen = new Intent(LoginActivity.this, MerchantBottomNav.class);
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref",0);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean("addStore",false);
+            editor.commit();
         }
         if (homeScreen != null) {
             startActivity(homeScreen);
         }
+    }
 
+    public void sendToAdminLogin(View v) {
+        Intent login = new Intent(LoginActivity.this, AdminLogin.class);
+        startActivity(login);
     }
 
     private void showLoginFailed(String errorString) {

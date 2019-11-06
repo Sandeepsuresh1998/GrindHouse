@@ -123,9 +123,11 @@ public class MapFragment  extends Fragment implements OnMapReadyCallback {
         ArrayList<Store> stores = db.getStores();
 
         for (Store s : stores) {
-            MarkerOptions mo = new MarkerOptions().position(new LatLng(s.getLatitude(), s.getLongitude())).title(s.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
-            Marker m = mGoogleMap.addMarker(mo);
-            m.setTag(s.getStoreID());
+            if (s.isVerified()) {
+                MarkerOptions mo = new MarkerOptions().position(new LatLng(s.getLatitude(), s.getLongitude())).title(s.getName()).icon(BitmapDescriptorFactory.defaultMarker(colours[new Random().nextInt(colours.length)]));
+                Marker m = mGoogleMap.addMarker(mo);
+                m.setTag(s.getStoreID());
+            }
         }
 
         /* !!!!!!!!!DUMMY MARKERS ARE HIDDEN FOR NOW! PLEASE DON'T UNCOMMENT AND PUSH. To add a marker on the map, create a merchant account and create a store with a latitude/longitude of one of the stores below. Thanks! -Ethan

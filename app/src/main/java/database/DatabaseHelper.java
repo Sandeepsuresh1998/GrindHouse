@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -43,6 +46,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "StoreLat TEXT NOT NULL," +
                 "StoreLong TEXT NOT NULL," +
                 "StoreName TEXT NOT NULL," +
+                "VerifPic BLOB NOT NULL," +
+                "isVerified INT NOT NULL," + // no boolean type in SQLite -> 1 = verified, 0 = not verified
                 "FOREIGN KEY (UserID) REFERENCES Users(UserID))");
         db.execSQL("CREATE TABLE MenuItems(" +
                 "MenuItemID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -266,12 +271,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertStore(Integer userId, Float lat, Float lon, String storeName) {
+    public boolean updateStoreVerification(Integer storeID) {
+        ContentValues cv = new ContentValues();
+        cv.put("isVerified", 1);
+        String whereClause = "StoreID=?";
+        String whereArgs[] = {storeID.toString()};
+        long result = db.update("Stores", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean insertStore(Integer userId, Float lat, Float lon, String storeName, Bitmap photo) {
         ContentValues cv = new ContentValues();
         cv.put("UserID", userId);
         cv.put("StoreLat", Float.toString(lat));
         cv.put("StoreLong", Float.toString(lon));
         cv.put("StoreName", storeName);
+        cv.put("isVerified",0);
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        cv.put("VerifPic", outputStream.toByteArray());
+
         long result = db.insert("Stores", null, cv);
         if (result == -1) {
             return false;
@@ -288,11 +311,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor res = db.rawQuery(whereClause, whereArgs);
         if (res.moveToNext()) {
+            byte[] picBytes = res.getBlob(5);
+            boolean isVerified = res.getInt(6) == 1 ? true : false;
+
             store = new Store(
                     res.getInt(0),
                     Float.parseFloat(res.getString(3)),
                     Float.parseFloat(res.getString(2)),
-                    res.getString(4));
+                    res.getString(4),
+                    isVerified,
+                    BitmapFactory.decodeByteArray(picBytes, 0, picBytes.length)
+            );
         }
         return store;
     }
@@ -320,11 +349,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor res = db.rawQuery(whereClause, null);
         while (res.moveToNext()) {
+            byte[] picBytes = res.getBlob(5);
+            boolean isVerified = res.getInt(6) == 1 ? true : false;
+
             stores.add(new Store(
                     res.getInt(0),
                     Float.parseFloat(res.getString(3)),
                     Float.parseFloat(res.getString(2)),
-                    res.getString(4)
+                    res.getString(4),
+                    isVerified,
+                    BitmapFactory.decodeByteArray(picBytes, 0, picBytes.length)
             ));
         }
         return stores;
@@ -337,11 +371,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor res = db.rawQuery(whereClause, whereArgs);
         while (res.moveToNext()) {
+            byte[] picBytes = res.getBlob(5);
+            boolean isVerified = res.getInt(6) == 1 ? true : false;
+
             stores.add(new Store(
                     res.getInt(0),
                     Float.parseFloat(res.getString(3)),
                     Float.parseFloat(res.getString(2)),
-                    res.getString(4)
+                    res.getString(4),
+                    isVerified,
+                    BitmapFactory.decodeByteArray(picBytes, 0, picBytes.length)
             ));
         }
         return stores;

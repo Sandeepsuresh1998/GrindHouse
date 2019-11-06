@@ -23,9 +23,16 @@ public class MerchantBottomNav extends AppCompatActivity implements BottomNaviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant_bottom_nav);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        boolean addStore = pref.getBoolean("addStore", false);
 
         //loading the default fragment
-        loadFragment(new MapFragment());
+        if (addStore) {
+            loadFragment(new StoreFragment());
+        }
+        else {
+            loadFragment(new MapFragment());
+        }
 
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.nav_view);

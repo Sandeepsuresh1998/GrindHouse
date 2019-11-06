@@ -11,9 +11,10 @@
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,16 +50,36 @@
 
     <Button
         android:id="@+id/link_signup"
-        android:layout_width="98dp"
-        android:layout_height="50dp"
+        android:layout_width="125dp"
+        android:layout_height="49dp"
         android:layout_gravity="start"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="534dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="444dp"
+        android:layout_marginEnd="60dp"
         android:background="@color/white"
         android:fontFamily="@font/amatic_regular"
         android:gravity="center"
         android:text="No account yet? Create one"
+        android:textColor="@color/primary_lighter"
+        android:textSize="19dip"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/link_admin"
+        android:layout_width="78dp"
+        android:layout_height="34dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="544dp"
+        android:layout_marginEnd="48dp"
+        android:background="@color/white"
+        android:fontFamily="@font/amatic_regular"
+        android:gravity="center"
+        android:text="Admin Access"
         android:textColor="@color/primary_lighter"
         android:textSize="18dip"
         android:textStyle="bold"
@@ -69,11 +90,11 @@
 
     <Button
         android:id="@+id/link_login"
-        android:layout_width="98dp"
-        android:layout_height="50dp"
+        android:layout_width="125dp"
+        android:layout_height="49dp"
         android:layout_gravity="start"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="460dp"
+        android:layout_marginTop="444dp"
         android:layout_marginEnd="48dp"
         android:background="@color/white"
         android:fontFamily="@font/amatic_regular"
@@ -83,7 +104,7 @@
         android:textSize="20dip"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

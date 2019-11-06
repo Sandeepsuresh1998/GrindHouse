@@ -65,10 +65,11 @@ public class Register extends AppCompatActivity {
                     String verifyResult = db.verifyUser(email, password, userType);
                     if (!verifyResult.contentEquals("NULL")) {
                         Toast.makeText(getApplicationContext(),
-                                "A " + userType + " account already exists with that email",
+                                "A " + userType.toLowerCase() + " account already exists with that email",
                                 Toast.LENGTH_LONG).show();
                     }
                     else {
+                        db.insertUser(username, email, password, userType, gender);
                         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
                         SharedPreferences.Editor editor = pref.edit();
                         editor.putString("username", username);
@@ -83,16 +84,14 @@ public class Register extends AppCompatActivity {
                             else
                                 editor.putInt("selectedStore", -1);
                         }
-                        else {
-                            db.insertUser(username, email, password, userType, gender);
-                        }
                         editor.commit();
                         Intent mapActivity = null;
                         if (userType.contentEquals("Customer")) {
                             mapActivity = new Intent(Register.this, BottomNavigation.class);
                         }
                         else {
-                            mapActivity = new Intent(Register.this, MerchantVerification.class);
+                            mapActivity = new Intent(Register.this, MerchantBottomNav.class);
+                            editor.putBoolean("addStore",false);
                         }
 
                         if (mapActivity != null)

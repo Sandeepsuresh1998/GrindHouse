@@ -20,6 +20,7 @@ public class LandingPage extends AppCompatActivity {
         setContentView(R.layout.activity_landing_page);
         final Button loginButton = findViewById(R.id.link_login);
         final Button registerButton = findViewById(R.id.link_signup);
+        final Button adminButton = findViewById(R.id.link_admin);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,11 +31,15 @@ public class LandingPage extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("in Open Dialog");
-
-
                 Intent registerActivity = new Intent(LandingPage.this, Register.class);
                 startActivity(registerActivity);
+            }
+        });
+        adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent adminLoginActivity = new Intent(LandingPage.this, AdminLogin.class);
+                startActivity(adminLoginActivity);
             }
         });
     }
