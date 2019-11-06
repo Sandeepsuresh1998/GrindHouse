@@ -123,7 +123,6 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
         float[] colours = { BitmapDescriptorFactory.HUE_ORANGE, BitmapDescriptorFactory.HUE_RED};
 
         //Marker for current location
-        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude)).title("Current Location"));
         DatabaseHelper db = new DatabaseHelper(getActivity());
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         final String userType = pref.getString("userType", null);
@@ -136,7 +135,7 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
         Activity activity = getActivity();
         if(stores == null || stores.size() < 4)
         {
-            Toast t = Toast.makeText(activity, "Sorry, unable to provide reccommendations until you've made at least 4 trips!", Toast.LENGTH_LONG);
+            Toast t = Toast.makeText(activity, "Sorry, unable to provide recommendations until you've made at least 4 trips!", Toast.LENGTH_LONG);
             t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
             t.show();
         }
