@@ -13,160 +13,165 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         >
-<LinearLayout
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/registration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Registration"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:fontFamily="@font/amatic_regular"/>
 
-    <TextView
-        android:id="@+id/rtext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/amatic_regular"
-        android:text="Full Name" />
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:ems="10"
-        android:fontFamily="@font/amatic_regular"/>
-    <TextView
-        android:id="@+id/ntext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:layout_marginLeft="100dp"
-        android:fontFamily="@font/amatic_regular"/>
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:ems="10"
-        android:fontFamily="@font/amatic_regular"/>
-    <TextView
-        android:id="@+id/etext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:layout_marginLeft="100dp"
-        android:fontFamily="@font/amatic_regular"/>
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:fontFamily="@font/amatic_regular"/>
+        <LinearLayout
+            android:layout_width="395dp"
+            android:layout_height="747dp"
+            android:orientation="vertical">
 
-    <RadioGroup
-        android:id="@+id/genderOptions"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="100dp"
-        android:background="@color/light_brown"
-        >
+            <TextView
+                android:id="@+id/registration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/amatic_regular"
+                android:text="Registration"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Male"
-            android:fontFamily="@font/amatic_regular"
-            android:textSize="22sp"
-            />
+            <TextView
+                android:id="@+id/rtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/amatic_regular"
+                android:text="Full Name" />
 
-        <RadioButton
-            android:id="@+id/female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Female"
-            android:fontFamily="@font/amatic_regular"
-            android:textSize="22sp"
-            />
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:ems="10"
+                android:fontFamily="@font/amatic_regular" />
 
-        <RadioButton
-            android:id="@+id/other"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/amatic_regular"
-            android:text="Not  Listed"
-            android:textSize="22sp" />
+            <TextView
+                android:id="@+id/ntext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:fontFamily="@font/amatic_regular"
+                android:text="Email" />
 
-    </RadioGroup>
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:ems="10"
+                android:fontFamily="@font/amatic_regular" />
 
-    <RadioGroup
-        android:id="@+id/userType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/amatic_regular"
-        android:background="@color/white"
-        android:textColor="@color/primary_lighter"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        >
+            <TextView
+                android:id="@+id/etext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:fontFamily="@font/amatic_regular"
+                android:text="Password" />
 
-        <RadioButton
-            android:id="@+id/Customer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:fontFamily="@font/amatic_regular"
-            android:text="Customer"
-            android:textColor="@color/primary_lighter" />
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:ems="10"
+                android:fontFamily="@font/amatic_regular"
+                android:inputType="textPassword" />
 
-        <RadioButton
-            android:id="@+id/Merchant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/amatic_regular"
-            android:text="Merchant"
-            android:textColor="@color/primary_lighter" />
+            <RadioGroup
+                android:id="@+id/genderOptions"
+                android:layout_width="150dp"
+                android:layout_height="120dp"
+                android:layout_marginLeft="100dp"
+                android:background="@color/light_brown">
 
-    </RadioGroup>
-    <Button
-        android:id="@+id/register"
-        android:layout_marginTop="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create My Account"
-        android:fontFamily="@font/amatic_regular"
-        android:gravity="center"
-        android:textColor="@color/primary_lighter"
-        android:background="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:textSize="20dip"
-        android:textStyle="bold"/>
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:fontFamily="@font/amatic_regular"
+                    android:text="Male"
+                    android:textSize="22sp" />
 
-S
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amatic_regular"
+                    android:text="Female"
+                    android:textSize="22sp" />
 
-    <TextView
-        android:id="@+id/lnkLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:fontFamily="@font/amatic_regular"
-        android:gravity="center"
-        android:onClick="sendToLogin"
-        android:text="Registered? Login here."
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-</LinearLayout>
+                <RadioButton
+                    android:id="@+id/other"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amatic_regular"
+                    android:text="Not  Listed"
+                    android:textSize="22sp" />
+
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/userType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/white"
+                android:fontFamily="@font/amatic_regular"
+                android:gravity="center"
+                android:textColor="@color/primary_lighter">
+
+                <RadioButton
+                    android:id="@+id/Customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:fontFamily="@font/amatic_regular"
+                    android:text="Customer"
+                    android:textColor="@color/primary_lighter" />
+
+                <RadioButton
+                    android:id="@+id/Merchant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/amatic_regular"
+                    android:text="Merchant"
+                    android:textColor="@color/primary_lighter" />
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                android:fontFamily="@font/amatic_regular"
+                android:gravity="center"
+                android:text="Create My Account"
+                android:textColor="@color/primary_lighter"
+                android:textSize="20dip"
+                android:textStyle="bold" />
+
+            S
+
+            <TextView
+                android:id="@+id/lnkLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:fontFamily="@font/amatic_regular"
+                android:gravity="center"
+                android:onClick="sendToLogin"
+                android:text="Registered? Login here."
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

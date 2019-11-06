@@ -22,12 +22,12 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/amatic_bold"
-            android:text="Store"
+            android:text="Your Stores"
             android:textColor="@color/white"
             android:textSize="40dp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/store_drropdown"

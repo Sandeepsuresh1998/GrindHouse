@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 import database.DatabaseHelper;
 import model.Order;
+import model.Store;
 
 
 public class MerchantHistoryFragment extends SimpleFragment {
@@ -64,7 +65,11 @@ public class MerchantHistoryFragment extends SimpleFragment {
         final TextView moneySpentView = v.findViewById(R.id.merchant_money_spent);
         final TextView ordersPlacedView = v.findViewById(R.id.merchant_orders_placed);
         final TextView historyTitleView = v.findViewById(R.id.historyTitle);
-        historyTitleView.setText(db.getStore(storeID).getName() + " History");
+        Store store = db.getStore(storeID);
+        if (store != null) {
+            historyTitleView.setText(store.getName() + " History");
+        }
+
 
         ArrayList<String> timePeriods = new ArrayList<>(
                 Arrays.asList(timePeriod1, timePeriod2, timePeriod3)
