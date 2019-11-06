@@ -255,7 +255,6 @@ public abstract class SimpleFragment extends Fragment {
 
     private ArrayList<Pair<String,Integer>> countRepeatVisits(Map<Integer,Integer> map) {
         ArrayList<Pair<String,Integer>> repeatVisits = new ArrayList<>();
-        repeatVisits.add(new Pair("Did Not Return",0));
         repeatVisits.add(new Pair("1",0));
         repeatVisits.add(new Pair("2",0));
         repeatVisits.add(new Pair("3",0));

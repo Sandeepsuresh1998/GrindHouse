@@ -99,6 +99,7 @@ public class StoreFragment extends Fragment {
                             nameEditText.setText(null);
                             latEditText.setText(null);
                             lonEditText.setText(null);
+                            verifStatusText.setText("");
                             editor.putInt("selectedStore", -1);
                             editor.commit();
                         }
@@ -235,6 +236,9 @@ public class StoreFragment extends Fragment {
                     }
                 }
             });
+        }
+        else {
+            verifStatusText.setText("");
         }
 
 
