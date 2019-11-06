@@ -73,18 +73,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (UserID) REFERENCES Users(UserID)," +
                 "FOREIGN KEY (MenuItemID) REFERENCES MenuItems(MenuItemID)," +
                 "FOREIGN KEY (StoreID) REFERENCES Stores(StoreID))");
-        db.execSQL("CREATE TABLE Trips(" +
-                "TripID INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "UserID INTEGER NOT NULL," +
-                "StartLoc TEXT NOT NULL," +
-                "EndLoc TEXT NOT NULL," +
-                "TripDuration INTEGER NOT NULL," +
-                "FOREIGN KEY (UserID) REFERENCES Users(UserID))");
-        db.execSQL("CREATE TABLE TripOrders(" +
-                "TripID INTEGER NOT NULL," +
-                "OrderID INTEGER NOT NULL," +
-                "FOREIGN KEY (TripID) REFERENCES Trips(TripID)," +
-                "FOREIGN KEY (OrderID) REFERENCES Orders(OrderID))");
     }
 
     @Override
@@ -561,33 +549,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ));
         }
         return orders;
-    }
-
-    public boolean insertTrip(Integer userId, String startLoc, String endLoc, Integer tripDuration) {
-        ContentValues cv = new ContentValues();
-        cv.put("UserID", userId);
-        cv.put("StartLoc", startLoc);
-        cv.put("EndLoc", endLoc);
-        cv.put("TripDuration", tripDuration);
-        long result = db.insert("Trips", null, cv);
-        if (result == -1) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    public boolean insertTripOrder(Integer tripId, Integer orderId) {
-        ContentValues cv = new ContentValues();
-        cv.put("TripID", tripId);
-        cv.put("OrderID", orderId);
-        long result = db.insert("TripOrders", null, cv);
-        if (result == -1) {
-            return false;
-        }
-        else {
-            return true;
-        }
     }
 }
