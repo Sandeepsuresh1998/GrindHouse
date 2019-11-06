@@ -88,7 +88,7 @@ public class MerchantBottomNav extends AppCompatActivity implements BottomNaviga
         editor.clear();
         editor.putBoolean("loggedIn", false);
         editor.commit();
-        Intent logout = new Intent(MerchantBottomNav.this, LoginActivity.class);
+        Intent logout = new Intent(MerchantBottomNav.this, LandingPage.class);
         startActivity(logout);
     }
 }

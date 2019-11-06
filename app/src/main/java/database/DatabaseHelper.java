@@ -38,8 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "Password TEXT NOT NULL," +
                 "Email TEXT NOT NULL," +
                 "UserType TEXT NOT NULL," +
-                "Gender TEXT," +
-                "PicURL TEXT)");
+                "Gender TEXT NOT NULL)");
         db.execSQL("CREATE TABLE Stores(" +
                 "StoreID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "UserID INTEGER NOT NULL," +

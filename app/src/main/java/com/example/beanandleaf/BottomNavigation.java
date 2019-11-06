@@ -133,7 +133,7 @@ public class BottomNavigation extends AppCompatActivity implements BottomNavigat
         editor.clear();
         editor.putBoolean("loggedIn", false);
         editor.commit();
-        Intent logout = new Intent(BottomNavigation.this, LoginActivity.class);
+        Intent logout = new Intent(BottomNavigation.this, LandingPage.class);
         startActivity(logout);
     }
 
