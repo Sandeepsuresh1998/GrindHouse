@@ -34,6 +34,7 @@ public class AdminLogin extends AppCompatActivity {
                     Toast t = Toast.makeText(getApplicationContext(), "Admin password is incorrect", Toast.LENGTH_LONG);
                     t.setGravity(Gravity.CENTER, 0, 0);
                     t.show();
+                    return;
                 }
                 Intent i = new Intent(AdminLogin.this, AdminHome.class);
                 startActivity(i);
