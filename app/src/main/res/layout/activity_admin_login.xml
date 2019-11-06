@@ -36,7 +36,7 @@
         android:gravity="center"
         android:text="@string/BeanandLeaf"
         android:textColor="@color/white"
-        android:textSize="40dip"
+        android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -66,6 +66,8 @@
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
         android:textColor="@color/white"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -85,6 +87,8 @@
         android:fontFamily="@font/amatic_regular"
         android:text="@string/action_sign_in_short"
         android:textColor="@color/primary_lighter"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
