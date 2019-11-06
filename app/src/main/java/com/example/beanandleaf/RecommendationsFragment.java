@@ -133,6 +133,13 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
         ArrayList<Store> userStores = db.getStores(userID);
         ArrayList <Order> orders = db.getUserOrders(userID);
 
+        Activity activity = getActivity();
+        if(stores == null || stores.size() < 4)
+        {
+            Toast t = Toast.makeText(activity, "Sorry, unable to provide reccommendations until you've made some more trips!", Toast.LENGTH_LONG);
+            t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            t.show();
+        }
         Map<String, Integer> map = new HashMap<>();
             for (Order o : orders) {
                 if (map.containsKey(o.getName())) {
@@ -155,7 +162,6 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
             {
                 unvisitedStores.add(s); } }
         //If the user has visited all stores, we don't have recs
-        Activity activity = getActivity();
         if(unvisitedStores == null){
             Toast t = Toast.makeText(activity, "No recommendations at this time! You've visited all the coffee shops!", Toast.LENGTH_LONG);
             t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
