@@ -123,7 +123,6 @@ public class RecommendationsFragment extends Fragment implements OnMapReadyCallb
         float[] colours = { BitmapDescriptorFactory.HUE_ORANGE, BitmapDescriptorFactory.HUE_RED};
 
         //Marker for current location
-        mGoogleMap.addMarker(new MarkerOptions().position(new LatLng(latLng.latitude, latLng.longitude)).title("Current Location"));
         DatabaseHelper db = new DatabaseHelper(getActivity());
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         final String userType = pref.getString("userType", null);
