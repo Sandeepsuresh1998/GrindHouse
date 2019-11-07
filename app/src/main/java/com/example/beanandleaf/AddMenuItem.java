@@ -1,8 +1,6 @@
 package com.example.beanandleaf;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,7 +16,7 @@ import android.widget.Toast;
 import database.DatabaseHelper;
 
 
-public class AddMenuItemFragment extends Fragment {
+public class AddMenuItem extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -169,7 +167,7 @@ public class AddMenuItemFragment extends Fragment {
                     return;
                 }
                 Toast.makeText(getActivity().getApplicationContext(), name + " added to the menu", Toast.LENGTH_SHORT).show();
-                Fragment menuFragment = new MenuFragment();
+                Fragment menuFragment = new EditMenu();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container_merchant, menuFragment)

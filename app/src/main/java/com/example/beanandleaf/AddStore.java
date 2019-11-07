@@ -19,7 +19,7 @@ import android.widget.Toast;
 import database.DatabaseHelper;
 
 
-public class AddStoreFragment extends Fragment {
+public class AddStore extends Fragment {
 
     @Nullable
     @Override

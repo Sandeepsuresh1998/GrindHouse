@@ -2,28 +2,19 @@ package com.example.beanandleaf;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
-
 import database.DatabaseHelper;
-import model.Store;
 
-public class ChangePasswordFragment extends Fragment {
+public class ChangePassword extends Fragment {
 
     @Nullable
     @Override
@@ -79,7 +70,7 @@ public class ChangePasswordFragment extends Fragment {
                             id = R.id.fragment_container_merchant;
                         }
                         Toast.makeText(getActivity().getApplicationContext(), "Password updated successfully", Toast.LENGTH_LONG).show();
-                        Fragment profileFragment = new ProfileFragment();
+                        Fragment profileFragment = new Profile();
                         getFragmentManager()
                                 .beginTransaction()
                                 .replace(id, profileFragment)

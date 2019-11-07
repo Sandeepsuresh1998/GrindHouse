@@ -1,6 +1,5 @@
 package com.example.beanandleaf;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,7 @@ import database.DatabaseHelper;
 import model.MenuItem;
 
 
-public class EditMenuItemFragment extends Fragment {
+public class EditMenuItem extends Fragment {
 
     private int storeID;
     private int numSizes;
@@ -26,14 +25,14 @@ public class EditMenuItemFragment extends Fragment {
     private String size3;
 
 
-    public EditMenuItemFragment(int id, String name, String size1) {
+    public EditMenuItem(int id, String name, String size1) {
         setStoreID(id);
         setItemName(name);
         setSize1(size1);
         setNumSizes(1);
     }
 
-    public EditMenuItemFragment(int id, String name, String size1, String size2) {
+    public EditMenuItem(int id, String name, String size1, String size2) {
         setStoreID(id);
         setItemName(name);
         setSize1(size1);
@@ -41,7 +40,7 @@ public class EditMenuItemFragment extends Fragment {
         setNumSizes(2);
     }
 
-    public EditMenuItemFragment(int id, String name, String size1, String size2, String size3) {
+    public EditMenuItem(int id, String name, String size1, String size2, String size3) {
         setStoreID(id);
         setItemName(name);
         setSize1(size1);
@@ -383,7 +382,7 @@ public class EditMenuItemFragment extends Fragment {
                     return;
                 }
                 Toast.makeText(getActivity().getApplicationContext(), name + " updated", Toast.LENGTH_SHORT).show();
-                Fragment menuFragment = new MenuFragment();
+                Fragment menuFragment = new EditMenu();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container_merchant, menuFragment)
@@ -431,7 +430,7 @@ public class EditMenuItemFragment extends Fragment {
             if (numSizes == 1) {
                 if (db.removeMenuItem(storeID, itemName, size)) {
                     Toast.makeText(getActivity().getApplicationContext(), itemName + " removed", Toast.LENGTH_SHORT).show();
-                    Fragment menuFragment = new MenuFragment();
+                    Fragment menuFragment = new EditMenu();
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container_merchant, menuFragment)

@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -25,13 +24,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.Gravity;
-import android.view.View;
 
 
 import com.example.beanandleaf.AdminLogin;
-import com.example.beanandleaf.BottomNavigation;
-import com.example.beanandleaf.MerchantBottomNav;
+import com.example.beanandleaf.Navigation;
 import com.example.beanandleaf.R;
 import com.example.beanandleaf.Register;
 
@@ -161,11 +157,9 @@ public class LoginActivity extends AppCompatActivity {
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
         Intent homeScreen = null;
-        if (userType.contentEquals("Customer")) {
-            homeScreen = new Intent(LoginActivity.this, BottomNavigation.class);
-        }
-        else if (userType.contentEquals("Merchant")) {
-            homeScreen = new Intent(LoginActivity.this, MerchantBottomNav.class);
+        homeScreen = new Intent(LoginActivity.this, Navigation.class);
+        if (userType.contentEquals("Merchant")) {
+            homeScreen = new Intent(LoginActivity.this, Navigation.class);
             SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref",0);
             SharedPreferences.Editor editor = pref.edit();
             editor.putBoolean("addStore",false);

@@ -21,11 +21,11 @@ import database.DatabaseHelper;
 import model.MenuItem;
 import model.Store;
 
-public class MapClickMenuFragment extends Fragment {
+public class MapClickMenu extends Fragment {
 
     private int storeID;
 
-    public MapClickMenuFragment(int storeID) {
+    public MapClickMenu(int storeID) {
         this.storeID = storeID;
     }
     @Nullable
@@ -106,7 +106,7 @@ public class MapClickMenuFragment extends Fragment {
                 recordOrderButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Fragment addOrderFragment = new AddOrderFragment(storeID);
+                        Fragment addOrderFragment = new AddOrder(storeID);
                         getFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.fragment_container_customer, addOrderFragment)

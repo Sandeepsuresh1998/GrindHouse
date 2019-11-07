@@ -24,7 +24,6 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import database.DatabaseHelper;
@@ -32,11 +31,11 @@ import model.Order;
 import model.Store;
 
 
-public class MerchantHistoryFragment extends SimpleFragment {
+public class MerchantHistory extends SimpleFragment {
 
     @NonNull
     public static Fragment newInstance() {
-        return new MerchantHistoryFragment();
+        return new MerchantHistory();
     }
 
     @SuppressWarnings("FieldCanBeLocal")

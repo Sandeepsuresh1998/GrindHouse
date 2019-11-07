@@ -85,17 +85,14 @@ public class Register extends AppCompatActivity {
                                 editor.putInt("selectedStore", -1);
                         }
                         editor.commit();
-                        Intent mapActivity = null;
-                        if (userType.contentEquals("Customer")) {
-                            mapActivity = new Intent(Register.this, BottomNavigation.class);
-                        }
-                        else {
-                            mapActivity = new Intent(Register.this, MerchantBottomNav.class);
+                        Intent i = null;
+                        i = new Intent(Register.this, Navigation.class);
+                        if (userType.contentEquals("Merchant")) {
                             editor.putBoolean("addStore",false);
                         }
 
-                        if (mapActivity != null)
-                            startActivity(mapActivity);
+                        if (i != null)
+                            startActivity(i);
                     }
 
                 }

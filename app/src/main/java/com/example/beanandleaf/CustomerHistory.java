@@ -31,11 +31,11 @@ import java.util.concurrent.TimeUnit;
 import database.DatabaseHelper;
 import model.Order;
 
-public class HistoryFragment extends SimpleFragment {
+public class CustomerHistory extends SimpleFragment {
 
     @NonNull
     public static Fragment newInstance() {
-        return new MerchantHistoryFragment();
+        return new MerchantHistory();
     }
 
     @SuppressWarnings("FieldCanBeLocal")

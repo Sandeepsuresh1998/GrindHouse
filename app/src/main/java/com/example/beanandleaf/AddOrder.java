@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,12 +20,12 @@ import database.DatabaseHelper;
 import model.MenuItem;
 
 
-public class AddOrderFragment extends Fragment {
+public class AddOrder extends Fragment {
 
 
     private int storeID;
 
-    public AddOrderFragment(int storeID) {
+    public AddOrder(int storeID) {
         this.storeID = storeID;
     }
 
@@ -106,7 +105,7 @@ public class AddOrderFragment extends Fragment {
                 String quant = quantSpinner.getSelectedItem().toString();
                 if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant), item.getCalories() * Integer.parseInt(quant), Double.toString(item.getPrice() * Double.parseDouble(quant)), item.getName(), Long.toString(System.currentTimeMillis()))) {
                     Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
-                    Fragment addOrderFragment = new AddOrderFragment(storeID);
+                    Fragment addOrderFragment = new AddOrder(storeID);
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container_customer, addOrderFragment)
@@ -129,7 +128,7 @@ public class AddOrderFragment extends Fragment {
                 String quant = quantSpinner.getSelectedItem().toString();
                 if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant), item.getCalories() * Integer.parseInt(quant), Double.toString(item.getPrice() * Double.parseDouble(quant)), item.getName(), Long.toString(System.currentTimeMillis()))) {
                     Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
-                    Fragment mapFragment = new MapFragment();
+                    Fragment mapFragment = new Map();
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container_customer, mapFragment)

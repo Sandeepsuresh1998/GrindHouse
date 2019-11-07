@@ -9,17 +9,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -76,7 +72,7 @@ public class MerchantVerification extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Error: your store was not added", Toast.LENGTH_LONG).show();
                     }
 
-                    Intent navIntent = new Intent(MerchantVerification.this, MerchantBottomNav.class);
+                    Intent navIntent = new Intent(MerchantVerification.this, Navigation.class);
                     startActivity(navIntent);
                 }
                 else {

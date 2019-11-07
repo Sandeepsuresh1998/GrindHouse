@@ -2,16 +2,12 @@ package com.example.beanandleaf;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -26,7 +22,7 @@ import database.DatabaseHelper;
 import model.MenuItem;
 import model.Store;
 
-public class MenuFragment extends Fragment {
+public class EditMenu extends Fragment {
 
     @Nullable
     @Override
@@ -64,7 +60,7 @@ public class MenuFragment extends Fragment {
             addItemButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Fragment addMenuItemFragment = new AddMenuItemFragment();
+                    Fragment addMenuItemFragment = new AddMenuItem();
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_container_merchant, addMenuItemFragment)
@@ -169,13 +165,13 @@ public class MenuFragment extends Fragment {
                     public void onClick(View v) {
                         Fragment EditMenuItemFragment = null;
                         if (otherSizesF == 0) {
-                            EditMenuItemFragment = new EditMenuItemFragment(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1));
+                            EditMenuItemFragment = new EditMenuItem(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1));
                         }
                         else if (otherSizesF == 1) {
-                            EditMenuItemFragment = new EditMenuItemFragment(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1), (String) v.getTag(R.id.itemSize2));
+                            EditMenuItemFragment = new EditMenuItem(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1), (String) v.getTag(R.id.itemSize2));
                         }
                         else if (otherSizesF == 2) {
-                            EditMenuItemFragment = new EditMenuItemFragment(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1), (String) v.getTag(R.id.itemSize2), (String) v.getTag(R.id.itemSize3));
+                            EditMenuItemFragment = new EditMenuItem(selectedStore.getStoreID(), (String) v.getTag(R.id.itemName), (String) v.getTag(R.id.itemSize1), (String) v.getTag(R.id.itemSize2), (String) v.getTag(R.id.itemSize3));
                         }
                         getFragmentManager()
                                 .beginTransaction()

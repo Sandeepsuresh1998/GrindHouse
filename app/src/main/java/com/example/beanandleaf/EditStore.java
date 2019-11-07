@@ -1,6 +1,5 @@
 package com.example.beanandleaf;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,14 +16,13 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 
 import database.DatabaseHelper;
 import model.Store;
 
-public class StoreFragment extends Fragment {
+public class EditStore extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,9 +46,9 @@ public class StoreFragment extends Fragment {
         final String userType = pref.getString("userType", null);
         final Integer userID = db.getUserId(email, userType);
 
-        final ArrayList<Store> stores = db.getStores(userID);
+        final ArrayList<model.Store> stores = db.getStores(userID);
         final ArrayList<String> spinnerArray = new ArrayList<>();
-        for (Store s : stores) {
+        for (model.Store s : stores) {
             spinnerArray.add(s.getName());
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, spinnerArray);
@@ -63,7 +61,7 @@ public class StoreFragment extends Fragment {
         final EditText lonEditText = view.findViewById(R.id.location_long_edit);
         final TextView verifStatusText = view.findViewById(R.id.verification);
 
-        Store firstStore = null;
+        model.Store firstStore = null;
         if (!stores.isEmpty()) {
             firstStore = stores.get(0);
             nameEditText.setText(firstStore.getName());
@@ -81,8 +79,8 @@ public class StoreFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     String selectedStoreName = sItems.getSelectedItem().toString();
-                    Store selectedStore = null;
-                    for (Store s : stores) {
+                    model.Store selectedStore = null;
+                    for (model.Store s : stores) {
                         if (s.getName().contentEquals(selectedStoreName)) {
                             selectedStore = s;
                         }
@@ -119,7 +117,7 @@ public class StoreFragment extends Fragment {
                                 verifStatusText.setTextColor(Color.parseColor("#7E0C1A"));
                             }
                         }
-                        msg = "Store successfully removed";
+                        msg = "EditStore successfully removed";
                     }
                     else {
                         msg = "Error: store was not removed";
@@ -133,8 +131,8 @@ public class StoreFragment extends Fragment {
             sItems.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String selectedStoreName = parent.getItemAtPosition(position).toString();
-                    Store selectedStore = null;
-                    for (Store s : stores) {
+                    model.Store selectedStore = null;
+                    for (model.Store s : stores) {
                         if (selectedStoreName.contentEquals(s.getName()))
                             selectedStore = s;
                     }
@@ -163,8 +161,8 @@ public class StoreFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     String selectedStoreName = sItems.getSelectedItem().toString();
-                    Store selectedStore = null;
-                    for (Store s : stores) {
+                    model.Store selectedStore = null;
+                    for (model.Store s : stores) {
                         if (s.getName().contentEquals(selectedStoreName)) {
                             selectedStore = s;
                         }
@@ -185,7 +183,7 @@ public class StoreFragment extends Fragment {
                             if (!db.updateStoreName(userID, Float.toString(selectedStore.getLatitude()), Float.toString(selectedStore.getLongitude()), newName))
                                 error = true;
                         } else {
-                            Toast.makeText(getActivity().getApplicationContext(), "Store name cannot be empty", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "EditStore name cannot be empty", Toast.LENGTH_LONG).show();
                             nameEditText.setText(selectedStore.getName());
                         }
 
@@ -245,7 +243,7 @@ public class StoreFragment extends Fragment {
         addStoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment addStoreFragment = new AddStoreFragment();
+                Fragment addStoreFragment = new AddStore();
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container_merchant, addStoreFragment)
