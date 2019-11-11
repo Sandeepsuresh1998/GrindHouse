@@ -42,10 +42,6 @@ public class Map extends Fragment implements OnMapReadyCallback {
     MapView mMapView;
     View mView;
 
-    Location currentLocation;
-    //FusedLocationProviderClient fusedLocationProviderClient;
-    //private static final int REQUEST_CODE = 101;
-
 
     SupportMapFragment mapFragment;
     public Map() {
@@ -56,7 +52,6 @@ public class Map extends Fragment implements OnMapReadyCallback {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        //fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity();
     }
 
     @Override
@@ -89,11 +84,6 @@ public class Map extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        LatLng latLng = new LatLng(34, -115);
-        if(currentLocation != null) {
-            System.out.println("A non null location");
-            latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-        }
         MapsInitializer.initialize(getContext());
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -115,7 +105,7 @@ public class Map extends Fragment implements OnMapReadyCallback {
         mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         float[] colours = { BitmapDescriptorFactory.HUE_ORANGE, BitmapDescriptorFactory.HUE_RED};
 
-        //Marker for current location
+
         DatabaseHelper db = new DatabaseHelper(getActivity());
         SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0);
         final String userType = pref.getString("userType", null);
