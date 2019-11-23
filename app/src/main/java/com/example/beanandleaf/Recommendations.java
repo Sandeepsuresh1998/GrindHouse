@@ -139,23 +139,8 @@ public class Recommendations extends Fragment implements OnMapReadyCallback {
         }
         else{
 
-            Map<String, Integer> map = new HashMap<>();
-            for (Order o : orders) {
-                if (map.containsKey(o.getName())) {
-                    map.put(o.getName(), map.get(o.getName()) + 1);
-                } else {
-                    map.put(o.getName(), 1);
-                }
-            }
+            String drinkName = getDrinkName(orders);
 
-            Map.Entry<String, Integer> maxEntry = null;
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
-                    maxEntry = entry;
-                }
-            }
-
-            String drinkName = maxEntry.getKey();
             Set<Store> set = new HashSet<Store>();
             for (Store x : userStores)
                 set.add(x);
@@ -212,7 +197,9 @@ public class Recommendations extends Fragment implements OnMapReadyCallback {
         if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mGoogleMap.setMyLocationEnabled(true);
         }
+
     }
+
 
 
     public static void noRecs(Activity activity)
@@ -220,6 +207,27 @@ public class Recommendations extends Fragment implements OnMapReadyCallback {
         Toast t = Toast.makeText(activity, "Sorry, unable to provide recommendations until you've made at least 4 trips!", Toast.LENGTH_LONG);
         t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
         t.show();
+    }
+
+    public static String getDrinkName(ArrayList <Order> orders)
+    {
+        Map<String, Integer> map = new HashMap<>();
+        for (Order o : orders) {
+            if (map.containsKey(o.getName())) {
+                map.put(o.getName(), map.get(o.getName()) + 1);
+            } else {
+                map.put(o.getName(), 1);
+            }
+        }
+
+        Map.Entry<String, Integer> maxEntry = null;
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+                maxEntry = entry;
+            }
+        }
+
+        return maxEntry.getKey();
     }
 
 
