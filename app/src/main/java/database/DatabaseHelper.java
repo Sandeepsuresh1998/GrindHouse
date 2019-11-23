@@ -119,6 +119,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void removeUser(String email, String userType) {
+        String whereClause = "DELETE FROM Users WHERE Email=? AND UserType=?";
+        String whereArgs[] = {email, userType};
+        db.execSQL(whereClause, whereArgs);
+
+    }
+
     public int getUserId(String email, String userType) {
         String whereClause = "SELECT UserID FROM Users WHERE Email=? AND UserType=?";
         String whereArgs[] = {email, userType};
