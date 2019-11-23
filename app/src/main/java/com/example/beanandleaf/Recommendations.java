@@ -135,12 +135,9 @@ public class Recommendations extends Fragment implements OnMapReadyCallback {
         Activity activity = getActivity();
         if(stores == null || stores.size() < 4)
         {
-            Toast t = Toast.makeText(activity, "Sorry, unable to provide recommendations until you've made at least 4 trips!", Toast.LENGTH_LONG);
-            t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            t.show();
+            noRecs(activity);
         }
         else{
-
 
             Map<String, Integer> map = new HashMap<>();
             for (Order o : orders) {
@@ -169,6 +166,7 @@ public class Recommendations extends Fragment implements OnMapReadyCallback {
                     unvisitedStores.add(s);
                 }
             }
+
             //If the user has visited all stores, we don't have recs
             if (unvisitedStores == null) {
                 Toast t = Toast.makeText(activity, "No recommendations at this time! You've visited all the coffee shops!", Toast.LENGTH_LONG);
@@ -195,7 +193,6 @@ public class Recommendations extends Fragment implements OnMapReadyCallback {
             }
 
         }
-
         CameraPosition Starbucks = CameraPosition.builder().target(new LatLng(34.0224, -118.2851)).zoom(14).bearing(0).tilt(0).build();
         mGoogleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
@@ -216,4 +213,15 @@ public class Recommendations extends Fragment implements OnMapReadyCallback {
             mGoogleMap.setMyLocationEnabled(true);
         }
     }
+
+
+    public static void noRecs(Activity activity)
+    {
+        Toast t = Toast.makeText(activity, "Sorry, unable to provide recommendations until you've made at least 4 trips!", Toast.LENGTH_LONG);
+        t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        t.show();
+    }
+
+
+
 }
