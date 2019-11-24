@@ -1,7 +1,5 @@
 package com.example.beanandleaf;
 
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import org.junit.Rule;

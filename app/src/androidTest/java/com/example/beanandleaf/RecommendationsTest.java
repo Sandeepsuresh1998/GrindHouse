@@ -4,7 +4,10 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,13 +18,20 @@ import model.Store;
 import static org.junit.Assert.*;
 
 public class RecommendationsTest {
-    @Before
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         if (db.verifyUser("sam@gmail.com","smith1","Customer").contentEquals("NULL")) {
             db.insertUser("Sam Smith", "sam@gmail.com", "smith1", "Customer", "Male");
         }
     }
+
+    @AfterClass
+    public static void breakdown() {
+        DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        db.removeUser("sam@gmail.com","smith1");
+    }
+
 
 
     @Test //Check whether adding an order updates caffiene

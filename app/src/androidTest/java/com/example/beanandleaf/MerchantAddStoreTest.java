@@ -15,7 +15,9 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,13 +42,20 @@ import static org.hamcrest.Matchers.allOf;
 public class MerchantAddStoreTest {
 
 
-    @Before
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         if (db.verifyUser("m@gmail.com","merchant","Merchant").contentEquals("NULL")) {
-            db.insertUser("Merchant One", "m@gmail.com", "merchant", "Merchant", "Male");
+            db.removeUser("m@gmail.com", "Merchant");
         }
     }
+
+    @AfterClass
+    public static void breakdown() {
+        DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        db.removeUser("m@gmail.com","Merchant");
+    }
+
 
     @Rule
     public ActivityTestRule<LandingPage> mActivityTestRule = new ActivityTestRule<>(LandingPage.class);
