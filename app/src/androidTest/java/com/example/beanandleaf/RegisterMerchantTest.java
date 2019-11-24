@@ -66,25 +66,12 @@ public class RegisterMerchantTest {
 
         //Verify that Merchant Button Exists
         ViewInteraction radioButton = onView(
-                allOf(withId(R.id.Merchant),
-                        childAtPosition(
-                                allOf(withId(R.id.userType),
-                                        childAtPosition(
-                                                withId(R.id.relativeLayout2),
-                                                8)),
-                                1),
-                        isDisplayed()));
+                allOf(withId(R.id.Merchant)));
         radioButton.check(matches(isDisplayed()));
 
         //Click Merchant
         ViewInteraction appCompatRadioButton = onView(
-                allOf(withId(R.id.Merchant), withText("Merchant"),
-                        childAtPosition(
-                                allOf(withId(R.id.userType),
-                                        childAtPosition(
-                                                withId(R.id.relativeLayout2),
-                                                7)),
-                                1)));
+                allOf(withId(R.id.Merchant), withText("Merchant")));
         appCompatRadioButton.perform(scrollTo(), click());
 
         //Create Account
@@ -92,11 +79,6 @@ public class RegisterMerchantTest {
                 allOf(withId(R.id.register), withText("Create My Account")));
         appCompatButton2.perform(scrollTo(), click());
 
-        //Check that Store Icon Displays (Only available in Merchant View)
-        ViewInteraction imageView = onView(
-                allOf(withId(R.id.icon)));
-        imageView.check(matches(isDisplayed()));
-        
     }
 
     private static Matcher<View> childAtPosition(

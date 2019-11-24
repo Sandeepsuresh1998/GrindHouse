@@ -20,6 +20,7 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -38,24 +39,21 @@ public class RegisterCustomerTest {
 
     @Test
     public void RegistrationProfileTest() {
-        ViewInteraction appCompatButton = onView(allOf(withId(R.id.link_signup), withText("No account yet? Create one")));
-        appCompatButton.perform(click());
+        //Click log in button
+        ViewInteraction appCompatButton3 = onView(allOf(withId(R.id.link_login)));
+        appCompatButton3.perform(click());
 
-        //Setting username
-        ViewInteraction appCompatEditText = onView(allOf(withId(R.id.name)));
-        appCompatEditText.perform(scrollTo(), replaceText("Sam Smith"), closeSoftKeyboard());
+        //Fill in username with sam@gmail.com
+        ViewInteraction appCompatEditText5 = onView(allOf(withId(R.id.username)));
+        appCompatEditText5.perform(replaceText("sam@gmail.com"), closeSoftKeyboard());
 
-        //Setting Email
-        ViewInteraction appCompatEditText2 = onView(allOf(withId(R.id.email)));
-        appCompatEditText2.perform(scrollTo(), replaceText("sam@gmail.com"), closeSoftKeyboard());
+        //Fill in corresponding password
+        ViewInteraction appCompatEditText6 = onView(allOf(withId(R.id.password)));
+        appCompatEditText6.perform(replaceText("smith1"), closeSoftKeyboard());
 
-        //Setting password
-        ViewInteraction appCompatEditText3 = onView(allOf(withId(R.id.password)));
-        appCompatEditText3.perform(scrollTo(), replaceText("smith1"), closeSoftKeyboard());
-
-        //Click create account
-        ViewInteraction appCompatButton2 = onView(allOf(withId(R.id.register), withText("Create My Account")));
-        appCompatButton2.perform(scrollTo(), click());
+        //Try log in
+        ViewInteraction appCompatEditText7 = onView(allOf(withId(R.id.password)));
+        appCompatEditText7.perform(pressImeActionButton());
 
         //Nav to profile tab
         ViewInteraction bottomNavigationItemView = onView(allOf(withId(R.id.navigation_profile), withContentDescription("Profile")));

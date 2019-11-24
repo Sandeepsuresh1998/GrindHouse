@@ -20,11 +20,10 @@ import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
@@ -37,59 +36,25 @@ public class MapExistsTest {
     public ActivityTestRule<LandingPage> mActivityTestRule = new ActivityTestRule<>(LandingPage.class);
 
     @Test
-    public void mapExistsTest() {
-        //Create an Account
-        ViewInteraction appCompatButton = onView(allOf(withId(R.id.link_signup), withText("No account yet? Create one")));
-            appCompatButton.perform(click());
+    public void loginTest() {
+        //Click log in button
+        ViewInteraction appCompatButton3 = onView(allOf(withId(R.id.link_login)));
+        appCompatButton3.perform(click());
 
-        //Setting User Name
-        ViewInteraction appCompatEditText = onView(allOf(withId(R.id.name)));
-            appCompatEditText.perform(scrollTo(), replaceText("Sam Smith"), closeSoftKeyboard());
+        //Fill in username with sam@gmail.com
+        ViewInteraction appCompatEditText5 = onView(allOf(withId(R.id.username)));
+        appCompatEditText5.perform(replaceText("sam@gmail.com"), closeSoftKeyboard());
 
-        //Setting email
-        ViewInteraction appCompatEditText2 = onView(allOf(withId(R.id.email)));
-            appCompatEditText2.perform(scrollTo(), replaceText("sam@gmail.com"), closeSoftKeyboard());
+        //Fill in corresponding password
+        ViewInteraction appCompatEditText6 = onView(allOf(withId(R.id.password)));
+        appCompatEditText6.perform(replaceText("smith1"), closeSoftKeyboard());
 
-        //Setting Password
-        ViewInteraction appCompatEditText3 = onView(allOf(withId(R.id.password)));
-            appCompatEditText3.perform(scrollTo(), replaceText("smith1"), closeSoftKeyboard());
+        //Try log in
+        ViewInteraction appCompatEditText7 = onView(allOf(withId(R.id.password)));
+        appCompatEditText7.perform(pressImeActionButton());
 
-        //Setting Gender
-        ViewInteraction appCompatRadioButton = onView(allOf(withId(R.id.female), withText("Female")));
-            appCompatRadioButton.perform(scrollTo(), click());
-
-        //Creating Account
-        ViewInteraction appCompatButton2 = onView(allOf(withId(R.id.register), withText("Create My Account")));
-            appCompatButton2.perform(scrollTo(), click());
-
-        //Map Population!!!
-        ViewInteraction view = onView(
-                allOf(withContentDescription("Google Map"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.map),
-                                        0),
-                                0),
-                        isDisplayed()));
+        //Check that the main view comes up
+        ViewInteraction view = onView(allOf(withId(R.id.map)));
         view.check(matches(isDisplayed()));
-    }
-
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
-
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
     }
 }
