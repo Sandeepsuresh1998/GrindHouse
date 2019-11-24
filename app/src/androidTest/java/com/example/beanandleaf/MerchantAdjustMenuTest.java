@@ -4,6 +4,7 @@ package com.example.beanandleaf;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -47,8 +48,8 @@ public class MerchantAdjustMenuTest {
     @BeforeClass
     public static void setup() {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
-        if (!db.verifyUser("m@usc.ed", "hellll", "Merchant").contentEquals("NULL")) {
-            db.removeUser("m@usc.ed", "Merchant");
+        if (db.verifyUser("m@usc.ed", "hellll", "Merchant").contentEquals("NULL")) {
+            db.insertUser("Merchant A", "m@usc.ed", "hellll", "Merchant", "Male" );
         }
 
         Bitmap image = Bitmap.createBitmap(30, 40, Bitmap.Config.ARGB_8888);
@@ -70,113 +71,49 @@ public class MerchantAdjustMenuTest {
 
     @Test
     public void merchantAdjustMenuTest() {
+
+        DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.link_signup), withText("No account yet? Create one")));
+                allOf(withId(R.id.link_login), withText("Log In")));
         appCompatButton.perform(click());
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.name)));
-        appCompatEditText.perform(scrollTo(), replaceText("merchant a"), closeSoftKeyboard());
+                allOf(withId(R.id.username)));
+        appCompatEditText.perform(replaceText("m@usc.ed"));
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.email)));
-        appCompatEditText2.perform(scrollTo(), replaceText("m@usc.ed"), closeSoftKeyboard());
-
-        ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.password)));
-        appCompatEditText3.perform(scrollTo(), replaceText("hellll"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("hellll"));
+
 
         ViewInteraction appCompatRadioButton = onView(
                 allOf(withId(R.id.Merchant), withText("Merchant")));
-        appCompatRadioButton.perform(scrollTo(), click());
+        appCompatRadioButton.perform(click());
 
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.register), withText("Create My Account")));
-        appCompatButton2.perform(scrollTo(), click());
+                allOf(withId(R.id.login), withText("Sign in")));
+        appCompatButton2.perform(click());
 
-//        ViewInteraction bottomNavigationItemView = onView(
-//                allOf(withId(R.id.navigation_store), withContentDescription("Store")));
-//        bottomNavigationItemView.perform(click());
+        ViewInteraction bottomNavigationItemView = onView(
+                allOf(withId(R.id.navigation_store), withContentDescription("Store")));
+        bottomNavigationItemView.perform(click());
 
-//        ViewInteraction appCompatButton3 = onView(
-//                allOf(withId(R.id.add_store), withText("Add Store")));
-//        appCompatButton3.perform(scrollTo(), click());
-//
-//        ViewInteraction appCompatEditText4 = onView(
-//                allOf(withId(R.id.storename_edit)));
-//        appCompatEditText4.perform(scrollTo(), replaceText("Starbucks"), closeSoftKeyboard());
-//
-//        ViewInteraction appCompatEditText5 = onView(
-//                allOf(withId(R.id.location_lat_edit)));
-//        appCompatEditText5.perform(scrollTo(), replaceText("34.026410"), closeSoftKeyboard());
-//
-//        ViewInteraction appCompatEditText6 = onView(
-//                allOf(withId(R.id.location_long_edit)));
-//        appCompatEditText6.perform(scrollTo(), replaceText("-118.277470"), closeSoftKeyboard());
-//
-//        ViewInteraction appCompatButton4 = onView(
-//                allOf(withId(R.id.add_new_store), withText("Add New Store")));
-//        appCompatButton4.perform(scrollTo(), click());
-//
-//        ViewInteraction appCompatButton5 = onView(
-//                allOf(withId(R.id.uploadButton), withText("Upload Proof of Store Ownership")));
-//        appCompatButton5.perform(click());
-//
-//        ViewInteraction appCompatButton6 = onView(
-//                allOf(withId(R.id.submitButton), withText("Submit Store Verification")));
-//        appCompatButton6.perform(click());
-//
-//        ViewInteraction appCompatImageView = onView(
-//                allOf(withId(R.id.logout)));
-//        appCompatImageView.perform(click());
-//
-//        ViewInteraction appCompatButton7 = onView(
-//                allOf(withId(R.id.link_admin), withText("Admin Access")));
-//        appCompatButton7.perform(click());
-//
-//        ViewInteraction appCompatEditText7 = onView(
-//                allOf(withId(R.id.admin_password)));
-//        appCompatEditText7.perform(replaceText("Admin123!"), closeSoftKeyboard());
-//
-//        ViewInteraction appCompatButton8 = onView(
-//                allOf(withId(R.id.admin_login), withText("Sign in")));
-//        appCompatButton8.perform(click());
-//
-//        ViewInteraction appCompatButton9 = onView(
-//                allOf(withId(R.id.verify_store), withText("Verify Store")));
-//        appCompatButton9.perform(scrollTo(), click());
-//
-//        ViewInteraction appCompatImageView2 = onView(
-//                allOf(withId(R.id.admin_logout)));
-//        appCompatImageView2.perform(scrollTo(), click());
-//
-//        ViewInteraction appCompatButton10 = onView(
-//                allOf(withId(R.id.link_login), withText("Log In")));
-//        appCompatButton10.perform(click());
-//
-//        ViewInteraction appCompatEditText8 = onView(
-//                allOf(withId(R.id.username)));
-//        appCompatEditText8.perform(replaceText("m@usc.ed"), closeSoftKeyboard());
-//
-//        ViewInteraction appCompatEditText9 = onView(
-//                allOf(withId(R.id.password)));
-//        appCompatEditText9.perform(replaceText("hellll"), closeSoftKeyboard());
-//
-//        ViewInteraction appCompatRadioButton2 = onView(
-//                allOf(withId(R.id.Merchant), withText("Merchant")));
-//        appCompatRadioButton2.perform(click());
-//
-//        ViewInteraction appCompatButton11 = onView(
-//                allOf(withId(R.id.login), withText("Sign in")));
-//        appCompatButton11.perform(click());
+        ViewInteraction appCompatSpinner = onView(
+                allOf(withId(R.id.store_spinner)));
+        appCompatSpinner.perform(click());
+        onData(anything()).atPosition(1).perform(click());
 
+//        ViewInteraction appCompatSpinner = onView(
+//                allOf(withId(R.id.store_spinner)));
+//        appCompatSpinner.perform(click());
+//
 //        ViewInteraction bottomNavigationItemView2 = onView(
 //                allOf(withId(R.id.navigation_menu), withContentDescription("Menu")));
 //        bottomNavigationItemView2.perform(click());
-//
+
 //        ViewInteraction appCompatButton12 = onView(
 //                allOf(withId(R.id.add_menu_item_button), withText("Add Menu Item")));
-//        appCompatButton12.perform(scrollTo(), click());
+//        appCompatButton12.perform(click());
 //
 //        ViewInteraction appCompatEditText10 = onView(
 //                allOf(withId(R.id.item_name_edit)));
@@ -370,23 +307,6 @@ public class MerchantAdjustMenuTest {
 //        bottomNavigationItemView5.perform(click());
 //    }
 
-//    private static Matcher<View> childAtPosition(
-//            final Matcher<View> parentMatcher, final int position) {
-//
-//        return new TypeSafeMatcher<View>() {
-//            @Override
-//            public void describeTo(Description description) {
-//                description.appendText("Child at position " + position + " in parent ");
-//                parentMatcher.describeTo(description);
-//            }
-//
-//            @Override
-//            public boolean matchesSafely(View view) {
-//                ViewParent parent = view.getParent();
-//                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-//                        && view.equals(((ViewGroup) parent).getChildAt(position));
-//            }
-//        };
-//    }
+
     }
 }
