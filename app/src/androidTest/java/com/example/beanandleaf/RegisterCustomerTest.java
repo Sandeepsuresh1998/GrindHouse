@@ -39,21 +39,28 @@ public class RegisterCustomerTest {
 
     @Test
     public void RegistrationProfileTest() {
-        //Click log in button
-        ViewInteraction appCompatButton3 = onView(allOf(withId(R.id.link_login)));
-        appCompatButton3.perform(click());
+        ViewInteraction appCompatButton = onView(allOf(withId(R.id.link_signup)));
+        appCompatButton.perform(click());
 
-        //Fill in username with sam@gmail.com
-        ViewInteraction appCompatEditText5 = onView(allOf(withId(R.id.username)));
-        appCompatEditText5.perform(replaceText("sam@gmail.com"), closeSoftKeyboard());
+        //Fill in Sam Smith
+        ViewInteraction appCompatEditText = onView(allOf(withId(R.id.name)));
+        appCompatEditText.perform(scrollTo(), replaceText("Sam Smith"), closeSoftKeyboard());
 
-        //Fill in corresponding password
-        ViewInteraction appCompatEditText6 = onView(allOf(withId(R.id.password)));
-        appCompatEditText6.perform(replaceText("smith1"), closeSoftKeyboard());
+        //Fill in sam@gmail.com
+        ViewInteraction appCompatEditText2 = onView(allOf(withId(R.id.email)));
+        appCompatEditText2.perform(scrollTo(), replaceText("sam@gmail.com"), closeSoftKeyboard());
 
-        //Try log in
-        ViewInteraction appCompatEditText7 = onView(allOf(withId(R.id.password)));
-        appCompatEditText7.perform(pressImeActionButton());
+        //Fill in password
+        ViewInteraction appCompatEditText3 = onView(allOf(withId(R.id.password)));
+        appCompatEditText3.perform(scrollTo(), replaceText("smith1"), closeSoftKeyboard());
+
+        //Click done to get rid of keyboard
+        ViewInteraction appCompatEditText4 = onView(allOf(withId(R.id.password)));
+        appCompatEditText4.perform(pressImeActionButton());
+
+        //Register account
+        ViewInteraction appCompatButton2 = onView(allOf(withId(R.id.register)));
+        appCompatButton2.perform(scrollTo(), click());
 
         //Nav to profile tab
         ViewInteraction bottomNavigationItemView = onView(allOf(withId(R.id.navigation_profile), withContentDescription("Profile")));
