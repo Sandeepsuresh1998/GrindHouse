@@ -60,7 +60,6 @@ public class CustomerHistory extends SimpleFragment {
         final ArrayList<Order> allOrders = db.getUserOrders(userId);
         final ArrayList<Order> dayOrders = getOrdersInPeriod(allOrders, timePeriod1);
         final ArrayList<Order> weekOrders = getOrdersInPeriod(allOrders, timePeriod2);
-
 //      ***************** TOP ROW STATISTICS ****************
 
         final Spinner timeSpinner = v.findViewById(R.id.time_period_spinner);

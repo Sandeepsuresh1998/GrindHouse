@@ -4,29 +4,32 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import database.DatabaseHelper;
-
-import static org.junit.Assert.*;
 import model.Store;
 
-public class RecommendationsTest {
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.beanandleaf", appContext.getPackageName());
+import static org.junit.Assert.*;
 
+public class RecommendationsTest {
+    @Before
+    public void setup() {
+        DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        if (db.verifyUser("sam@gmail.com","smith1","Customer").contentEquals("NULL")) {
+            db.insertUser("Sam Smith", "sam@gmail.com", "smith1", "Customer", "Male");
+        }
     }
+
 
     @Test //Check whether adding an order updates caffiene
     public void checkCaffeineLevels() {
 
+        /* moved to setup and using same info as other tests
         //Connect to database
-        final DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         db.removeUser("testemail@gmail.com", "Customer"); //Used to reset info
 
         ArrayList<Store> stores = db.getStores();
@@ -41,6 +44,7 @@ public class RecommendationsTest {
         int userId = db.getUserId("testemail@gmail.com", "Customer");
 
         System.out.println(userId);
+        */
 
         //Add orders
 //
