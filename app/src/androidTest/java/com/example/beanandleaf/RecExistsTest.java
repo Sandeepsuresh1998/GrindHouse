@@ -15,7 +15,6 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,7 +37,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class RegisterCustomerTest {
+public class RecExistsTest {
 
     @BeforeClass
     public static void setup() {
@@ -59,7 +58,8 @@ public class RegisterCustomerTest {
     public ActivityTestRule<LandingPage> mActivityTestRule = new ActivityTestRule<>(LandingPage.class);
 
     @Test
-    public void RegistrationProfileTest() {
+    public void recExistsTest() {
+
         ViewInteraction appCompatButton = onView(allOf(withId(R.id.link_signup)));
         appCompatButton.perform(click());
 
@@ -83,29 +83,38 @@ public class RegisterCustomerTest {
         ViewInteraction appCompatButton2 = onView(allOf(withId(R.id.register)));
         appCompatButton2.perform(scrollTo(), click());
 
-        //Nav to profile tab
-        ViewInteraction bottomNavigationItemView = onView(allOf(withId(R.id.navigation_profile), withContentDescription("Profile")));
+
+        ViewInteraction bottomNavigationItemView = onView(
+                allOf(withId(R.id.navigation_recommendations), withContentDescription("Recs")));
         bottomNavigationItemView.perform(click());
 
-        //Check that the right name shows up
-        ViewInteraction editText = onView(
-                allOf(withId(R.id.name_edit)));
-        editText.check(matches(withText("Sam Smith")));
+        ViewInteraction view = onView(
+                allOf(withContentDescription("Google Map"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.mapRec),
+                                        0),
+                                0),
+                        isDisplayed()));
+        view.check(matches(isDisplayed()));
+    }
 
-        //Check right email shows up
-        ViewInteraction editText2 = onView(
-                allOf(withId(R.id.email_edit)));
-        editText2.check(matches(withText("sam@gmail.com")));
+    private static Matcher<View> childAtPosition(
+            final Matcher<View> parentMatcher, final int position) {
 
-        //Check you have option to update profile
-        ViewInteraction button = onView(
-                allOf(withId(R.id.update_profile)));
-        button.check(matches(isDisplayed()));
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Child at position " + position + " in parent ");
+                parentMatcher.describeTo(description);
+            }
 
-        //Check you have option to change password
-        ViewInteraction button2 = onView(
-                allOf(withId(R.id.change_password)));
-        button2.check(matches(isDisplayed()));
-
+            @Override
+            public boolean matchesSafely(View view) {
+                ViewParent parent = view.getParent();
+                return parent instanceof ViewGroup && parentMatcher.matches(parent)
+                        && view.equals(((ViewGroup) parent).getChildAt(position));
+            }
+        };
     }
 }

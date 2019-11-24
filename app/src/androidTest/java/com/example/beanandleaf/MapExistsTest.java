@@ -14,7 +14,9 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,16 +35,23 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
+// Ethan will finish this
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MapExistsTest {
 
-    @Before
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
-        if (db.verifyUser("sam@gmail.com","smith1","Customer").contentEquals("NULL")) {
-            db.insertUser("Sam Smith", "sam@gmail.com", "smith1", "Customer", "Male");
+        if (!db.verifyUser("sam@gmail.com","smith1","Customer").contentEquals("NULL")) {
+            db.removeUser("sam@gmail.com",  "Customer");
         }
+    }
+
+    @AfterClass
+    public static void breakdown() {
+        DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        db.removeUser("sam@gmail.com","Customer");
     }
 
     @Rule
