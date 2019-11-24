@@ -286,8 +286,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put("isVerified",0);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        if(photo != null) {
+            photo.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        }
         cv.put("VerifPic", outputStream.toByteArray());
+
 
         long result = db.insert("Stores", null, cv);
         if (result == -1) {
@@ -318,6 +321,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
         }
         return store;
+    }
+
+    //Note: Should probably have more checks bc of Stores with the same name
+    public int getStoreId(String storeName) {
+        String whereClause = "SELECT StoreID FROM Stores WHERE StoreName=?";
+        String whereArgs[] = {storeName};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getInt(0);
+        }
+        return -1;
+
     }
 
     public String getStoreName(Integer itemID) {
@@ -409,6 +425,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     res.getString(7)));
         }
         return menu;
+    }
+
+    public int getMenuItemId(Integer storeID, String name, String size) {
+        String whereClause = "SELECT MenuItemID FROM MenuItems WHERE StoreID=? AND ItemName=? AND Size=?";
+        String whereArgs[] = {Integer.toString(storeID), name, size};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getInt(0);
+        }
+        return -1;
+
     }
 
     public MenuItem getMenuItem(Integer storeID, String name, String size) {
