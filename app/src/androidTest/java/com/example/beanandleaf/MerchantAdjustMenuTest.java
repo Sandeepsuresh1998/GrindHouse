@@ -21,6 +21,7 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
@@ -52,11 +53,16 @@ public class MerchantAdjustMenuTest {
             db.insertUser("Merchant A", "m@usc.ed", "hellll", "Merchant", "Male" );
         }
 
+        int userId = db.getUserId("m@usc.ed", "Merchant");
         Bitmap image = Bitmap.createBitmap(30, 40, Bitmap.Config.ARGB_8888);
-        db.insertStore(1, (float) 34.024120, (float) -118.278170, "Starbucks", image);
-        db.updateStoreVerification(1);
-        db.insertStore(1, (float) 34.026550, (float) -118.285300, "Dulce", image);
-        db.updateStoreVerification(2);
+        //Inserting starbucks
+        db.insertStore(userId, (float) 34.024120, (float) -118.278170, "Starbucks1", image);
+        int starbucksId = db.getStoreId("Starbucks1");
+        db.updateStoreVerification(starbucksId);
+        //Inserting and verifying dulce1
+        db.insertStore(userId, (float) 34.026550, (float) -118.285300, "Dulce1", image);
+        int dulceId = db.getStoreId("Dulce1");
+        db.updateStoreVerification(dulceId);
     }
 
     @AfterClass
@@ -67,7 +73,6 @@ public class MerchantAdjustMenuTest {
 
     @Rule
     public ActivityTestRule<LandingPage> mActivityTestRule = new ActivityTestRule<>(LandingPage.class);
-
 
     @Test
     public void merchantAdjustMenuTest() {
