@@ -1,11 +1,19 @@
 package com.example.beanandleaf;
 
 
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.ImageView;
 
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
@@ -18,9 +26,15 @@ import org.hamcrest.TypeSafeMatcher;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import database.DatabaseHelper;
 
@@ -45,7 +59,7 @@ public class MerchantAddStoreTest {
     @BeforeClass
     public static void setup() {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
-        if (db.verifyUser("m@gmail.com","merchant","Merchant").contentEquals("NULL")) {
+        if (!db.verifyUser("m@gmail.com","merchant","Merchant").contentEquals("NULL")) {
             db.removeUser("m@gmail.com", "Merchant");
         }
     }
@@ -55,7 +69,6 @@ public class MerchantAddStoreTest {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         db.removeUser("m@gmail.com","Merchant");
     }
-
 
     @Rule
     public ActivityTestRule<LandingPage> mActivityTestRule = new ActivityTestRule<>(LandingPage.class);
@@ -144,9 +157,6 @@ public class MerchantAddStoreTest {
                 allOf(withId(R.id.uploadButton), withText("Upload Proof of Store Ownership")));
         appCompatButton5.perform(click());
 
-        ViewInteraction appCompatButton6 = onView(
-                allOf(withId(R.id.submitButton), withText("Submit Store Verification")));
-        appCompatButton6.perform(click());
 
     }
 
@@ -168,4 +178,7 @@ public class MerchantAddStoreTest {
             }
         };
     }
+
+
+
 }

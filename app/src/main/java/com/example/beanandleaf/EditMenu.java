@@ -125,6 +125,7 @@ public class EditMenu extends Fragment {
                 editItemButton.setTag(R.id.itemSize1, cur.getSize());
                 if (otherSizes == 1) {
                     editItemButton.setTag(R.id.itemSize2, otherSize1);
+                    editItemButton.setId(i+100);
                 }
                 else if (otherSizes == 2) {
                     editItemButton.setTag(R.id.itemSize2, otherSize1);
@@ -153,6 +154,7 @@ public class EditMenu extends Fragment {
                 deleteItemButton.setTag(R.id.itemSize1, cur.getSize());
                 if (otherSizes == 1) {
                     deleteItemButton.setTag(R.id.itemSize2, otherSize1);
+                    deleteItemButton.setId(i + 1);
                 }
                 else if (otherSizes == 2) {
                     deleteItemButton.setTag(R.id.itemSize2, otherSize1);
