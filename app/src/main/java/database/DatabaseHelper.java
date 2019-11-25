@@ -420,6 +420,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public boolean removeOrders(Integer userId) {
+        String whereClause = "UserID=?";
+        String whereArgs[] = {userId.toString()};
+        long result = db.delete("Orders", whereClause, whereArgs);
+        if (result > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public boolean removeStores(Integer userId) {
         String whereClause = "UserID=?";
         String whereArgs[] = {userId.toString()};
