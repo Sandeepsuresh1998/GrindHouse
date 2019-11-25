@@ -5,8 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ValidCoordinatesTest {
-
+public class ValidCoordinateTest {
     @Test
     public void testValidCoordinates() {
         AddStore asObj = new AddStore();
