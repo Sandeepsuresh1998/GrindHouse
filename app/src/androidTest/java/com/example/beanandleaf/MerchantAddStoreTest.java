@@ -152,10 +152,6 @@ public class MerchantAddStoreTest {
                 allOf(withId(R.id.add_new_store), withText("Add New Store")));
         appCompatButton4.perform(scrollTo(), click());
 
-        ViewInteraction appCompatButton5 = onView(
-                allOf(withId(R.id.uploadButton), withText("Upload Proof of Store Ownership")));
-        appCompatButton5.perform(click());
-
 
     }
 

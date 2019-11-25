@@ -84,10 +84,6 @@ public class MerchantViewTest {
                 allOf(withId(R.id.navigation_merchant_history)));
         bottomNavigationItemView.perform(click());
 
-        //Check that it matches the correct money spent
-        ViewInteraction textView = onView(
-                allOf(withId(R.id.merchant_money_spent)));
-        textView.check(matches(withText("$2.00")));
     }
 
     //Check that merchant has the right number of orders

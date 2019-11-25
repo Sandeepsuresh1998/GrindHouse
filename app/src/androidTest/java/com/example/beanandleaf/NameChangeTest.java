@@ -101,6 +101,7 @@ public class NameChangeTest {
         //Check if name is changed permanently
         ViewInteraction editText = onView(allOf(withId(R.id.name_edit)));
         editText.check(matches(withText("Sam Suresh")));
+
     }
 
     private static Matcher<View> childAtPosition(
