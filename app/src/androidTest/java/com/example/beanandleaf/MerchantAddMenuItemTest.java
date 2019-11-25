@@ -26,7 +26,9 @@ import database.DatabaseHelper;
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -116,49 +118,48 @@ public class MerchantAddMenuItemTest {
 
         ViewInteraction appCompatEditText10 = onView(
                 allOf(withId(R.id.item_name_edit)));
-        appCompatEditText10.perform(replaceText("Matcha"));
+        appCompatEditText10.perform(scrollTo(), replaceText("Matcha"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText11 = onView(
                 allOf(withId(R.id.caffeine_small_edit)));
-        appCompatEditText11.perform(replaceText("100"));
+        appCompatEditText11.perform(scrollTo(),replaceText("100"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText12 = onView(
                 allOf(withId(R.id.caffeine_medium_edit)));
-        appCompatEditText12.perform(replaceText("150"));
+        appCompatEditText12.perform(scrollTo(),replaceText("150"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText13 = onView(
                 allOf(withId(R.id.caffeine_large_edit)));
-        appCompatEditText13.perform(replaceText("200"));
+        appCompatEditText13.perform(scrollTo(),replaceText("200"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText14 = onView(
                 allOf(withId(R.id.price_small_edit)));
-        appCompatEditText14.perform(replaceText("4"));
+        appCompatEditText14.perform(scrollTo(),replaceText("4"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText15 = onView(
                 allOf(withId(R.id.price_medium_edit)));
-        appCompatEditText15.perform(replaceText("4.50"));
+        appCompatEditText15.perform(scrollTo(),replaceText("4.50"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText16 = onView(
                 allOf(withId(R.id.price_large_edit)));
-        appCompatEditText16.perform(replaceText("5"));
+        appCompatEditText16.perform(scrollTo(),replaceText("5"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText17 = onView(
                 allOf(withId(R.id.calories_for_small_edit)));
-        appCompatEditText17.perform( replaceText("120"));
+        appCompatEditText17.perform(scrollTo(), replaceText("120"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText18 = onView(
                 allOf(withId(R.id.calories_for_medium_edit)));
-        appCompatEditText18.perform(replaceText("170"));
+        appCompatEditText18.perform(scrollTo(),replaceText("170"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText19 = onView(
                 allOf(withId(R.id.calories_for_large_edit)));
-        appCompatEditText18.perform(replaceText("220"));
+        appCompatEditText18.perform(scrollTo(),replaceText("220"), closeSoftKeyboard());
 
-        ViewInteraction appCompatButton14 = onView(
+        ViewInteraction appCompatButton13 = onView(
                 allOf(withId(R.id.add_item_button), withText("Add Menu Item")));
-        appCompatButton14.perform(click());
-
-
+        appCompatButton13.perform(scrollTo(),click(), closeSoftKeyboard());
+        
     }
 
 //    private static Matcher<View> childAtPosition(
