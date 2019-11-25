@@ -86,7 +86,9 @@ public class EditMenu extends Fragment {
                 row.setGravity(Gravity.CENTER);
                 row.setLayoutParams(lp);
                 Button editItemButton = new Button(getActivity());
+                editItemButton.setId(R.id.EditB);
                 Button deleteItemButton = new Button(getActivity());
+                deleteItemButton.setId(R.id.DeleteB);
                 TextView itemNameView = new TextView(getActivity());
                 TextView descriptionView = new TextView(getActivity());
                 itemNameView.setText("\n" + menu.get(i).getName() + "\n");
@@ -125,7 +127,7 @@ public class EditMenu extends Fragment {
                 editItemButton.setTag(R.id.itemSize1, cur.getSize());
                 if (otherSizes == 1) {
                     editItemButton.setTag(R.id.itemSize2, otherSize1);
-                    editItemButton.setId(i+100);
+                    editItemButton.setId(R.id.EditB);
                 }
                 else if (otherSizes == 2) {
                     editItemButton.setTag(R.id.itemSize2, otherSize1);
@@ -154,7 +156,7 @@ public class EditMenu extends Fragment {
                 deleteItemButton.setTag(R.id.itemSize1, cur.getSize());
                 if (otherSizes == 1) {
                     deleteItemButton.setTag(R.id.itemSize2, otherSize1);
-                    deleteItemButton.setId(i + 1);
+                    deleteItemButton.setId(R.id.DeleteB);
                 }
                 else if (otherSizes == 2) {
                     deleteItemButton.setTag(R.id.itemSize2, otherSize1);
@@ -221,5 +223,7 @@ public class EditMenu extends Fragment {
                 table.addView(row);
             }
         }
+
+
     }
 }
