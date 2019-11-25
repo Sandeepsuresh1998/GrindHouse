@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class EditMenuTest {
+public class EditMenuUnitTest {
     @Test
     public void sizeTests() {
         EditMenuItem emi = new EditMenuItem(1, "Coffee", "Small", "Medium", "Large");
