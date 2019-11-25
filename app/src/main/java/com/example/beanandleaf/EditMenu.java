@@ -125,9 +125,9 @@ public class EditMenu extends Fragment {
                 TableRow.LayoutParams paramsEditButton = new TableRow.LayoutParams(0);
                 editItemButton.setTag(R.id.itemName, cur.getName());
                 editItemButton.setTag(R.id.itemSize1, cur.getSize());
+                editItemButton.setId(1001 + i);
                 if (otherSizes == 1) {
                     editItemButton.setTag(R.id.itemSize2, otherSize1);
-                    editItemButton.setId(R.id.EditB);
                 }
                 else if (otherSizes == 2) {
                     editItemButton.setTag(R.id.itemSize2, otherSize1);
@@ -154,9 +154,9 @@ public class EditMenu extends Fragment {
                 TableRow.LayoutParams paramsDeleteButton = new TableRow.LayoutParams(3);
                 deleteItemButton.setTag(R.id.itemName, cur.getName());
                 deleteItemButton.setTag(R.id.itemSize1, cur.getSize());
+                deleteItemButton.setId(101 + i);
                 if (otherSizes == 1) {
                     deleteItemButton.setTag(R.id.itemSize2, otherSize1);
-                    deleteItemButton.setId(R.id.DeleteB);
                 }
                 else if (otherSizes == 2) {
                     deleteItemButton.setTag(R.id.itemSize2, otherSize1);

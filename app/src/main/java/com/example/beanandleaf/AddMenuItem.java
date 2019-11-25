@@ -34,7 +34,7 @@ public class AddMenuItem extends Fragment {
         final TextView priceSmallEdit = view.findViewById(R.id.price_small_edit);
         final TextView priceMediumEdit = view.findViewById(R.id.price_medium_edit);
         final TextView priceLargeEdit = view.findViewById(R.id.price_large_edit);
-        final Button addItemButton = view.findViewById(R.id.add_item_button);
+        final Button addItemButton = view.findViewById(R.id.add_item);
 
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,7 +176,7 @@ public class AddMenuItem extends Fragment {
         });
     }
 
-    private boolean isValidDouble(String s) {
+    public boolean isValidDouble(String s) {
         String regex = "[0-9]*\\.?[0-9]+";
         String[] split = s.split("\\.");
         if (split.length == 1) {
@@ -187,7 +187,7 @@ public class AddMenuItem extends Fragment {
         return s.matches(regex) && split[1].length() <= 2;
     }
 
-    private boolean isValidInteger(String s) {
+    public boolean isValidInteger(String s) {
         String regex = "\\d+";
         return s.matches(regex) && s.length() <= 3;
     }
