@@ -56,6 +56,7 @@ public class MerchantEditMenuItemTest {
 
     @AfterClass
     public static void breakdown() {
+
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         db.removeUser("m@usc.ed", "Merchant");
     }
