@@ -176,7 +176,7 @@ public class AddMenuItem extends Fragment {
         });
     }
 
-    private boolean isValidDouble(String s) {
+    public boolean isValidDouble(String s) {
         String regex = "[0-9]*\\.?[0-9]+";
         String[] split = s.split("\\.");
         if (split.length == 1) {
@@ -187,7 +187,7 @@ public class AddMenuItem extends Fragment {
         return s.matches(regex) && split[1].length() <= 2;
     }
 
-    private boolean isValidInteger(String s) {
+    public boolean isValidInteger(String s) {
         String regex = "\\d+";
         return s.matches(regex) && s.length() <= 3;
     }
