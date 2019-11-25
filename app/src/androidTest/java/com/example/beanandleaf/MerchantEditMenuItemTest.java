@@ -3,6 +3,7 @@ package com.example.beanandleaf;
 
 import android.graphics.Bitmap;
 
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -148,6 +149,16 @@ public class MerchantEditMenuItemTest {
                 allOf(withId(R.id.calories_for_large_edit)));
         appCompatEditText19.perform(scrollTo(),replaceText("220"), closeSoftKeyboard());
 
+        
+        try{
+            ViewInteraction appCompatButton13 = onView(
+                    allOf(withId(R.id.add_item_button)));
+            appCompatButton13.perform(scrollTo(), click(), closeSoftKeyboard());
+        }
+        catch (NoMatchingViewException x)
+        {
+            System.out.println("Expected No Matching View Exception");
+        }
         ViewInteraction appCompatButton13 = onView( allOf(withId(R.id.add_item)));
         appCompatButton13.perform(scrollTo(),click(), closeSoftKeyboard());
 
