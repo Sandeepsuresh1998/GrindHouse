@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -39,7 +38,7 @@ import static org.hamcrest.Matchers.anything;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MerchantAddMenuItemTest {
+public class MerchantEditMenuItemTest {
 
     @BeforeClass
     public static void setup() {
@@ -72,7 +71,6 @@ public class MerchantAddMenuItemTest {
 
     @Test
     public void merchantEditMenuItemTest() {
-
         //Log In
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.link_login), withText("Log In")));
@@ -157,17 +155,28 @@ public class MerchantAddMenuItemTest {
                 allOf(withId(R.id.calories_for_large_edit)));
         appCompatEditText19.perform(scrollTo(),replaceText("220"), closeSoftKeyboard());
 
-        try{
-            ViewInteraction appCompatButton13 = onView(
-                    allOf(withId(R.id.add_item_button)));
-            appCompatButton13.perform(scrollTo(), click(), closeSoftKeyboard());
-        }
-        catch (NoMatchingViewException x)
-        {
-            System.out.println("Expected No Matching View Exception");
-        }
+        ViewInteraction appCompatButton13 = onView(
+                allOf(withId(R.id.add_item_button), withText("Add Menu Item")));
+        appCompatButton13.perform(scrollTo(),click(), closeSoftKeyboard());
 
-
+        //ID ONE
+//        ViewInteraction button2 = onView(withId(R.id.EditB));
+//                button2.perform(click());
+//
+//        ViewInteraction appCompatEditText20 = onView(
+//                allOf(withId(R.id.menu_price_small_edit), withText("4.00")));
+//        appCompatEditText20.perform(scrollTo(), replaceText("4.20"));
+//
+//        ViewInteraction appCompatEditText21 = onView(
+//                allOf(withId(R.id.menu_price_small_edit), withText("4.20")));
+//        appCompatEditText21.perform(closeSoftKeyboard());
+//
+//        ViewInteraction appCompatButton14 = onView(
+//                allOf(withId(R.id.update_item_button), withText("Update Menu Item")));
+//        appCompatButton14.perform(scrollTo(), click());
+//
+        //IDK ABOUT THIS
+        //ViewInteraction button2 = onView(withId(1)).perform(click());
 
     }
 
