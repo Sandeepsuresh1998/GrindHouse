@@ -407,7 +407,10 @@ public class EditMenuItem extends Fragment {
         return s.matches(regex) && s.length() <= 3;
     }
 
-    private boolean checkSizes(String size) {
+    public boolean checkSizes(String size) {
+        if(size == null) {
+            return false;
+        }
         if (size1.contentEquals(size)) {
             return true;
         }
