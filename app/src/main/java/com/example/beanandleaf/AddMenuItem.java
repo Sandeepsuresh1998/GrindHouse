@@ -34,7 +34,7 @@ public class AddMenuItem extends Fragment {
         final TextView priceSmallEdit = view.findViewById(R.id.price_small_edit);
         final TextView priceMediumEdit = view.findViewById(R.id.price_medium_edit);
         final TextView priceLargeEdit = view.findViewById(R.id.price_large_edit);
-        final Button addItemButton = view.findViewById(R.id.add_item_button);
+        final Button addItemButton = view.findViewById(R.id.add_item);
 
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override

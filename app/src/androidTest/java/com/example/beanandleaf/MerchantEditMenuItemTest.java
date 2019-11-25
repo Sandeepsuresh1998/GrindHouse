@@ -2,9 +2,6 @@ package com.example.beanandleaf;
 
 
 import android.graphics.Bitmap;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
@@ -12,9 +9,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -29,7 +23,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -112,7 +105,7 @@ public class MerchantEditMenuItemTest {
         bottomNavigationItemView2.perform(click());
 
         ViewInteraction appCompatButton12 = onView(
-                allOf(withId(R.id.add_menu_item_button), withText("Add Menu Item")));
+                allOf(withId(R.id.add_menu_item_button)));
         appCompatButton12.perform(click());
 
         ViewInteraction appCompatEditText10 = onView(
@@ -155,28 +148,24 @@ public class MerchantEditMenuItemTest {
                 allOf(withId(R.id.calories_for_large_edit)));
         appCompatEditText19.perform(scrollTo(),replaceText("220"), closeSoftKeyboard());
 
-        ViewInteraction appCompatButton13 = onView(
-                allOf(withId(R.id.add_item_button), withText("Add Menu Item")));
+        ViewInteraction appCompatButton13 = onView( allOf(withId(R.id.add_item)));
         appCompatButton13.perform(scrollTo(),click(), closeSoftKeyboard());
 
-        //ID ONE
-//        ViewInteraction button2 = onView(withId(R.id.EditB));
-//                button2.perform(click());
-//
-//        ViewInteraction appCompatEditText20 = onView(
-//                allOf(withId(R.id.menu_price_small_edit), withText("4.00")));
-//        appCompatEditText20.perform(scrollTo(), replaceText("4.20"));
-//
-//        ViewInteraction appCompatEditText21 = onView(
-//                allOf(withId(R.id.menu_price_small_edit), withText("4.20")));
-//        appCompatEditText21.perform(closeSoftKeyboard());
-//
-//        ViewInteraction appCompatButton14 = onView(
-//                allOf(withId(R.id.update_item_button), withText("Update Menu Item")));
-//        appCompatButton14.perform(scrollTo(), click());
-//
-        //IDK ABOUT THIS
-        //ViewInteraction button2 = onView(withId(1)).perform(click());
+        ViewInteraction button2 = onView(withId(1001));
+                button2.perform(click());
+
+        ViewInteraction appCompatEditText20 = onView(
+                allOf(withId(R.id.menu_price_small_edit), withText("4.00")));
+        appCompatEditText20.perform(scrollTo(), replaceText("4.20"));
+
+        ViewInteraction appCompatEditText21 = onView(
+                allOf(withId(R.id.menu_price_small_edit), withText("4.20")));
+        appCompatEditText21.perform(closeSoftKeyboard());
+
+        ViewInteraction appCompatButton14 = onView(
+                allOf(withId(R.id.update_item_button), withText("Update Menu Item")));
+        appCompatButton14.perform(scrollTo(), click());
+
 
     }
 

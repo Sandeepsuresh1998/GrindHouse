@@ -249,7 +249,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/add_item_button"
+            android:id="@+id/add_item"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
@@ -257,7 +257,7 @@
             android:background="@drawable/green_round_button"
             android:enabled="true"
             android:fontFamily="@font/amatic_regular"
-            android:text="@string/add_menu_item"
+            android:text="Add Menu Item"
             android:textColor="@color/white"
             android:textSize="18dp"
             android:textStyle="bold" />

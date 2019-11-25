@@ -101,10 +101,10 @@ public class MapExistsTest {
     }
 
     @Test
-    public void oneMarkerTest() throws InterruptedException {
+    public void oneMarkerTest() {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         int userID = db.getUserId("m@gmail.com", "Merchant");
-        Bitmap icon = BitmapFactory.decodeResource(InstrumentationRegistry.getInstrumentation().getContext().getResources(), R.drawable.green_round_button);
+        Bitmap icon = BitmapFactory.decodeFile("logo-web.png");
         db.insertStore(userID, 34.024120F, -118.278170F, "Starbucks", icon);
         ArrayList<Store> stores = db.getStores(userID);
         Store store = stores.get(stores.size() - 1);
@@ -143,7 +143,5 @@ public class MapExistsTest {
         //Check that the main view comes up
         ViewInteraction view = onView(allOf(withId(R.id.map)));
         view.check(matches(isDisplayed()));
-
-        TimeUnit.SECONDS.sleep(5);
     }
 }
