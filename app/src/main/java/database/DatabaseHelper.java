@@ -406,7 +406,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else{
             return false;
         }
+    }
 
+    public boolean removeStores(Integer userId) {
+        String whereClause = "UserID=?";
+        String whereArgs[] = {userId.toString()};
+        long result = db.delete("Stores", whereClause, whereArgs);
+        if (result > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public ArrayList<MenuItem> getMenu(Integer storeId) {
