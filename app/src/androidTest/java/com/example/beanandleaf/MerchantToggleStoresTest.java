@@ -44,7 +44,7 @@ import static org.hamcrest.Matchers.anything;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class MerchantAdjustMenuTest {
+public class MerchantToggleStoresTest {
 
     @BeforeClass
     public static void setup() {
@@ -58,6 +58,7 @@ public class MerchantAdjustMenuTest {
         //Inserting starbucks
         db.insertStore(userId, (float) 34.024120, (float) -118.278170, "Starbucks1", image);
         int starbucksId = db.getStoreId("Starbucks1");
+
         db.updateStoreVerification(starbucksId);
         //Inserting and verifying dulce1
         db.insertStore(userId, (float) 34.026550, (float) -118.285300, "Dulce1", image);
@@ -108,18 +109,7 @@ public class MerchantAdjustMenuTest {
         appCompatSpinner.perform(click());
         onData(anything()).atPosition(1).perform(click());
 
-//        ViewInteraction appCompatSpinner = onView(
-//                allOf(withId(R.id.store_spinner)));
-//        appCompatSpinner.perform(click());
-//
-//        ViewInteraction bottomNavigationItemView2 = onView(
-//                allOf(withId(R.id.navigation_menu), withContentDescription("Menu")));
-//        bottomNavigationItemView2.perform(click());
 
-//        ViewInteraction appCompatButton12 = onView(
-//                allOf(withId(R.id.add_menu_item_button), withText("Add Menu Item")));
-//        appCompatButton12.perform(click());
-//
 //        ViewInteraction appCompatEditText10 = onView(
 //                allOf(withId(R.id.item_name_edit)));
 //        appCompatEditText10.perform(scrollTo(), replaceText("Matcha"), closeSoftKeyboard());
