@@ -2,6 +2,7 @@ package com.example.beanandleaf;
 
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
@@ -42,14 +43,14 @@ public class MerchantEditMenuItemTest {
         }
 
         int userId = db.getUserId("m@usc.ed", "Merchant");
-        Bitmap image = Bitmap.createBitmap(30, 40, Bitmap.Config.ARGB_8888);
+        //Bitmap image = Bitmap.createBitmap(30, 40, Bitmap.Config.ARGB_8888);
         //Inserting starbucks
-        db.insertStore(userId, (float) 34.024120, (float) -118.278170, "Starbucks1", image);
+        db.insertStore(userId, (float) 34.024120, (float) -118.278170, "Starbucks1", BitmapFactory.decodeFile("logo-web.png"));
         int starbucksId = db.getStoreId("Starbucks1");
 
         db.updateStoreVerification(starbucksId);
         //Inserting and verifying dulce1
-        db.insertStore(userId, (float) 34.026550, (float) -118.285300, "Dulce1", image);
+        db.insertStore(userId, (float) 34.026550, (float) -118.285300, "Dulce1", BitmapFactory.decodeFile("logo-web.png"));
         int dulceId = db.getStoreId("Dulce1");
         db.updateStoreVerification(dulceId);
     }
