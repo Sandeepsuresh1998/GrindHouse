@@ -56,6 +56,7 @@ public class MerchantEditMenuItemTest {
 
     @AfterClass
     public static void breakdown() {
+
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         db.removeUser("m@usc.ed", "Merchant");
     }
@@ -149,33 +150,31 @@ public class MerchantEditMenuItemTest {
                 allOf(withId(R.id.calories_for_large_edit)));
         appCompatEditText19.perform(scrollTo(),replaceText("220"), closeSoftKeyboard());
 
-        
+
         try{
             ViewInteraction appCompatButton13 = onView(
-                    allOf(withId(R.id.add_item_button)));
+                    allOf(withId(R.id.add_item)));
             appCompatButton13.perform(scrollTo(), click(), closeSoftKeyboard());
         }
         catch (NoMatchingViewException x)
         {
             System.out.println("Expected No Matching View Exception");
         }
-        ViewInteraction appCompatButton13 = onView( allOf(withId(R.id.add_item)));
-        appCompatButton13.perform(scrollTo(),click(), closeSoftKeyboard());
 
-        ViewInteraction button2 = onView(withId(1001));
-                button2.perform(click());
 
-        ViewInteraction appCompatEditText20 = onView(
-                allOf(withId(R.id.menu_price_small_edit), withText("4.00")));
-        appCompatEditText20.perform(scrollTo(), replaceText("4.20"));
+        DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        int dulceId = db.getStoreId("Dulce1");
+        int itemID = db.getMenuItemId(dulceId, "Matcha", "small");
+        db.updateMenuItem(itemID, "Matcha", "0", "0", "0");
 
-        ViewInteraction appCompatEditText21 = onView(
-                allOf(withId(R.id.menu_price_small_edit), withText("4.20")));
-        appCompatEditText21.perform(closeSoftKeyboard());
+        ViewInteraction bottomNavigationItemView3 = onView(
+                allOf(withId(R.id.navigation_profile), withContentDescription("Profile")));
+        bottomNavigationItemView3.perform(click());
 
-        ViewInteraction appCompatButton14 = onView(
-                allOf(withId(R.id.update_item_button), withText("Update Menu Item")));
-        appCompatButton14.perform(scrollTo(), click());
+        ViewInteraction bottomNavigationItemView4 = onView(
+                allOf(withId(R.id.navigation_menu), withContentDescription("Menu")));
+        bottomNavigationItemView4.perform(click());
+
 
 
     }

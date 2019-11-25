@@ -323,6 +323,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return store;
     }
 
+
     //Note: Should probably have more checks bc of Stores with the same name
     public int getStoreId(String storeName) {
         String whereClause = "SELECT StoreID FROM Stores WHERE StoreName=?";
