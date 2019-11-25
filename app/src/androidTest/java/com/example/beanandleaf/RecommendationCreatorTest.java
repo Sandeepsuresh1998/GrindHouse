@@ -29,7 +29,9 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
@@ -41,11 +43,6 @@ public class RecommendationCreatorTest {
     @BeforeClass
     public static void setup() {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
-        if (db.verifyUser("m@usc.ed", "hellll", "Merchant").contentEquals("NULL")) {
-            db.insertUser("Merchant A", "m@usc.ed", "hellll", "Merchant", "Male" );
-        }
-
-
         if (db.verifyUser("sam@gmail.com","smith1","Customer").contentEquals("NULL")) {
             db.insertUser("Sam Smith", "sam@gmail.com", "smith1", "Customer", "Male" );
         }
@@ -62,6 +59,20 @@ public class RecommendationCreatorTest {
         db.insertStore(userId, (float) 34.026550, (float) -118.285300, "Dulce1", image);
         int dulceId = db.getStoreId("Dulce1");
         db.updateStoreVerification(dulceId);
+
+        db.insertStore(userId, (float) 34.017520, (float) -118.282660, "coffeeBean1", image);
+        int coffeeBean = db.getStoreId("coffeeBean1");
+        db.updateStoreVerification(coffeeBean);
+
+        db.insertStore(userId, (float) 34.020035, (float) -118.283444, "LiteraTea1", image);
+        int LiteraTea = db.getStoreId("LiteraTea1");
+        db.updateStoreVerification(LiteraTea);
+
+        db.insertStore(userId, (float) 34.031966, (float) -118.284216, "DRNK1", image);
+        int DRNK = db.getStoreId("DRNK1");
+        db.updateStoreVerification(DRNK);
+
+
     }
 
     @AfterClass
@@ -96,6 +107,14 @@ public class RecommendationCreatorTest {
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.login), withText("Sign in")));
         appCompatButton2.perform(click());
+
+        ViewInteraction bottomNavigationItemView = onView(
+                allOf(withId(R.id.navigation_recommendations), withContentDescription("Recs")));
+        bottomNavigationItemView.perform(click());
+
+        ViewInteraction view = onView(
+                allOf(withContentDescription("Google Map")));
+        view.check(matches(isDisplayed()));
 
     }
 

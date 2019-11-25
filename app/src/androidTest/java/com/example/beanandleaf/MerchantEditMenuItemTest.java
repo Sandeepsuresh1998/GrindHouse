@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -155,14 +156,20 @@ public class MerchantEditMenuItemTest {
                 allOf(withId(R.id.calories_for_large_edit)));
         appCompatEditText19.perform(scrollTo(),replaceText("220"), closeSoftKeyboard());
 
-        ViewInteraction appCompatButton13 = onView(
-                allOf(withId(R.id.add_item_button), withText("Add Menu Item")));
-        appCompatButton13.perform(scrollTo(),click(), closeSoftKeyboard());
-
-        //ID ONE
-//        ViewInteraction button2 = onView(withId(R.id.EditB));
-//                button2.perform(click());
+        try{
+            ViewInteraction appCompatButton13 = onView(
+                    allOf(withId(R.id.add_item_button)));
+            appCompatButton13.perform(scrollTo(), click(), closeSoftKeyboard());
+        }
+        catch (NoMatchingViewException x)
+        {
+            System.out.println("Expected No Matching View Exception");
+        }
 //
+//        ID ONE
+        //ViewInteraction button2 = onView(withId(R.id.EditB));
+            //    button2.perform(click());
+
 //        ViewInteraction appCompatEditText20 = onView(
 //                allOf(withId(R.id.menu_price_small_edit), withText("4.00")));
 //        appCompatEditText20.perform(scrollTo(), replaceText("4.20"));
