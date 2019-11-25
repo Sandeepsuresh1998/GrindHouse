@@ -68,7 +68,7 @@ public class AddStore extends Fragment {
         });
     }
 
-    private boolean isValidCoord(String s) {
+    public boolean isValidCoord(String s) {
         if (!s.matches("[-+]?[0-9]*\\.?[0-9]+"))
             return false;
         String[] split = s.split("\\.");

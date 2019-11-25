@@ -6,6 +6,7 @@ import androidx.test.rule.ActivityTestRule;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.BeforeClass;
 
 import java.util.ArrayList;
 
@@ -26,8 +27,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 public class OrderHistoryTest {
-    @Test
-    public void setup() {
+    @BeforeClass
+    public static void setup() {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         if (!db.verifyUser("someman@gmail.com","someman","Customer").contentEquals("NULL")) {
             db.removeUser("someman@gmail.com", "Customer");
