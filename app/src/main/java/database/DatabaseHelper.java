@@ -170,6 +170,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public String getUserEmail(String userID) {
+        String whereClause = "SELECT Email FROM Users WHERE UserID=?";
+        String whereArgs[] = {userID};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getString(0);
+        }
+        return null;
+    }
+
     public Integer getUserIDfromOrderID(Integer orderID) {
         String whereClause = "SELECT UserID FROM Orders WHERE OrderID=?";
         String whereArgs[] = {orderID.toString()};
