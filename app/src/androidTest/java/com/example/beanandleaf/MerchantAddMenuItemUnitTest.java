@@ -44,7 +44,7 @@ public class MerchantAddMenuItemUnitTest {
         DatabaseHelper db = new DatabaseHelper(InstrumentationRegistry.getInstrumentation().getTargetContext());
         db.insertUser("Merchant Smith", "m@gmail.com", "merchant", "Merchant", "Male");
         db.insertStore(1, (float)34.026270,(float)-118.284020, "Starbucks", null);
-        db.insertMenuItem(1, "Chai Tea Latte", "400", "small", "100", "4", "02:00:00")
+        db.insertMenuItem(1, "Chai Tea Latte", "400", "small", "100", "4", "02:00:00");
 
         boolean menuItemTest = db.checkMenuItemNameExists(1, "Chai Tea Latte");
         assertEquals(true, menuItemTest);
