@@ -67,7 +67,7 @@ public class Profile extends Fragment {
                 RadioButton genderButton = vx.findViewById(newGenderId);
                 String newGender = genderButton.getText().toString();
                 String newUsername = usernameText.getText().toString();
-                String newEmail = emailText.getText().toString();
+                String newEmail = emailText.getText().toString().toLowerCase(); //making sure log in is not case sensitive
 
                 DatabaseHelper db = new DatabaseHelper(getActivity());
                 ArrayList<String> updates = new ArrayList<>();

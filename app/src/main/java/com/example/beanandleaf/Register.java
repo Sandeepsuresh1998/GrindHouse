@@ -45,7 +45,7 @@ public class Register extends AppCompatActivity {
 
                 String username = usernameEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
-                String email = emailEditText.getText().toString();
+                String email = emailEditText.getText().toString().toLowerCase(); //Making the email all lowercase
                 String userType = userRadio.getText().toString();
                 String gender = genderRadio.getText().toString();
 
