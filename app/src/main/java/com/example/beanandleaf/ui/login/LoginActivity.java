@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                     int selectedUserTypeId = userTypeRadioButton.getCheckedRadioButtonId();
                     final RadioButton radioButton = findViewById(selectedUserTypeId);
                     loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString(),
+                            passwordEditText.getText().toString().toLowerCase(), //login is not case sensitive
                             radioButton.getText().toString(),
                             db);
 
