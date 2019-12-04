@@ -106,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
+                loginViewModel.loginDataChanged(usernameEditText.getText().toString().toLowerCase(),
                         passwordEditText.getText().toString());
             }
         };
@@ -120,8 +120,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     int selectedUserTypeId = userTypeRadioButton.getCheckedRadioButtonId();
                     final RadioButton radioButton = findViewById(selectedUserTypeId);
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString().toLowerCase(), //login is not case sensitive
+                    String hashedPassword = DatabaseHelper.generateHash(passwordEditText.getText().toString());
+                    loginViewModel.login(usernameEditText.getText().toString().toLowerCase(), //login is not case sensitive
+                            hashedPassword,
                             radioButton.getText().toString(),
                             db);
 
@@ -135,9 +136,10 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int selectedUserTypeId = userTypeRadioButton.getCheckedRadioButtonId();
                 final RadioButton radioButton = findViewById(selectedUserTypeId);
+                String hashedPassword = DatabaseHelper.generateHash(passwordEditText.getText().toString());
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString(),
+                loginViewModel.login(usernameEditText.getText().toString().toLowerCase(),
+                        hashedPassword,
                         radioButton.getText().toString(),
                         db);
             }

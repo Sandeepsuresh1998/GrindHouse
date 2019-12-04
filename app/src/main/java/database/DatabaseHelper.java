@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +24,7 @@ import model.Store;
 public class DatabaseHelper extends SQLiteOpenHelper {
     // SQLite database and table names are not case sensitive
     public static final String DATABASE_NAME = "BeanAndLeaf.db";
+    public static final String SALT = "password-salt";
 
     private SQLiteDatabase db;
 
@@ -107,7 +110,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor res = db.rawQuery(whereClause, whereArgs);
         if (res.moveToNext()) {
-            if (res.getString(1).contentEquals(password)) {
+            String dbPass = res.getString(1);
+            if (dbPass.contentEquals(password)) {
                 return res.getString(0); // valid login, return username
             }
             else {
@@ -618,5 +622,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ));
         }
         return orders;
+    }
+
+    public static String generateHash(String input) {
+        StringBuilder hash = new StringBuilder();
+        input = SALT + input;
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            byte[] hashedBytes = sha.digest(input.getBytes());
+            char[] digits = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
+
+            for (int i = 0; i < hashedBytes.length; ++i) {
+                byte b = hashedBytes[i];
+                hash.append(digits[(b & 0xf0) >> 4]);
+                hash.append(digits[b & 0x0f]);
+            }
+        } catch (NoSuchAlgorithmException nsae) {
+            System.out.println("Error generating hash: " + nsae.getMessage());
+        }
+        String hashString = hash.toString();
+        return hashString;
     }
 }

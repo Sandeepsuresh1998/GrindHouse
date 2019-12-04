@@ -22,6 +22,8 @@ import model.Store;
 
 public class Register extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,18 +64,19 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please enter a password >5 characters", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    String verifyResult = db.verifyUser(email, password, userType);
+                    String hashedPassword = DatabaseHelper.generateHash(password);
+                    String verifyResult = db.verifyUser(email, hashedPassword, userType);
                     if (!verifyResult.contentEquals("NULL")) {
                         Toast.makeText(getApplicationContext(),
                                 "A " + userType.toLowerCase() + " account already exists with that email",
                                 Toast.LENGTH_LONG).show();
                     }
                     else {
-                        db.insertUser(username, email, password, userType, gender);
+                        db.insertUser(username, email, hashedPassword, userType, gender);
                         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
                         SharedPreferences.Editor editor = pref.edit();
                         editor.putString("username", username);
-                        editor.putString("password", password);
+                        editor.putString("password", hashedPassword);
                         editor.putString("email", email);
                         editor.putString("userType", userType);
                         editor.putString("gender", gender);
