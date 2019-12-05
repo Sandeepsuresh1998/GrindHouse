@@ -33,6 +33,9 @@
     <string name="dialog_message">Welcome to Alert Dialog</string>
     <string name="dialog_title">Javatpoint Alert Dialog</string>
     <string name="title_activity_log_orders">LogOrders</string>
+    <string name="Merchant_Verification">Merchant Verification</string>
+    <string name="Select_Store">Select Store</string>
+
     <item name="itemName" type="id" />
     <item name="itemSize1" type="id" />
     <item name="itemSize2" type="id" />
