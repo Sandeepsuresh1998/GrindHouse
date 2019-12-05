@@ -102,10 +102,7 @@
                         android:textStyle="bold" />
 
                 </TableRow>
-
             </TableLayout>
-
         </RelativeLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

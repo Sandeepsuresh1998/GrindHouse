@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-     <!--IMPORTANT otherwise backgrnd img. will not fill the whole screen -->
-
     <RelativeLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,6 +19,3 @@
         />
 
 </RelativeLayout>
-
-
-<!-- SHAYANNA REMOVED SCROLL VIEW ON THIS -->
