@@ -37,6 +37,86 @@
             app:layout_constraintBottom_toTopOf="@+id/name"
             app:layout_constraintStart_toStartOf="@+id/name" />
 
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="152dp"
+            android:layout_marginEnd="44dp"
+            android:ems="10"
+            android:fontFamily="@font/europe_underground_light"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ntext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/amatic_regular"
+            android:text="Email"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:fontFamily="@font/europe_underground_light"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/ntext"
+            app:layout_constraintTop_toTopOf="@+id/ntext" />
+
+        <TextView
+            android:id="@+id/etext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/amatic_regular"
+            android:text="Password"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/email"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/white"
+            android:fontFamily="@font/amatic_regular"
+            android:gravity="center"
+            android:text="Create My Account"
+            android:textColor="@color/primary_lighter"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/lnkLogin"
+            app:layout_constraintEnd_toEndOf="@+id/lnkLogin"
+            app:layout_constraintStart_toStartOf="@+id/lnkLogin"
+            app:layout_constraintTop_toBottomOf="@+id/userType"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/europe_underground_light"
+            android:inputType="textPassword"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/etext"
+            app:layout_constraintTop_toBottomOf="@+id/etext" />
+
         <RadioGroup
             android:id="@+id/genderOptions"
             android:layout_width="wrap_content"
@@ -78,69 +158,6 @@
 
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/etext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/amatic_regular"
-            android:text="Password"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/email"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
-
-        <Button
-            android:id="@+id/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/white"
-            android:fontFamily="@font/amatic_regular"
-            android:gravity="center"
-            android:text="Create My Account"
-            android:textColor="@color/primary_lighter"
-            android:textSize="20dip"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/lnkLogin"
-            app:layout_constraintEnd_toEndOf="@+id/lnkLogin"
-            app:layout_constraintStart_toStartOf="@+id/lnkLogin"
-            app:layout_constraintTop_toBottomOf="@+id/userType"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/lnkLogin"
-            android:layout_width="379dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="116dp"
-            android:clickable="true"
-            android:fontFamily="@font/amatic_regular"
-            android:gravity="center"
-            android:onClick="sendToLogin"
-            android:text="Registered? Login here."
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:fontFamily="@font/europe_underground_light"
-            android:inputType="textPassword"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/etext"
-            app:layout_constraintTop_toBottomOf="@+id/etext" />
-
         <RadioGroup
             android:id="@+id/userType"
             android:layout_width="wrap_content"
@@ -175,44 +192,27 @@
 
         </RadioGroup>
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:ems="10"
-            android:fontFamily="@font/europe_underground_light"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/ntext"
-            app:layout_constraintTop_toTopOf="@+id/ntext" />
-
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="152dp"
-            android:layout_marginEnd="44dp"
-            android:ems="10"
-            android:fontFamily="@font/amatic_regular"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/ntext"
-            android:layout_width="wrap_content"
+            android:id="@+id/lnkLogin"
+            android:layout_width="379dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="116dp"
+            android:clickable="true"
             android:fontFamily="@font/amatic_regular"
-            android:text="Email"
+            android:gravity="center"
+            android:onClick="sendToLogin"
+            android:text="Registered? Login here."
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/name"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        S
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
