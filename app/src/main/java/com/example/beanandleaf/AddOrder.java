@@ -1,7 +1,9 @@
 package com.example.beanandleaf;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +17,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import database.DatabaseHelper;
 import model.MenuItem;
+import model.Order;
 
 
 public class AddOrder extends Fragment {
@@ -127,7 +131,23 @@ public class AddOrder extends Fragment {
 
                 String quant = quantSpinner.getSelectedItem().toString();
                 if (db.insertOrder(userID, item.getID(), storeID, Integer.parseInt(quant), item.getCaffeine() * Integer.parseInt(quant), item.getCalories() * Integer.parseInt(quant), Double.toString(item.getPrice() * Double.parseDouble(quant)), item.getName(), Long.toString(System.currentTimeMillis()))) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully", Toast.LENGTH_LONG).show();
+
+                    int caffeineToday = getCaffeineFromOrdersToday(db.getUserOrders(userID));
+                    String caffeineToast;
+                    if(caffeineToday < 300) {
+                        caffeineToast = "Your caffeine intake amount today is " + caffeineToday;
+                    }
+                    else if(caffeineToday >= 300 && caffeineToday < 400) {
+                        caffeineToast = "Your caffeine intake amount today is " + caffeineToday + ". You're nearing the daily recommended limit of 400mg.";
+                    }
+                    else if (caffeineToday == 400) {
+                        caffeineToast = "Your caffeine intake amount today is 400 mg. You've reached the daily recommended amount of caffeine.";
+                    }
+                    else {
+                        caffeineToast = "Your caffeine intake amount today is " + caffeineToday + ".You've exceeded the daily recommended amount of caffeine!";
+                    }
+
+                    Toast.makeText(getActivity().getApplicationContext(), "Order logged successfully\n" + caffeineToast, Toast.LENGTH_LONG).show();
                     Fragment mapFragment = new Map();
                     getFragmentManager()
                             .beginTransaction()
@@ -137,8 +157,18 @@ public class AddOrder extends Fragment {
                 else {
                     Toast.makeText(getActivity().getApplicationContext(), "Error: order not recorded", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
+    }
+
+    private int getCaffeineFromOrdersToday(ArrayList<Order> orders) {
+        int caffeineToday = 0;
+        int timeDayAgo = (int) (System.currentTimeMillis() - TimeUnit.DAYS.toMillis(1));
+        for (Order order : orders) {
+            if (order.getOrderTime() - timeDayAgo > 0) {
+                caffeineToday += order.getCaffeine();
+            }
+        }
+        return caffeineToday;
     }
 }

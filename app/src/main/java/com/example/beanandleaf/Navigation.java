@@ -58,7 +58,7 @@ public class Navigation extends AppCompatActivity implements BottomNavigationVie
 
 
                     int caffeineToday = getCaffeineFromOrdersToday(db.getUserOrders(userID));
-                    if(caffeineToday < 350)
+                    if(caffeineToday < 300)
                     {
                         // Displaying posotioned Toast message
                         Toast t = Toast.makeText(getApplicationContext(),
@@ -67,7 +67,7 @@ public class Navigation extends AppCompatActivity implements BottomNavigationVie
                         t.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
                         t.show();
                     }
-                    else if(caffeineToday >= 350 && caffeineToday < 400)
+                    else if(caffeineToday >= 300 && caffeineToday < 400)
                     {
                         Toast t = Toast.makeText(getApplicationContext(),
                                 "Your caffeine intake amount today is " + caffeineToday + ". You're nearing the daily recommended limit of 400mg.",
