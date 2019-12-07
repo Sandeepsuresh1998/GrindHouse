@@ -88,15 +88,15 @@ public class RecExistsTest {
                 allOf(withId(R.id.navigation_recommendations), withContentDescription("Recs")));
         bottomNavigationItemView.perform(click());
 
-        ViewInteraction view = onView(
-                allOf(withContentDescription("Google Map"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.mapRec),
-                                        0),
-                                0),
-                        isDisplayed()));
-        view.check(matches(isDisplayed()));
+//        ViewInteraction view = onView(
+//                allOf(withContentDescription("Google Map"),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(R.id.mapRec),
+//                                        0),
+//                                0),
+//                        isDisplayed()));
+//        view.check(matches(isDisplayed()));
     }
 
     private static Matcher<View> childAtPosition(
