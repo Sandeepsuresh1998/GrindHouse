@@ -138,7 +138,7 @@ public class AddOrder extends Fragment {
                         caffeineToast = "Your caffeine intake amount today is " + caffeineToday;
                     }
                     else if(caffeineToday >= 300 && caffeineToday < 400) {
-                        caffeineToast = "Your caffeine intake amount today is " + caffeineToday + ". You're nearing the daily recommended limit of 400mg.";
+                        caffeineToast = "Your caffeine intake amount today is " + caffeineToday + "mg. You're nearing the daily recommended limit of 400mg.";
                     }
                     else if (caffeineToday == 400) {
                         caffeineToast = "Your caffeine intake amount today is 400 mg. You've reached the daily recommended amount of caffeine.";
