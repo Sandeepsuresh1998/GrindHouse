@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,9 +31,22 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.mysql.cj.xdevapi.JsonParser;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import database.DatabaseHelper;
 import model.Store;
@@ -57,84 +72,10 @@ public class Map extends Fragment implements OnMapReadyCallback {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-//        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-//        startLocationUpdates();
-
 
     }
 
-//    protected void startLocationUpdates() {
-//
-//        // Create the location request to start receiving updates
-//        mLocationRequest = new LocationRequest();
-//        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//        mLocationRequest.setInterval(UPDATE_INTERVAL);
-//        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-//
-//        // Create LocationSettingsRequest object using location request
-//        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-//        builder.addLocationRequest(mLocationRequest);
-//        LocationSettingsRequest locationSettingsRequest = builder.build();
-//
-//        // Check whether location settings are satisfied
-//        // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
-//        SettingsClient settingsClient = LocationServices.getSettingsClient(this.getContext());
-//        settingsClient.checkLocationSettings(locationSettingsRequest);
-//
-//        // new Google API SDK v11 uses getFusedLocationProviderClient(this)
-//        LocationServices.getFusedLocationProviderClient(this).requestLocationUpdates(mLocationRequest, new LocationCallback() {
-//                    @Override
-//                    public void onLocationResult(LocationResult locationResult) {
-//                        // do work here
-//                        onLocationChanged(locationResult.getLastLocation());
-//                    }
-//                },
-//                Looper.myLooper());
-//    }
 
-//    public void onLocationChanged(Location location) {
-//        // New location has now been determined
-//        String msg = "Updated Location: " +
-//                Double.toString(location.getLatitude()) + "," +
-//                Double.toString(location.getLongitude());
-//        Toast.makeText(this.getContext(), msg, Toast.LENGTH_SHORT).show();
-//        // You can now create a LatLng Object for use with maps
-//        Float currentLat = (float)location.getLatitude();
-//        Float currentLong = (float)location.getLongitude();
-//        //Compare to stores long and lat nearby
-//        DatabaseHelper db = new DatabaseHelper(getActivity());
-//        ArrayList<Store> stores = db.getStores();
-//        for (Store s : stores) {
-//            if (s.isVerified()) {
-//                if (s.getLatitude() == currentLat && s.getLongitude() == currentLong){
-//                    //Ask user to log order
-//                }
-//            }
-//        }
-//    }
-//
-//    public void getLastLocation() {
-//        // Get last known recent location using new Google Play Services SDK (v11+)
-//        FusedLocationProviderClient locationClient = LocationServices.getFusedLocationProviderClient();
-//
-//        locationClient.getLastLocation()
-//                .addOnSuccessListener(new OnSuccessListener<Location>() {
-//                    @Override
-//                    public void onSuccess(Location location) {
-//                        // GPS location can be null if GPS is switched off
-//                        if (location != null) {
-//                            onLocationChanged(location);
-//                        }
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.d("MapDemoActivity", "Error trying to get last GPS location");
-//                        e.printStackTrace();
-//                    }
-//                });
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -150,6 +91,7 @@ public class Map extends Fragment implements OnMapReadyCallback {
 
         return mView;
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -170,9 +112,6 @@ public class Map extends Fragment implements OnMapReadyCallback {
         mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-//        if(checkPermissions()) {
-//            googleMap.setMyLocationEnabled(true);
-//        }
 
         try {
             // Customise the styling of the base map using a JSON object defined
@@ -227,18 +166,170 @@ public class Map extends Fragment implements OnMapReadyCallback {
 
     }
 
-//    private boolean checkPermissions(){
-//        if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            return true;
-//        } else {
-//            requestPermissions();
-//            return false;
+//    private String getUrl(LatLng origin, LatLng dest) {
+//
+//        // Origin of route
+//        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+//
+//        // Destination of route
+//        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+//
+//
+//        // Sensor enabled
+//        String sensor = "sensor=false";
+//
+//        // Building the parameters to the web service
+//        String parameters = str_origin + "&" + str_dest + "&" + sensor;
+//
+//        // Output format
+//        String output = "json";
+//
+//        // Building the url to the web service
+//        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
+//
+//
+//        return url;
+//    }
+//
+//    private String downloadUrl(String strUrl) throws IOException {
+//        String data = "";
+//        InputStream iStream = null;
+//        HttpURLConnection urlConnection = null;
+//        try {
+//            URL url = new URL(strUrl);
+//
+//            // Creating an http connection to communicate with url
+//            urlConnection = (HttpURLConnection) url.openConnection();
+//
+//            // Connecting to url
+//            urlConnection.connect();
+//
+//            // Reading data from url
+//            iStream = urlConnection.getInputStream();
+//
+//            BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
+//
+//            StringBuffer sb = new StringBuffer();
+//
+//            String line = "";
+//            while ((line = br.readLine()) != null) {
+//                sb.append(line);
+//            }
+//
+//            data = sb.toString();
+//            Log.d("downloadUrl", data.toString());
+//            br.close();
+//
+//        } catch (Exception e) {
+//            Log.d("Exception", e.toString());
+//        } finally {
+//            iStream.close();
+//            urlConnection.disconnect();
+//        }
+//        return data;
+//    }
+//
+//    private class FetchUrl extends AsyncTask<String, Void, String> {
+//
+//        @Override
+//        protected String doInBackground(String... url) {
+//
+//            // For storing data from web service
+//            String data = "";
+//
+//            try {
+//                // Fetching the data from web service
+//                data = downloadUrl(url[0]);
+//                Log.d("Background Task data", data.toString());
+//            } catch (Exception e) {
+//                Log.d("Background Task", e.toString());
+//            }
+//            return data;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            super.onPostExecute(result);
+//
+//            MapsActivity.ParserTask parserTask = new MapsActivity.ParserTask();
+//
+//            // Invokes the thread for parsing the JSON data
+//            parserTask.execute(result);
+//
+//        }
+//    }
+//
+//    private class ParserTask extends AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
+//
+//        // Parsing the data in non-ui thread
+//        @Override
+//        protected List<List<HashMap<String, String>>> doInBackground(String... jsonData) {
+//
+//            JSONObject jObject;
+//            List<List<HashMap<String, String>>> routes = null;
+//
+//            try {
+//                jObject = new JSONObject(jsonData[0]);
+//                Log.d("ParserTask",jsonData[0].toString());
+//                JsonParser parser = new JsonParser();
+//                Log.d("ParserTask", parser.toString());
+//
+//                // Starts parsing data
+//                routes = parser.parse(jObject);
+//                Log.d("ParserTask","Executing routes");
+//                Log.d("ParserTask",routes.toString());
+//
+//            } catch (Exception e) {
+//                Log.d("ParserTask",e.toString());
+//                e.printStackTrace();
+//            }
+//            return routes;
+//        }
+//
+//        // Executes in UI thread, after the parsing process
+//        @Override
+//        protected void onPostExecute(List<List<HashMap<String, String>>> result) {
+//            ArrayList<LatLng> points;
+//            PolylineOptions lineOptions = null;
+//
+//            // Traversing through all the routes
+//            for (int i = 0; i < result.size(); i++) {
+//                points = new ArrayList<>();
+//                lineOptions = new PolylineOptions();
+//
+//                // Fetching i-th route
+//                List<HashMap<String, String>> path = result.get(i);
+//
+//                // Fetching all the points in i-th route
+//                for (int j = 0; j < path.size(); j++) {
+//                    HashMap<String, String> point = path.get(j);
+//
+//                    double lat = Double.parseDouble(point.get("lat"));
+//                    double lng = Double.parseDouble(point.get("lng"));
+//                    LatLng position = new LatLng(lat, lng);
+//
+//                    points.add(position);
+//                }
+//
+//                // Adding all the points in the route to LineOptions
+//                lineOptions.addAll(points);
+//                lineOptions.width(10);
+//                lineOptions.color(Color.RED);
+//
+//                Log.d("onPostExecute","onPostExecute lineoptions decoded");
+//
+//            }
+//
+//            // Drawing polyline in the Google Map for the i-th route
+//            if(lineOptions != null) {
+//                mGoogleMap.addPolyline(lineOptions);
+//            }
+//            else {
+//                Log.d("onPostExecute","without Polylines drawn");
+//            }
 //        }
 //    }
 
-//    private void requestPermissions() {
-//        ActivityCompat.requestPermissions(this,
-//                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                REQUEST_FINE_LOCATION);
-//    }
 }
+
+
