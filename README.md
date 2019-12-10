@@ -125,6 +125,9 @@ Improvements of the app since Project 2.4
     2. The text font in the app displays upper and lower case letters. 
     3. Emails are stored in lowercase in the database.
     4. Passwords are encrypted in the database using SHA-1.
+    5. *Attempted* Store trip information by showing directions within the app instead of redirecting to Google Maps.
+        
+        As may be noticeable in the file Maps.java, there exists ample commented out code. This code was used in an attempt to implement the directions API to add directions in-app as opposed to having a redirect to the Google Maps API. We tried our hand at enabling this functionality and nearly got it to work; however, due to various deprecated android/google methods and api-key cohesion, it wasn’t able to work.
 
 
 
