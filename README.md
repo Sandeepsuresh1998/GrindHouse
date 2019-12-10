@@ -119,6 +119,13 @@ ReadME.md
         Logout Button
             If you press the button on the top right of the admin homepage, it will log you out of the administrator account.
 
+Improvements of the app since Project 2.4
+
+    1. The user is alerted when with a notification when their caffeine nears 400 mg/day.
+    2. The text font in the app displays upper and lower case letters. 
+    3. Emails are stored in lowercase in the database.
+    4. Passwords are encrypted in the database using SHA-1.
+
 
 
 # GrindHouse
