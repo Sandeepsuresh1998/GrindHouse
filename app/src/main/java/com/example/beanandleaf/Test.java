@@ -102,7 +102,7 @@
 //     */
 //    @Override
 //    public void onMapReady(GoogleMap googleMap) {
-//        mMap = googleMap;
+//          = googleMap;
 //
 //        Log.d("OnmapREady fired", "fired");
 //
@@ -179,7 +179,7 @@
 //
 //
 //        // Add new marker to the Google Map Android API V2
-//        mMap.addMarker(options);
+//        mGoogleMap.addMarker(options);
 //
 //        // Checks, whether start and end locations are captured
 //        if (MarkerPoints.size() >= 2) {
@@ -194,8 +194,8 @@
 //            // Start downloading json data from Google Directions API
 //            FetchUrl.execute(url);
 //            //move map camera
-//            mMap.moveCamera(CameraUpdateFactory.newLatLng(origin));
-//            mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+//            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(origin));
+//            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 //        }
 //
 //
@@ -435,11 +435,11 @@
 //        markerOptions.position(latLng);
 //        markerOptions.title("Current Position");
 //        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-//        mCurrLocationMarker = mMap.addMarker(markerOptions);
+//        mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 //
 //        //move map camera
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-//        mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+//        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 //
 //        //stop location updates
 //        if (mGoogleApiClient != null) {
@@ -503,7 +503,7 @@
 //                        if (mGoogleApiClient == null) {
 //                            buildGoogleApiClient();
 //                        }
-//                        mMap.setMyLocationEnabled(true);
+//                        mGoogleMap.setMyLocationEnabled(true);
 //                    }
 //
 //                } else {

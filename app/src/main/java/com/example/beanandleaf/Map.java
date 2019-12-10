@@ -5,20 +5,25 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -56,11 +61,10 @@ public class Map extends Fragment implements OnMapReadyCallback {
     private GoogleMap mGoogleMap;
     MapView mMapView;
     View mView;
+    Marker mCurrLocationMarker;
     private FusedLocationProviderClient fusedLocationClient;
     private LocationRequest mLocationRequest;
 
-    private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
-    private long FASTEST_INTERVAL = 2000; /* 2 sec */
 
 
     SupportMapFragment mapFragment;
@@ -166,69 +170,69 @@ public class Map extends Fragment implements OnMapReadyCallback {
 
     }
 
-//    private String getUrl(LatLng origin, LatLng dest) {
-//
-//        // Origin of route
-//        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
-//
-//        // Destination of route
-//        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
-//
-//
-//        // Sensor enabled
-//        String sensor = "sensor=false";
-//
-//        // Building the parameters to the web service
-//        String parameters = str_origin + "&" + str_dest + "&" + sensor;
-//
-//        // Output format
-//        String output = "json";
-//
-//        // Building the url to the web service
-//        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
-//
-//
-//        return url;
-//    }
-//
-//    private String downloadUrl(String strUrl) throws IOException {
-//        String data = "";
-//        InputStream iStream = null;
-//        HttpURLConnection urlConnection = null;
-//        try {
-//            URL url = new URL(strUrl);
-//
-//            // Creating an http connection to communicate with url
-//            urlConnection = (HttpURLConnection) url.openConnection();
-//
-//            // Connecting to url
-//            urlConnection.connect();
-//
-//            // Reading data from url
-//            iStream = urlConnection.getInputStream();
-//
-//            BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
-//
-//            StringBuffer sb = new StringBuffer();
-//
-//            String line = "";
-//            while ((line = br.readLine()) != null) {
-//                sb.append(line);
-//            }
-//
-//            data = sb.toString();
-//            Log.d("downloadUrl", data.toString());
-//            br.close();
-//
-//        } catch (Exception e) {
-//            Log.d("Exception", e.toString());
-//        } finally {
-//            iStream.close();
-//            urlConnection.disconnect();
-//        }
-//        return data;
-//    }
-//
+    private String getUrl(LatLng origin, LatLng dest) {
+
+        // Origin of route
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+
+        // Destination of route
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+
+
+        // Sensor enabled
+        String sensor = "sensor=false";
+
+        // Building the parameters to the web service
+        String parameters = str_origin + "&" + str_dest + "&" + sensor;
+
+        // Output format
+        String output = "json";
+
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
+
+
+        return url;
+    }
+
+    private String downloadUrl(String strUrl) throws IOException {
+        String data = "";
+        InputStream iStream = null;
+        HttpURLConnection urlConnection = null;
+        try {
+            URL url = new URL(strUrl);
+
+            // Creating an http connection to communicate with url
+            urlConnection = (HttpURLConnection) url.openConnection();
+
+            // Connecting to url
+            urlConnection.connect();
+
+            // Reading data from url
+            iStream = urlConnection.getInputStream();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(iStream));
+
+            StringBuffer sb = new StringBuffer();
+
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+
+            data = sb.toString();
+            Log.d("downloadUrl", data.toString());
+            br.close();
+
+        } catch (Exception e) {
+            Log.d("Exception", e.toString());
+        } finally {
+            iStream.close();
+            urlConnection.disconnect();
+        }
+        return data;
+    }
+
 //    private class FetchUrl extends AsyncTask<String, Void, String> {
 //
 //        @Override
@@ -329,6 +333,32 @@ public class Map extends Fragment implements OnMapReadyCallback {
 //            }
 //        }
 //    }
+//
+//        @Override
+//    public void onLocationChanged(Location location) {
+//
+//            mLastLocation = location;
+//            if (mCurrLocationMarker != null) {
+//                mCurrLocationMarker.remove();
+//            }
+//
+//            //Place current location marker
+//            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//            MarkerOptions markerOptions = new MarkerOptions();
+//            markerOptions.position(latLng);
+//            markerOptions.title("Current Position");
+//            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+//            mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
+//
+//            //move map camera
+//            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+//
+//            //stop location updates
+//            if (mGoogleApiClient != null) {
+//                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+//            }
+//        }
 
 }
 
