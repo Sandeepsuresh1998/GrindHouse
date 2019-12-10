@@ -75,6 +75,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (UserID) REFERENCES Users(UserID)," +
                 "FOREIGN KEY (MenuItemID) REFERENCES MenuItems(MenuItemID)," +
                 "FOREIGN KEY (StoreID) REFERENCES Stores(StoreID))");
+        /*
+        // Trip information commented out until Directions API can be configured properly
+        db.execSQL("CREATE TABLE Trips(" +
+                "TripID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "UserID INTEGER NOT NULL," +
+                "StoreID INTEGER NOT NULL," +
+                "StartTime TEXT NOT NULL," +
+                "EndTime TEXT," +
+                "MilesTravelled TEXT," +
+                "FOREIGN KEY (UserID) REFERENCES Users(UserID)," +
+                "FOREIGN KEY (StoreID) REFERENCES Stores(StoreID))");
+         */
     }
 
     @Override
@@ -475,7 +487,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return res.getInt(0);
         }
         return -1;
-
     }
 
     public MenuItem getMenuItem(Integer storeID, String name, String size) {
@@ -623,6 +634,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return orders;
     }
+
+    public boolean insertTrip(Integer userId, Integer storeId, String startTime, String endTime, String milesTravelled) {
+        ContentValues cv = new ContentValues();
+        cv.put("UserID", userId);
+        cv.put("StoreID", storeId);
+        cv.put("StartTime", startTime);
+        cv.put("EndTime", endTime);
+        cv.put("MilesTravelled", milesTravelled);
+        long result = db.insert("Trips", null, cv);
+        if (result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    /*
+    // Trip information commented out until Directions API can be configured properly
+    public boolean insertTrip(Integer userId, Integer storeId, String startTime) {
+        ContentValues cv = new ContentValues();
+        cv.put("UserID", userId);
+        cv.put("StoreID", storeId);
+        cv.put("StartTime", startTime);
+        long result = db.insert("Trips", null, cv);
+        if (result == -1) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public boolean updateTripEnd(Integer tripID, String endTime, String milesTravelled) {
+        ContentValues cv = new ContentValues();
+        cv.put("EndTime", endTime);
+        cv.put("MilesTravelled", milesTravelled);
+        String whereClause = "TripID=?";
+        String whereArgs[] = {tripID.toString()};
+        long result = db.update("Trips", cv, whereClause, whereArgs);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public int getTripID(Integer userID, String startTime) {
+        String whereClause = "SELECT TripID FROM Trips WHERE UserID=? AND StartTime=?";
+        String whereArgs[] = {Integer.toString(userID), startTime};
+
+        Cursor res = db.rawQuery(whereClause, whereArgs);
+        if (res.moveToNext()) {
+            return res.getInt(0);
+        }
+        return -1;
+    }
+
+     */
 
     public static String generateHash(String input) {
         StringBuilder hash = new StringBuilder();
